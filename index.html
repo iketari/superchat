@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Чатик группы 13.03 21:30</title>
+    <!-- Dependencies -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="./components/chat/chat.css">
+    <link rel="stylesheet" href="./components/form/form.css">
+
+    <!-- JS -->
+    <script src="./components/chat/chat.js"></script>
+    <script src="./components/form/form.js"></script>
+  </head>
+  <body>
+    <div class="js-chat"></div>
+    <div class="js-form"></div>
+
+
+
+    <script>
+      let form = new Form({
+        el: document.querySelector('.js-form')
+      });
+
+      let chat = new Chat({
+        el: document.querySelector('.js-chat')
+      });
+
+      form.render();
+      chat.render();
+
+      // form.on('message', () => {});
+      form.onSubmit = (message) => {
+        chat.addMessage(message);
+        chat.render();
+        form.render();
+      };
+
+      //debug
+      window.chat = chat;
+    </script>
+  </body>
+</html>
