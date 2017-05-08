@@ -1,0 +1,16 @@
+.enter-message {
+  padding:13px 0px;
+}
+.enter-message input {
+  border:none;
+  padding:10px 12px;
+  background:#d3d3d3;
+  width:260px;
+  border-radius:2px;
+}
+.enter-message a.send {
+  padding:10px 15px;
+  background:#6294c2;
+  border-radius:2px;
+  float:right;
+}

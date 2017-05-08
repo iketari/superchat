@@ -1,45 +1,79 @@
 (function () {
-  'use strict';
+	'use strict';
 
-  /**
-  * @typedef {Object} ChatMessage
-  * @property {string} username
-  * @property {string} message
-  */
+	/**
+	 * @typedef {Object} ChatMessage
+	 *
+ 	 * @property {string} text - Текст сообщения
+ 	 * @property {string} email - Email отправителя сообщения
+	 */
 
-  class Chat {
-    constructor({el, data = {messages: []}}) {
-      this.el = el;
-      this.data = data; // массив сообщений
-      // this.data = {
-      //     messages: [ {username: 'text', message: 'text'} ]
-      // }
-    }
+	class Chat {
+		constructor({el, data = {messages: []}}) {
+			this.el = el;
+			this.data = data;
 
-    render () {
-      let messagesHTML = this.data.messages.map(mData => {
-        return `<div class="chat__message">
-                  <span class="chat__author">${mData.username}</span>
-                   ${mData.message}
-                </div>`;
-      }).join('');
+			this._getUserName();
+		}
 
-      this.el.innerHTML = `
-        <div class="chat">
-          ${messagesHTML}
-        </div>
-      `;
-    }
+		render () {
+			this.el.innerHTML = `
+			<div class="chat">
+				<div class="chat__container">
+				  <div class="header">
+				    <h2>Чат</h2>
+				  </div>
+				  <div class="chat__box">
+				    ${this._generateMessages()}
+				  </div>
+				</div>
+			</div>
+			`;
+		}
 
-    /**
-    * Add message into chat store. Without rerender
-    * @param {ChatMessage} данные сообщения
-    */
-    addMessage (message) {
-      this.data.messages.push(message);
-    }
-  }
+		/**
+		 * Добавить новое сообщение в чат
+		 * @param {ChatMessage} data
+		 */
+		addMessage (data) {
+			this.data.messages.push({
+				avatar: 'http://i.imgur.com/FHMnsVNt.jpg',
+				name: data.name || this.data.user,
+				text: data.text,
+				date: data.date || new Date()
+			});
+		}
 
-  //export
-  window.Chat = Chat;
+		_getUserName () {
+			//TODO: справшивать
+			this.data.user = 'Tim';
+		}
+
+		_generateMessages () {
+			let data = this.data.messages || [];
+
+			if (!data.length) {
+				return `<h3>Сообщений нет</h3>`;
+			}
+
+			return data.map(item => {
+				return `
+					<div class="message-box left-img">
+						<div class="picture">
+							<img src="${item.avatar}" title="user name"/>
+							<span class="time">${item.date.toTimeString().split(' ')[0]}</span>
+						</div>
+						<div class="message">
+							<span>${item.name}</span>
+							<p>${item.text}</p>
+						</div>
+					</div>
+				`;
+			});
+		}
+	}
+
+
+	//export
+	window.Chat = Chat;
 })();

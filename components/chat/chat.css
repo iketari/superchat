@@ -1,18 +1,102 @@
-.chat {
-  padding: 5px;
-  border: 1px solid #cecece;
+.chat__container {
+  width: 100%;
+  display:block;
   overflow: hidden;
 }
 
-  .chat__message {
-    padding: 10px;
-    background-color: olive;
-  }
+.header{
+  padding:20px 20px 18px 20px;
+  background:#5FB471;
+  color:#fff;
+}
+.header h2{
+  font-size:16px;
+  line-height:15px;
+  display:inline-block;
+}
+.header a{
+  display:inline-block;
+  float:right;
+  background:#3d8b4e;
+  font-size:25px;
+  line-height:20px;
+  padding:3px 6px;
+  margin-top:-5px;
+  border-radius:2px;
+}
 
-    .chat__author {
-      color: #fff;
-    }
+.chat__box {
+  background: #ECECEC;
+  padding: 0 20px;
+  color: #a1a1a1;
+  overflow-y: auto;
+  height: 70vh;
+}
 
-  .chat__message_my {
-    background-color: #759CB8;
-  }
+.chat__box .message-box{
+  padding:18px 0 10px;
+  clear:both;
+}
+.message-box .picture{
+  float:left;
+  width:50px;
+  display:block;
+  padding-right:10px;
+}
+.picture img{
+  width:43px;
+  height:43px;
+  border-radius:5px;
+}
+.picture span {
+  font-weight: bold;
+  font-size: 10px;
+  clear: both;
+  display: block;
+  text-align: center;
+  margin-top: 3px;
+}
+.message{
+  background:#fff;
+  display:inline-block;
+  padding:13px;
+  width:274px;
+  border-radius:2px;
+  box-shadow: 0 1px 1px rgba(0,0,0,.04);
+  position:relative;
+}
+.message:before{
+  content:"";
+  position:absolute;
+  display:block;
+  left:0;
+  border-right:6px solid #fff;
+  border-top: 6px solid transparent;
+  border-bottom:6px solid transparent;
+  top:10px;
+  margin-left:-6px;
+}
+.message span{
+  color:#555;
+  font-weight:bold;
+}
+.message p{
+  padding-top:5px;
+}
+.message-box.right-img .picture{
+  float:right;
+  padding:0;
+  padding-left:10px;
+}
+.message-box.right-img .picture img{
+  float:right;
+}
+.message-box.right-img .message:before{
+  left:100%;
+  margin-right:6px;
+  margin-left:0;
+  border-right:6px solid transparent;
+  border-left:6px solid #fff;
+  border-top: 6px solid transparent;
+  border-bottom:6px solid transparent;
+}

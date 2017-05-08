@@ -1,54 +1,65 @@
 (function () {
-  'use strict';
+	'use strict';
 
-  class Form {
-    constructor({el}) {
-      this.el = el;
+	class Form {
+		constructor(options) {
+			this.el = options.el;
 
-      this._onSubmit = this._onSubmit.bind(this);
-      this._initEvents();
-    }
+			this._initEvents();
+		}
 
-    onSubmit (message) {
-      console.warn('You should define your own onSubmit');
-      console.info('message:', message);
-    }
+		render () {
+			this.el.innerHTML = `
+				<form>
+					<textarea name="message" type="text"></textarea>
+					<input type="submit" value="Отправить" />
+				</form>
+			`;
 
-    _initEvents () {
-      this.el.addEventListener('submit', this._onSubmit);
-    }
+			this.formEl = this.el.querySelector('form');
+		}
 
-    _onSubmit (event) {
-      event.preventDefault();
+		/**
+		 * Установка callback отправки формы
+		 * @param  {Function} cb
+		 */
+		onSubmit (cb) {
+			this._submitCallback = cb;
+		}
 
-      let formData = this._getFormData();
-      this.onSubmit(formData);
-    }
+		reset () {
+			this.formEl.reset();
+		}
+	
+		_initEvents () {
+			this.el.addEventListener('submit', this._onSubmit.bind(this));
+		}
 
-    _getFormData () {
-      let names = this.el.querySelectorAll('[name]');
-      let data = {};
+		_onSubmit (event) {
+			event.preventDefault();
+			let formData = this._getFormData();
 
-      names.forEach(el => {
-        data[el.name] = el.value;
-      });
+			this._submitCallback(formData);
+		}
 
-      return data;
-    }
+		_getInputs () {
+			return this.el.querySelectorAll('input, textarea');
+		}
 
-    render () {
-      this.el.innerHTML = `
-        <input name="username" required placeholder="Имя пользователя" />
-        <form class="form">
-          <textarea name="message" required placeholder="Сообщение..." rows=4></textarea>
-          <br/>
-          <input type="submit"/>
-        </form>
-      `;
-    }
-  }
+		_getFormData () {
+			let formData = {};
 
-  // export
-  window.Form = Form;
+			[...this._getInputs()].forEach(input => {
+				formData[input.name] = {
+					value: input.value
+				};
+			});
 
+			return formData;
+		}
+
+	}
+
+	//export
+	window.Form = Form;
 })();
