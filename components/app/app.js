@@ -6,8 +6,8 @@
 	const Form = window.Form;
 
 	class App {
-		constructor(options) {
-			this.el = options.el;
+		constructor({el}) {
+			this.el = el;
 
 			this._createComponents();
 			this._initMediate();

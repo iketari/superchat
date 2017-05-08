@@ -1,0 +1,17 @@
+div.chat
+	div.chat__container
+		div.header
+			h2='Добро пожаловать ' + user
+		div.chat__box
+
+			if !messages.length
+				h3 Пока нет сообщений
+
+			each message in messages
+				div.message-box(class=message.isMine ? 'left-img' : 'right-img')
+					div.picture
+						img(src=message.avatar title='name of user')
+						span.time=message.date.toTimeString().split(' ')[0]
+					div.message
+						span=message.name
+						p=message.text
