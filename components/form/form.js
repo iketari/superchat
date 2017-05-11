@@ -1,6 +1,9 @@
 (function () {
 	'use strict';
 
+	//import
+	const tmpl = window.formTmpl;
+
 	class Form {
 		constructor(options) {
 			this.el = options.el;
@@ -9,12 +12,7 @@
 		}
 
 		render () {
-			this.el.innerHTML = `
-				<form>
-					<textarea name="message" type="text"></textarea>
-					<input type="submit" value="Отправить" />
-				</form>
-			`;
+			this.el.innerHTML = tmpl(this.data);
 
 			this.formEl = this.el.querySelector('form');
 		}

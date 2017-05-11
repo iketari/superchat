@@ -8,7 +8,8 @@
     "serve": "npm run build && static . --port=8900",
     "lint": "jshint components/**/*.js",
     "build:chat": "pug --client --name=chatTmpl components/chat/chat.tmpl.pug",
-    "build": "npm run build:chat"
+    "build:form": "pug --client --name=formTmpl components/form/form.tmpl.pug",
+    "build": "npm-run-all --parallel build:chat build:form"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "jsdoc-to-markdown": "^3.0.0",
     "jshint": "^2.9.4",
     "node-static": "^0.7.9",
+    "npm-run-all": "^4.0.2",
     "pug": "^2.0.0-rc.1",
     "pug-cli": "^1.0.0-alpha6"
   }
