@@ -35,10 +35,23 @@
 
 		_initMediate () {
 			this.form.onSubmit((data) => {
-				this.chat.addMessage({
-					text: data.message.value
-				});
-				this.chat.render();
+				let sendData = {
+					text: data.message.value,
+					user: data.username.value
+				}
+
+				makeRequest((data) => { // отправить сообщение
+					this.chat.render();
+
+					makeRequest(chatData => { // забрать сообщения
+						let messages = Object.values(chatData);
+
+						this.chat.setMessages(messages);
+						this.chat.render();
+					});
+
+				}, sendData, 'POST');
+
 				this.form.reset();
 			});
 		}
