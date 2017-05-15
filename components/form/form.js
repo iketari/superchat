@@ -18,11 +18,23 @@
 		}
 
 		/**
-		 * Установка callback отправки формы
-		 * @param  {Function} cb
+		 * Регистрация обработчика события
+		 * @param  {string}   name - тип события
+		 * @param  {function} cb
 		 */
-		onSubmit (cb) {
-			this._submitCallback = cb;
+		on (name, cb) {
+			this.el.addEventListener(name, cb);
+		}
+
+		/**
+		 * Вызов обработчиков событий
+		 * @param  {string} name - тип события
+		 * @param  {*} data
+		 */
+		trigger (name, data) {
+			let event = new CustomEvent(name, {detail: data});
+
+			this.el.dispatchEvent(event);
 		}
 
 		reset () {
@@ -37,7 +49,7 @@
 			event.preventDefault();
 			let formData = this._getFormData();
 
-			this._submitCallback(formData);
+			this.trigger('message', formData);
 		}
 
 		_getInputs () {

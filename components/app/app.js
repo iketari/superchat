@@ -1,13 +1,19 @@
 (function () {
 	'use strict';
-
-	//import
+	
 	const Chat = window.Chat;
 	const Form = window.Form;
+	const AvatarService = window.AvatarService;
+	const ChatService = window.ChatService;
+
+	const chatService = new ChatService({
+		baseUrl: 'https://components-e2e6e.firebaseio.com/chat/messages/iketari.json'
+	});
 
 	class App {
-		constructor({el}) {
-			this.el = el;
+
+		constructor(options) {
+			this.el = options.el;
 
 			this._createComponents();
 			this._initMediate();
@@ -25,7 +31,13 @@
 
 		_createComponents () {
 			this.chat = new Chat({
-				el: document.createElement('div')
+				el: document.createElement('div'),
+				avatarService: new AvatarService,
+				chatService,
+				data: {
+					messages: [],
+					user: null
+				}
 			});
 
 			this.form = new Form({
@@ -34,31 +46,36 @@
 		}
 
 		_initMediate () {
-			this.form.onSubmit((data) => {
-				let sendData = {
-					text: data.message.value,
-					user: data.username.value
+			this.form.on('message', (event) => {
+				let data = event.detail;
+
+				if (!this.chat.getUsername()) {
+					this.chat.setUserName(event.detail.username.value);
 				}
 
-				makeRequest((data) => { // отправить сообщение
-					this.chat.render();
+				data = {
+					text: data.message.value,
+					name: this.chat.getUsername()
+				};
 
-					makeRequest(chatData => { // забрать сообщения
-						let messages = Object.values(chatData);
+				chatService.sendMessage(data, () => {
+					console.log('NEW MSG');
+				});
 
-						this.chat.setMessages(messages);
-						this.chat.render();
-					});
+				this.chat.addOne(data);
 
-				}, sendData, 'POST');
-
+				this.chat.render();
 				this.form.reset();
 			});
 		}
-	
-		// methods
+
+		addMessage (data) {
+			this.chat.addOne(data);
+		}
+
 	}
 
 	//export
 	window.App = App;
+
 })();
