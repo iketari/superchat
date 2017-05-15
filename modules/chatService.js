@@ -13,7 +13,7 @@
 
 			xhr.onload = () => {
 				cb(JSON.parse(xhr.responseText));
-			}
+			};
 
 			xhr.send(JSON.stringify(data));
 		}

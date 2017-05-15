@@ -1,6 +1,7 @@
 (function () {
 	'use strict';
 	
+	// import
 	const Chat = window.Chat;
 	const Form = window.Form;
 	const AvatarService = window.AvatarService;
@@ -32,7 +33,7 @@
 		_createComponents () {
 			this.chat = new Chat({
 				el: document.createElement('div'),
-				avatarService: new AvatarService,
+				avatarService: new AvatarService(),
 				chatService,
 				data: {
 					messages: [],
@@ -46,6 +47,16 @@
 		}
 
 		_initMediate () {
+
+			document.addEventListener('visibilitychange', () => {
+				if (document.visibilityState === 'hidden') {
+					this.chat.stopPolling();
+				} else {
+					this.chat.stopPolling();
+					this.chat.startPolling();
+				}
+			});
+
 			this.form.on('message', (event) => {
 				let data = event.detail;
 
