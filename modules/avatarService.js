@@ -13,7 +13,11 @@
 		}
 
 		getAvatar (name = '') {
-			return this._avatars[name] || this._defaultAvatar;
+			if (!this._avatars[name]) {
+				this._avatars[name] = this._defaultAvatar + `=${Date.now()}`;
+			}
+
+			return this._avatars[name];
 		}
 	}
 

@@ -49,7 +49,7 @@
 			this.form.on('message', (event) => {
 				let data = event.detail;
 
-				if (!this.chat.getUsername()) {
+				if (event.detail.username.value) {
 					this.chat.setUserName(event.detail.username.value);
 				}
 
