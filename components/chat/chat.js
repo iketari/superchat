@@ -1,11 +1,8 @@
-
-
-//import
-
+import {deepEqual} from '../../modules/utils';
 import tmpl from './chat.tmpl.pug';
+import './chat.css';
 
-// const tmpl = window.chatTmpl;
-const utils = window.utils;
+debugger;
 
 /**
  * @typedef {Object} ChatData
@@ -21,7 +18,7 @@ const utils = window.utils;
  * @property {string} name - имя отправителя сообщения
  */
 
-class Chat {
+export class Chat {
 	constructor({
 			el,
 			data = {messages: []},
@@ -64,7 +61,7 @@ class Chat {
 			this.chatService.getMessages(data => {
 				console.log('getMessages', data);
 
-				if (utils.deepEqual(
+				if (deepEqual(
 						this.data.messages, 
 						data.map(this._prepareMessage.bind(this)))
 					) {
@@ -160,8 +157,3 @@ class Chat {
 	}
 
 }
-
-
-//export
-// window.Chat = Chat;
-export {Chat};

@@ -1,11 +1,10 @@
-// import
+import './app.css';
 
 import {Chat} from '../chat/chat';
+import {Form} from '../form/form';
+import {AvatarService} from '../../modules/avatarService';
+import {ChatService} from '../../modules/chatService';
 
-// const Chat = window.Chat;
-// const Form = window.Form;
-// const AvatarService = window.AvatarService;
-// const ChatService = window.ChatService;
 
 const chatService = new ChatService({
 	baseUrl: 'https://components-e2e6e.firebaseio.com/chat/messages/iketari.json'

@@ -1,12 +1,5 @@
-(function () {
-	'use strict';
+function deepEqual (src, dest) {
+	return JSON.stringify(src) === JSON.stringify(dest);
+}
 
-	const utils = {
-		deepEqual (src, dest) {
-			return JSON.stringify(src) === JSON.stringify(dest);
-		}
-	}
-
-	//export
-	window.utils = utils;
-})();
+export {deepEqual};
