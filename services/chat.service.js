@@ -24,4 +24,8 @@ export class ChatService {
 		this._makeRequest(cb, 'POST', data);
 	}
 
+	static getInstance (...rest) {
+		return new this(...rest);
+	}
+
 }

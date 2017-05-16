@@ -16,6 +16,10 @@ export class AvatarService {
 
 		return this._avatars[name];
 	}
+
+	static getInstance (...rest) {
+		return new this(...rest);
+	}
 }
 
 

@@ -2,8 +2,6 @@ import {deepEqual} from '../../modules/utils';
 import tmpl from './chat.tmpl.pug';
 import './chat.css';
 
-debugger;
-
 /**
  * @typedef {Object} ChatData
  *

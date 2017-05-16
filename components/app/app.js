@@ -2,13 +2,16 @@ import './app.css';
 
 import {Chat} from '../chat/chat';
 import {Form} from '../form/form';
-import {AvatarService} from '../../modules/avatarService';
-import {ChatService} from '../../modules/chatService';
+import {AvatarService} from '../../services/avatar.service';
+import {ChatService} from '../../services/chat.service';
+import {WindowService} from '../../services/window.service';
 
 
-const chatService = new ChatService({
+const chatService = ChatService.getInstance({
 	baseUrl: 'https://components-e2e6e.firebaseio.com/chat/messages/iketari.json'
 });
+
+const windowService = WindowService.getInstance();
 
 class App {
 
@@ -32,7 +35,7 @@ class App {
 	_createComponents () {
 		this.chat = new Chat({
 			el: document.createElement('div'),
-			avatarService: new AvatarService(),
+			avatarService: AvatarService.getInstance(),
 			chatService,
 			data: {
 				messages: [],
@@ -46,14 +49,8 @@ class App {
 	}
 
 	_initMediate () {
-
-		document.addEventListener('visibilitychange', () => {
-			if (document.visibilityState === 'hidden') {
-				this.chat.stopPolling();
-			} else {
-				this.chat.stopPolling();
-				this.chat.startPolling();
-			}
+		windowService.onVisibilityChange(status => {
+			console.log(status);
 		});
 
 		this.form.on('message', (event) => {

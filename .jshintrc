@@ -1,7 +1,6 @@
 {
     "browser": true,
-    "jquery": true,
-    "node": false,
+    "node": true,
 
     "esversion": 6,
 
@@ -16,7 +15,7 @@
     "undef": true,
     "unused": true,
     "maxlen": 90,
-    "strict": true,
+    "strict": false,
     "globals": {
         "prompt": true,
         "console": true,
