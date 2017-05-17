@@ -3,8 +3,9 @@ import './form.css';
 
 
 export class Form {
-	constructor(options) {
-		this.el = options.el;
+	constructor({el, data = {}}) {
+		this.el = el;
+		this.data = data;
 
 		this._initEvents();
 	}
@@ -37,6 +38,10 @@ export class Form {
 
 	reset () {
 		this.formEl.reset();
+	}
+
+	setUserName (name) {
+		this.data.username = name;
 	}
 
 	_initEvents () {

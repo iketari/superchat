@@ -5,13 +5,15 @@ import {Form} from '../form/form';
 import {AvatarService} from '../../services/avatar.service';
 import {ChatService} from '../../services/chat.service';
 import {WindowService} from '../../services/window.service';
+import {HttpService} from '../../services/http.service';
 
 
 const chatService = ChatService.getInstance({
-	baseUrl: 'https://components-e2e6e.firebaseio.com/chat/messages/iketari.json'
+	baseUrl: 'https://components-e2e6e.firebaseio.com/chat/messages/iketari.json',
+	http: HttpService.getInstance()
 });
 
-const windowService = WindowService.getInstance();
+const windowService = WindowService.getInstance({document});
 
 class App {
 
@@ -55,9 +57,11 @@ class App {
 
 		this.form.on('message', (event) => {
 			let data = event.detail;
+			let userName = event.detail.username.value;
 
-			if (event.detail.username.value) {
-				this.chat.setUserName(event.detail.username.value);
+			if (userName) {
+				this.chat.setUserName(userName);
+				this.form.setUserName(userName);
 			}
 
 			data = {
@@ -71,8 +75,7 @@ class App {
 
 			this.chat.addOne(data);
 
-			this.chat.render();
-			this.form.reset();
+			this.render();
 		});
 	}
 

@@ -29,52 +29,8 @@ export class Chat {
 		this.avatarService = avatarService;
 		this.chatService = chatService;
 
-		this._initEvents();
-
-		this._init();
-	}
-
-	_initEvents () {
-		this.el.addEventListener('change', (event) => {
-
-			if (event.target.classList.contains('chat__userinput')) {
-				this.data.user = event.target.value;
-				this.render();
-			}
-		});
-	}
-
-	_init () {
-		this.startPolling();
-		
-	}
-
-	startPolling () {
-		this.__pollingID = setInterval(() => {
-
-			if (!this.data.user) {
-				return;
-			}
-
-			this.chatService.getMessages(data => {
-				console.log('getMessages', data);
-
-				if (deepEqual(
-						this.data.messages, 
-						data.map(this._prepareMessage.bind(this)))
-					) {
-					return;
-				}
-
-				this.set(data);
-				this.render();
-
-			});
-		}, 4000);
-	}
-
-	stopPolling () {
-		clearInterval(this.__pollingID);
+		this.chatService.on('messages', messages => console.log(messages));
+		this.chatService.startPolling();
 	}
 
 	render () {
