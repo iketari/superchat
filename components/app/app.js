@@ -10,10 +10,13 @@ import {HttpService} from '../../services/http.service';
 
 const chatService = ChatService.getInstance({
 	baseUrl: 'https://components-e2e6e.firebaseio.com/chat/messages/iketari.json',
-	http: HttpService.getInstance()
+	http: HttpService.getInstance(),
+	pollingInterval: 1000
 });
 
 const windowService = WindowService.getInstance({document});
+
+const avatarService = AvatarService.getInstance();
 
 class App {
 
@@ -37,12 +40,8 @@ class App {
 	_createComponents () {
 		this.chat = new Chat({
 			el: document.createElement('div'),
-			avatarService: AvatarService.getInstance(),
-			chatService,
-			data: {
-				messages: [],
-				user: null
-			}
+			avatarService,
+			chatService
 		});
 
 		this.form = new Form({
@@ -77,6 +76,8 @@ class App {
 
 			this.render();
 		});
+
+		chatService.startPolling();
 	}
 
 	addMessage (data) {

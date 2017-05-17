@@ -1,53 +1,52 @@
+import {deepEqual} from '../modules/utils';
+
 export class ChatService {
 
-	constructor ({baseUrl, pollingInterval = 2000, http}) {
+	constructor ({baseUrl, pollingInterval = 15000, http}) {
 		this.pollingInterval = pollingInterval;
 		this.http = http;
 
 		this.http.setBaseUrl(baseUrl);
 
+		this.__messages = [];
 		this.__pollingID = null;
 		this.__lastReqTime = null;
 	}
 
-	getMessages (cb) {
-		this.http.makeRequest().then(resp => cb(Object.values(resp.data)));
+	getMessages () {
+		return this.http.makeRequest()
+			.then(resp => Object.values(resp.data));
 	}
 
-	sendMessage (data, cb) {
+	sendMessage (data) {
 		data.date = Date.now();
-		this.http.makeRequest('POST', data).then(resp => {
-			cb(resp.data);
-		});
+
+		return this.http.makeRequest('POST', data)
+			.then(resp => resp.data);
 	}
 
 	startPolling () {
-
-		let chatService = this;
-
-		function doRequest () {
-			let reqTime = Date.now();
-
-			if (chatService.__stopped) {
-				return;
-			}
-
-			if (reqTime - chatService.__lastReqTime > chatService.pollingInterval ||
-				!chatService.__lastReqTime) {
-				// chatService.getMessages(messages => {
-					chatService.trigger('messages', messages);
-					chatService.__lastReqTime = Date.now();
-				// });
-			}
-
-			requestAnimationFrame(doRequest);
+		let doRequest = () => {
+			this.getMessages().then(messages => {
+				this.setMessages(messages);
+				this.__pollingID = setTimeout(doRequest, this.pollingInterval);
+			});
 		};
 
-		requestAnimationFrame(doRequest);
+		doRequest();
 	}
 
 	stopPolling () {
 		clearInterval(this.__pollingID);
+	}
+
+	setMessages (messages) {
+		if (deepEqual(this._messages, messages)) {
+			return;
+		}
+
+		this._messages = messages;
+		this.trigger('messages', this._messages);
 	}
 
 	/**

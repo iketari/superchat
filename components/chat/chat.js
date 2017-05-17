@@ -1,4 +1,4 @@
-import {deepEqual} from '../../modules/utils';
+
 import tmpl from './chat.tmpl.pug';
 import './chat.css';
 
@@ -29,14 +29,22 @@ export class Chat {
 		this.avatarService = avatarService;
 		this.chatService = chatService;
 
-		this.chatService.on('messages', messages => console.log(messages));
-		this.chatService.startPolling();
+		this._initEvents();
+	}
+
+	_initEvents () {
+		this.chatService.on('messages', this._onMessages.bind(this));
 	}
 
 	render () {
 		this._saveScrollTop();
-		this.el.innerHTML = tmpl(this.getData());
+		this.el.innerHTML = tmpl(this.data);
 		this._restoreScrollTop();
+	}
+
+	_onMessages (messages) {
+		this.setMessages(messages);
+		this.render();
 	}
 
 	_saveScrollTop () {
@@ -55,10 +63,6 @@ export class Chat {
 		}
 	}
 
-	getData () {
-		return this.data;
-	}
-
 	getUsername () {
 		return this.data.user;
 	}
@@ -69,8 +73,7 @@ export class Chat {
 		});	
 	}
 
-
-	set (messages = []) {
+	setMessages (messages = []) {
 		this.data.messages.length = 0;
 		this.add(messages);
 	}
