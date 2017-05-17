@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "webpack-dev-server --open",
-    "lint": "jshint components/**/chat.js components/**/form.js",
     "build": "webpack"
   },
   "repository": {
@@ -26,10 +25,6 @@
     "css-loader": "^0.28.1",
     "jsdoc-to-markdown": "^3.0.0",
     "jshint": "^2.9.4",
-    "node-static": "^0.7.9",
-    "npm-run-all": "^4.0.2",
-    "pug": "^2.0.0-rc.1",
-    "pug-cli": "^1.0.0-alpha6",
     "pug-loader": "^2.3.0",
     "style-loader": "^0.17.0",
     "webpack": "^2.5.1",
