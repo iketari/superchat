@@ -1,9 +1,9 @@
 export function Emitter () {
 
     /**
-	 * Dispatch an event on this object
+	 * Вызов обработчиков событий
 	 * @param {string} name event name
-	 * @param {any} data event payload
+	 * @param {*} data event payload
 	 */
 	this.trigger = function (name, data) {
 		if (this.__callbacks && this.__callbacks[name]) {
@@ -12,7 +12,7 @@ export function Emitter () {
 	};
 
 	/**
-	 * Subscribe on event
+	 * Регистрация обработчика события
 	 * @param {string} name event name
 	 * @param {function} cb callback
 	 */

@@ -52,23 +52,20 @@ export class ChatView extends BaseView {
 			console.log(status);
 		});
 
-		this.form.on('message', (event) => {
-			let data = event.detail;
-			let userName = event.detail.username.value;
+		this.form.on('message', (formData) => {
+			let userName = formData.username.value;
 
 			if (userName) {
 				this.chat.setUserName(userName);
 				this.form.setUserName(userName);
 			}
 
-			data = {
-				text: data.message.value,
+			let data = {
+				text: formData.message.value,
 				name: this.chat.getUsername()
 			};
 
-			chatService.sendMessage(data, () => {
-				console.log('NEW MSG');
-			});
+			chatService.sendMessage(data);
 
 			this.chat.addOne(data);
 

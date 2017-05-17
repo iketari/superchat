@@ -1,9 +1,12 @@
 import tmpl from './form.tmpl.pug';
 import './form.css';
 
+import {Emitter} from '../../framework/emitter';
+
 
 export class Form {
 	constructor({el, data = {}}) {
+		Emitter.apply(this);
 		this.el = el;
 		this.data = data;
 
@@ -14,26 +17,6 @@ export class Form {
 		this.el.innerHTML = tmpl(this.data);
 
 		this.formEl = this.el.querySelector('form');
-	}
-
-	/**
-	 * Регистрация обработчика события
-	 * @param  {string}   name - тип события
-	 * @param  {function} cb
-	 */
-	on (name, cb) {
-		this.el.addEventListener(name, cb);
-	}
-
-	/**
-	 * Вызов обработчиков событий
-	 * @param  {string} name - тип события
-	 * @param  {*} data
-	 */
-	trigger (name, data) {
-		let event = new CustomEvent(name, {detail: data});
-
-		this.el.dispatchEvent(event);
 	}
 
 	reset () {
