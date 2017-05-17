@@ -3,44 +3,16 @@
   <head>
     <meta charset="utf-8">
     <title>Чат!</title>
-
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-
-    <!-- CSS Reset -->
-    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
-
-    <!-- Milligram CSS minified -->
-    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
-
-
-    <!--<link rel="stylesheet" href="components/chat/chat.css" />-->
-    <!--<link rel="stylesheet" href="components/app/app.css" />-->
   </head>
   <body>
-
     <div class="app"></div>
 
-  
-    <!--<script src="modules/utils.js"></script>-->
-    <!--<script src="modules/chatService.js"></script>-->
-    <!--<script src="modules/avatarService.js"></script>-->
-    
-     <!--<script src="components/chat/chat.tmpl.js"></script> -->
-     <!--<script src="components/chat/chat.js"></script> -->
-
-    <!--<script src="components/form/form.tmpl.js"></script>-->
-    <!--<script src="components/form/form.js"></script>-->
-
-    <!--<script src="components/app/app.js"></script>-->
-
     <script src="bundle.js"></script>    
-
 
     <!-- Application start -->
     <script>
       'use strict';
-      window.__app = new window.App({
+      new App({
         el: document.querySelector('.app')
       });
     </script>

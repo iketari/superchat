@@ -1,4 +1,5 @@
 import './app.css';
+import 'milligram/dist/milligram.css';
 
 import {Chat} from '../chat/chat';
 import {Form} from '../form/form';
@@ -15,7 +16,6 @@ const chatService = ChatService.getInstance({
 });
 
 const windowService = WindowService.getInstance({document});
-
 const avatarService = AvatarService.getInstance();
 
 class App {
