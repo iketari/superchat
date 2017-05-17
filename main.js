@@ -13,7 +13,7 @@ const router = new Router({
     history: window.history
 });
 
-['main', 'chat'].forEach(viewName => {
+['main', 'chat', 'login'].forEach(viewName => {
     let el = document.createElement('div');
     let View = views[capitalize(viewName)];
 
@@ -21,7 +21,7 @@ const router = new Router({
     el.hidden = true;
     appEl.appendChild(el);
 
-    router.register(`/${viewName}`, new View({ el }));
+    router.register(`/${viewName}`, new View({ el, router }));
 });
 
 router.go('/main');

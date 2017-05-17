@@ -23,10 +23,6 @@ export class Form {
 		this.formEl.reset();
 	}
 
-	setUserName (name) {
-		this.data.username = name;
-	}
-
 	_initEvents () {
 		this.el.addEventListener('submit', this._onSubmit.bind(this));
 	}
@@ -35,7 +31,7 @@ export class Form {
 		event.preventDefault();
 		let formData = this._getFormData();
 
-		this.trigger('message', formData);
+		this.trigger('submit', formData);
 	}
 
 	_getInputs () {

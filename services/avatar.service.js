@@ -13,8 +13,7 @@ export class AvatarService {
 		if (!this._avatars[name]) {
 			this._avatars[name] = this._defaultAvatar + `=${Date.now()}`;
 		}
-		
-		console.log(this._avatars[name]);
+
 		return this._avatars[name];
 	}
 

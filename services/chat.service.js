@@ -14,6 +14,15 @@ export class ChatService {
 		this.__messages = [];
 		this.__pollingID = null;
 		this.__lastReqTime = null;
+		this.__username = 'anonimus';
+	}
+
+	setUserName (name) {
+		this.__username = name;
+	}
+
+	getUserName () {
+		return this.__username;
 	}
 
 	getMessages () {
@@ -23,6 +32,7 @@ export class ChatService {
 
 	sendMessage (data) {
 		data.date = Date.now();
+		data.name = this.__username;
 
 		return this.http.makeRequest('POST', data)
 			.then(resp => resp.data);
@@ -57,7 +67,11 @@ export class ChatService {
 	 * @static 
 	 */
 	static getInstance (...rest) {
-		return new this(...rest);
+		if (!this.__instance) {
+			this.__instance = new this(...rest);
+		}
+
+		return this.__instance;
 	}
 
 }

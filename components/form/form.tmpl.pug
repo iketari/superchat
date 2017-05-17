@@ -1,5 +1,5 @@
 form
-    textarea(name="message" placeholder="Введите сообщение...")
-    br
-    input(type="text", name="username", placeholder=username || "Имя пользователя...")
-    input(type="submit", value="Отправить")
+    each widget in widgets
+        - var tagName = widget.tag || 'input'
+        - var inner = widget.inner || ''
+        #{tagName}&attributes(widget.attributes)=inner

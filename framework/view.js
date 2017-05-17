@@ -1,7 +1,8 @@
 export class BaseView {
 
-    constructor({el}) {
+    constructor({el, router}) {
         this.el = el;
+        this.router = router;
     }
 
     /**

@@ -9,7 +9,6 @@ export class Menu {
     }
 
     render () {
-        console.log(this.data);
         this.el.innerHTML = tmpl(this.data);
     }
 }

@@ -4,7 +4,6 @@ import {Chat} from '../components/chat/chat';
 import {Form} from '../components/form/form';
 import {AvatarService} from '../services/avatar.service';
 import {ChatService} from '../services/chat.service';
-import {WindowService} from '../services/window.service';
 import {HttpService} from '../services/http.service';
 
 
@@ -14,7 +13,6 @@ const chatService = ChatService.getInstance({
 	pollingInterval: 1000
 });
 
-const windowService = WindowService.getInstance({document});
 const avatarService = AvatarService.getInstance();
 
 export class ChatView extends BaseView {
@@ -43,30 +41,42 @@ export class ChatView extends BaseView {
 		});
 
 		this.form = new Form({
-			el: document.createElement('div')
+			el: document.createElement('div'),
+            data: {
+                widgets: [
+                    {
+                        tag: 'textarea', 
+                        attributes: {
+                            name: 'message',
+                            placeholder: 'Введите сообщение...'
+                        }
+                    },
+                    {
+                        tag: 'input',
+                        attributes: {
+                            type: 'submit',
+                            value: 'Отправить'
+                        }
+                    },
+                    {
+                        tag: 'a',
+                        inner: 'Выйти',
+                        attributes: {
+                            href: '/main',
+                        }
+                    }
+                ]
+            }
 		});
 	}
 
 	_initMediate () {
-		windowService.onVisibilityChange(status => {
-			console.log(status);
-		});
-
-		this.form.on('message', (formData) => {
-			let userName = formData.username.value;
-
-			if (userName) {
-				this.chat.setUserName(userName);
-				this.form.setUserName(userName);
-			}
-
+		this.form.on('submit', (formData) => {
 			let data = {
-				text: formData.message.value,
-				name: this.chat.getUsername()
+				text: formData.message.value
 			};
 
 			chatService.sendMessage(data);
-
 			this.chat.addOne(data);
 
 			this.render();
