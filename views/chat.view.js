@@ -77,7 +77,7 @@ export class ChatView extends BaseView {
 			};
 
 			chatService.sendMessage(data);
-			this.chat.addOne(data);
+			// this.chat.addOne(data);
 
 			this.render();
 		});

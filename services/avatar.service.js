@@ -11,7 +11,7 @@ export class AvatarService {
 
 	getAvatar (name = '') {
 		if (!this._avatars[name]) {
-			this._avatars[name] = this._defaultAvatar + `=${Date.now()}`;
+			this._avatars[name] = this._defaultAvatar + `=${Math.random()}`;
 		}
 
 		return this._avatars[name];

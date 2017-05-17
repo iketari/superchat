@@ -38,7 +38,6 @@ export class Chat {
 
 	render () {
 		this._saveScrollTop();
-		this.data.user = this.chatService.getUserName();
 		this.el.innerHTML = tmpl(this.data);
 		this._restoreScrollTop();
 	}
@@ -90,7 +89,6 @@ export class Chat {
 	 * @param {ChatMessage} data
 	 */
 	addOne (data) {
-		data.name = this.chatService.getUserName();
 		this.data.messages.push(this._prepareMessage(data));
 	}
 
