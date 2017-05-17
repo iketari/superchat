@@ -1,12 +1,7 @@
 * {
   font-family:'Helvetica Neue',Helvetica, sans-serif;
-  font-size:14px;
-  margin:0;
-}
-a{
-  font-weight:bold;
-  color:#fff;
-  text-decoration:none;
+  font-size: 14px;
+  margin: 0;
 }
 
 .app {

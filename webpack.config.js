@@ -3,11 +3,11 @@
 const path = require('path');
 
 module.exports = {
-  entry: './components/app/app.js',
+  entry: path.resolve(__dirname, 'main.js'),
   output: {
     filename: 'bundle.js'
   },
-  devtool: "inline-source-map",
+  devtool: 'inline-source-map',
   watch: false,
   watchOptions: {
     aggregateTimeout: 300,
@@ -16,7 +16,8 @@ module.exports = {
   devServer: {
     contentBase: __dirname,
     compress: true,
-    port: 9000
+    port: 9000,
+    historyApiFallback: true
   },
   module: {
     rules: [

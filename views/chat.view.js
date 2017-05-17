@@ -1,12 +1,11 @@
-import './app.css';
-import 'milligram/dist/milligram.css';
+import {BaseView} from '../framework/view';
 
-import {Chat} from '../chat/chat';
-import {Form} from '../form/form';
-import {AvatarService} from '../../services/avatar.service';
-import {ChatService} from '../../services/chat.service';
-import {WindowService} from '../../services/window.service';
-import {HttpService} from '../../services/http.service';
+import {Chat} from '../components/chat/chat';
+import {Form} from '../components/form/form';
+import {AvatarService} from '../services/avatar.service';
+import {ChatService} from '../services/chat.service';
+import {WindowService} from '../services/window.service';
+import {HttpService} from '../services/http.service';
 
 
 const chatService = ChatService.getInstance({
@@ -18,21 +17,20 @@ const chatService = ChatService.getInstance({
 const windowService = WindowService.getInstance({document});
 const avatarService = AvatarService.getInstance();
 
-class App {
+export class ChatView extends BaseView {
+    constructor (...rest) {
+        super(...rest);
 
-	constructor(options) {
-		this.el = options.el;
-
-		this._createComponents();
+        this._createComponents();
 		this._initMediate();
 
 		this.el.appendChild(this.chat.el);
 		this.el.appendChild(this.form.el);
 
 		this.render();
-	}
+    }
 
-	render () {
+    render () {
 		this.chat.render();
 		this.form.render();
 	}
@@ -85,6 +83,3 @@ class App {
 	}
 
 }
-
-//export
-window.App = App;

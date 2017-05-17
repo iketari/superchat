@@ -1,4 +1,4 @@
-import {deepEqual} from '../modules/utils';
+import {deepEqual} from '../framework/utils';
 
 export class ChatService {
 
