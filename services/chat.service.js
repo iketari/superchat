@@ -1,8 +1,11 @@
 import {deepEqual} from '../framework/utils';
+import {Emitter} from '../framework/emitter';
 
 export class ChatService {
 
 	constructor ({baseUrl, pollingInterval = 15000, http}) {
+		Emitter.apply(this);
+
 		this.pollingInterval = pollingInterval;
 		this.http = http;
 
@@ -47,34 +50,6 @@ export class ChatService {
 
 		this._messages = messages;
 		this.trigger('messages', this._messages);
-	}
-
-	/**
-	 * Dispatch an event on this object
-	 * @param {string} name event name
-	 * @param {any} data event payload
-	 */
-	trigger (name, data) {
-		if (this.__callbacks && this.__callbacks[name]) {
-			this.__callbacks[name].forEach(cb => cb.call(this, data));
-		}
-	}
-
-	/**
-	 * Subscribe on event
-	 * @param {string} name event name
-	 * @param {function} cb callback
-	 */
-	on (name, cb) {
-		if (!this.__callbacks) {
-			this.__callbacks = {};
-		}
-
-		if (!this.__callbacks[name]) {
-			this.__callbacks[name] = [];
-		}
-
-		this.__callbacks[name].push(cb);
 	}
 
 	/**
