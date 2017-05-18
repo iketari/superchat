@@ -20,6 +20,7 @@ export function Emitter () {
 	 * Регистрация обработчика события
 	 * @param {string} name event name
 	 * @param {function} cb callback
+	 * @lends Emitter
 	 */
 	this.on = function (name, cb) {
 		if (!this.__callbacks) {

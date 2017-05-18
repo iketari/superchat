@@ -1,4 +1,8 @@
 /**
+ * @module utils
+ */
+
+/**
  * Сравнивает объекты по значниию
  * @param {Object} src
  * @param {Object} dest
