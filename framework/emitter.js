@@ -1,9 +1,14 @@
+/**
+ * @module {Emitter} Emitter
+ * @mixin Emitter
+ */
 export function Emitter () {
 
     /**
 	 * Вызов обработчиков событий
 	 * @param {string} name event name
 	 * @param {*} data event payload
+     * @lends Emitter
 	 */
 	this.trigger = function (name, data) {
 		if (this.__callbacks && this.__callbacks[name]) {
