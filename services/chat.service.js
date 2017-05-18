@@ -11,18 +11,18 @@ export class ChatService {
 
 		this.http.setBaseUrl(baseUrl);
 
-		this.__messages = [];
-		this.__pollingID = null;
-		this.__lastReqTime = null;
-		this.__username = 'anonimus';
+		this._messages = [];
+		this._pollingID = null;
+		this._stopped = false;
+		this._username = 'anonimus';
 	}
 
 	setUserName (name) {
-		this.__username = name;
+		this._username = name;
 	}
 
 	getUserName () {
-		return this.__username;
+		return this._username;
 	}
 
 	getMessages () {
@@ -32,17 +32,23 @@ export class ChatService {
 
 	sendMessage (data) {
 		data.date = Date.now();
-		data.name = this.__username;
+		data.name = this._username;
 
 		return this.http.makeRequest('POST', data)
 			.then(resp => resp.data);
 	}
 
 	startPolling () {
+		this._stopped = false;
+
 		let doRequest = () => {
+			if (this._stopped) {
+				return;
+			}
+
 			this.getMessages().then(messages => {
 				this.setMessages(messages);
-				this.__pollingID = setTimeout(doRequest, this.pollingInterval);
+				this._pollingID = setTimeout(doRequest, this.pollingInterval);
 			});
 		};
 
@@ -50,7 +56,8 @@ export class ChatService {
 	}
 
 	stopPolling () {
-		clearInterval(this.__pollingID);
+		clearInterval(this._pollingID);
+		this._stopped = true;
 	}
 
 	setMessages (messages) {

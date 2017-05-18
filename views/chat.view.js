@@ -31,7 +31,15 @@ export class ChatView extends BaseView {
     show () {
         this.chat.setUserName(chatService.getUserName());
         this.render();
+        chatService.startPolling();
+
         super.show();
+    }
+
+    hide () {
+        chatService.stopPolling();
+
+        super.hide();
     }
 
     render () {
@@ -86,8 +94,6 @@ export class ChatView extends BaseView {
 
 			this.render();
 		});
-
-		chatService.startPolling();
 	}
 
 	addMessage (data) {
