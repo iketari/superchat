@@ -1,0 +1,28 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      ".jshintrc",
+      ".git/**",
+      ".gitignore",
+      "package.json",
+      ".firebaserc",
+      "node_modules/**"
+    ],
+    "rewrites": [ 
+        {
+            "source": "/main",
+            "destination": "/index.html"
+        },
+        {
+            "source": "/chat",
+            "destination": "/index.html"
+        },
+        {
+            "source": "/login",
+            "destination": "/index.html"
+        }
+    ]
+  }
+}

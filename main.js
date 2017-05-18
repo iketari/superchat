@@ -24,5 +24,10 @@ const router = new Router({
     router.register(`/${viewName}`, new View({ el, router }));
 });
 
-router.go('/main');
+if (location.pathname === '/') {
+    router.go('/main');
+} else {
+    router.go(location.pathname);
+}
+
 router.start();

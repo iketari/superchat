@@ -28,6 +28,12 @@ export class ChatView extends BaseView {
 		this.render();
     }
 
+    show () {
+        this.chat.setUserName(chatService.getUserName());
+        this.render();
+        super.show();
+    }
+
     render () {
 		this.chat.render();
 		this.form.render();
@@ -77,7 +83,6 @@ export class ChatView extends BaseView {
 			};
 
 			chatService.sendMessage(data);
-			// this.chat.addOne(data);
 
 			this.render();
 		});

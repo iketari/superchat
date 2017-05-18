@@ -2,7 +2,7 @@
 
 ## Production ##
 
-http://artsiom.mezin.eu/superchat/
+https://components-e2e6e.firebaseapp.com/
 
 ## Разработка ##
 
