@@ -8,6 +8,6 @@ https://components-e2e6e.firebaseapp.com/
 
 ## Разработка ##
 
-`npm i`
-`npm run serve`
+- `npm i`
+- `npm run serve`
 
