@@ -6,7 +6,7 @@
 /**
  * @class {Router}
  */
-export class Router {
+export default class Router {
 
     /**
      * @constructor

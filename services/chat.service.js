@@ -1,7 +1,7 @@
 import {deepEqual} from '../framework/utils';
 import {Emitter} from '../framework/emitter';
 
-export class ChatService {
+export new class ChatService {
 
 	constructor ({baseUrl, pollingInterval = 15000, http}) {
 		Emitter.apply(this);
