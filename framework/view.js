@@ -19,5 +19,6 @@ export class BaseView {
         this.el.hidden = true;
     }
 
+    // TODO: static create
 
 }

@@ -17,7 +17,7 @@ export class MainView extends BaseView {
             }
         });
 
-        this.el.appendChild(this.menu.el);
+        this.el.append(this.menu.el);
         this.menu.render();
     }
 }

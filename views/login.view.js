@@ -46,10 +46,6 @@ export class LoginView extends BaseView {
         this.form.render();
         this.menu.render();
 
-        this._initMediate();
-    }
-
-    _initMediate () {
         this.form.on('submit', formData => {
             let chatService = ChatService.getInstance();
 

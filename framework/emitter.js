@@ -2,7 +2,7 @@
  * @module {Emitter} Emitter
  * @mixin Emitter
  */
-export function Emitter () {
+export default {
 
     /**
 	 * Вызов обработчиков событий
@@ -10,11 +10,12 @@ export function Emitter () {
 	 * @param {*} data event payload
      * @lends Emitter
 	 */
-	this.trigger = function (name, data) {
+	trigger(name, data) {
+		// TODO: use Symbol instead of __callbacks
 		if (this.__callbacks && this.__callbacks[name]) {
 			this.__callbacks[name].forEach(cb => cb.call(this, data));
 		}
-	};
+	},
 
 	/**
 	 * Регистрация обработчика события
@@ -22,7 +23,7 @@ export function Emitter () {
 	 * @param {function} cb callback
 	 * @lends Emitter
 	 */
-	this.on = function (name, cb) {
+	on(name, cb) {
 		if (!this.__callbacks) {
 			this.__callbacks = {};
 		}
@@ -32,5 +33,5 @@ export function Emitter () {
 		}
 
 		this.__callbacks[name].push(cb);
-	};
+	}
 }
