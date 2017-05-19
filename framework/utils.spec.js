@@ -101,9 +101,18 @@ describe('utils', () => {
         });
     });
 
-
     describe('capitalize', function () {
+        it('Capitalize filled string', () => {
+            expect(capitalize('foo')).to.equal('Foo');
+        });
 
+        it('Capitalize one char string', () => {
+            expect(capitalize('f')).to.equal('F');
+        });
+
+        it('Capitalize empty string', () => {
+            expect(capitalize('')).to.equal('');
+        });
     });
 
 });
