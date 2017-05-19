@@ -1,27 +1,109 @@
-import {deepEqual} from './utils';
+import {deepEqual, capitalize} from './utils';
 
-describe('utils', function() {
+describe('utils', () => {
 
-    describe('deepEqual', function() {
+    describe('deepEqual - comparacing objects by value', () => {
 
-        it('deepEqual empty objects', function() {
+        let eqAssert = actual => assert(actual, 'Onjects should be equal');
+        let notEqAssert = actual => assert(actual, 'Onjects shouldn\'t be equal');
+
+        it('empty objects', () => {
             let actual = deepEqual({}, {});
             
-            assert(actual, 'Равенство пустых объектов');
+            eqAssert(actual);
         });
 
 
-        it('deepEqual non-empty objects', function() {
+        it('filled objects', () => {
             let actual = deepEqual({foo: 1}, {foo: 1});
             
-            assert(actual, 'Равенство НЕпустых объектов');
+            eqAssert(actual);
         });
 
-        it('deepEqual non-empty different objects', function() {
+        it('filled different objects', () => {
             let actual = !deepEqual({foo: 1}, {foo: 2});
             
-            assert(actual, 'Равенство пустых объектов');
+            notEqAssert(actual);
         });
+
+        it ('felled objects with inner objects',  () => {
+            let objA = {
+                foo: 1,
+                bar: {
+                    foo: 1
+                }
+            };
+
+            let objB = {
+                foo: 1,
+                bar: {
+                    foo: 1
+                }
+            }
+
+            eqAssert(deepEqual(objA, objB));
+        });
+
+        it ('felled objects with inner arrays',  () => {
+            let objA = {
+                foo: 1,
+                bar: {
+                    foo: [1]
+                }
+            };
+
+            let objB = {
+                foo: 1,
+                bar: {
+                    foo: [1]
+                }
+            };
+
+            eqAssert(deepEqual(objA, objB));
+        });
+
+        it ('felled objects with inner array consists of objects',  () => {
+            let objA = {
+                foo: 1,
+                bar: {
+                    foo: [{foo: 1}]
+                }
+            };
+
+            let objB = {
+                foo: 1,
+                bar: {
+                    foo: [{foo: 1}]
+                }
+            };
+
+            eqAssert(deepEqual(objA, objB));
+        });
+
+        it ('felled objects with inner array consists of dates',  () => {
+            let ts = Date.now();
+
+            let objA = {
+                foo: 1,
+                bar: {
+                    foo: [{foo: new Date(ts)}]
+                }
+            };
+
+            let objB = {
+                foo: 1,
+                bar: {
+                    foo: [{foo: new Date(ts)}]
+                }
+            };
+
+            eqAssert(deepEqual(objA, objB));
+        });
+    });
+
+
+    describe('capitalize', function () {
+
     });
 
 });

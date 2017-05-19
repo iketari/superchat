@@ -1,6 +1,8 @@
 // Karma configuration
 // Generated on Thu May 18 2017 10:47:12 GMT+0300 (+03)
 
+const path = require('path');
+
 module.exports = function(config) {
   config.set({
 
@@ -30,18 +32,59 @@ module.exports = function(config) {
     },
 
     // webpack configuration
-    webpack: require('./webpack.config.js'),
-    webpackMiddleware: {
-        stats: 'errors-only'
+    webpack: {
+      devtool: 'inline-source-map',
+      module: {
+      rules: [
+          {
+            test: /\.js$/,
+            use: [{
+              loader: 'babel-loader',
+              options: { presets: ['es2015'] },
+            }],
+          },
+          // instrument only testing sources with Istanbul 
+          {
+            test: /\.js$/,
+            exclude: /(node_modules|\.spec\.ts$)/,
+            loader: 'istanbul-instrumenter-loader',
+            enforce: 'post',
+            options: {
+              esModules: true
+            }
+          }
+        ]
+      }
     },
 
+    webpackServer: {
+      noInfo: true //please don't spam the console when running in karma!
+    },
+
+    webpackMiddleware: {
+      stats: 'errors-only',
+      noInfo: true
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: [ 'progress', 'coverage-istanbul' ],
 
+    plugins: [
+      'karma-phantomjs-launcher',
+      'karma-coverage-istanbul-reporter',
+      'karma-mocha',
+      'karma-chai',
+      'karma-sinon',
+      'karma-webpack'
+    ],
 
+    // any of these options are valid: https://github.com/istanbuljs/istanbul-api/blob/47b7803fbf7ca2fb4e4a15f3813a8884891ba272/lib/config.js#L33-L38
+    coverageIstanbulReporter: {
+      reports: ['lcov'],
+      dir: path.join(__dirname, 'coverage', 'html')
+    },
     // web server port
     port: 9876,
 
@@ -51,7 +94,8 @@ module.exports = function(config) {
 
 
     // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN ||
+    // config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
 
 
@@ -61,7 +105,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'PhantomJS'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
@@ -71,5 +115,5 @@ module.exports = function(config) {
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity
-  })
-}
+  });
+};
