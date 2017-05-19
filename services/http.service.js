@@ -1,3 +1,8 @@
+/**
+ * Service for making of http requests
+ * @module HttpService
+ */
+
 export class HttpService {
     constructor () {}
 
@@ -31,6 +36,9 @@ export class HttpService {
         });
 	}
 
+    /**
+     * Getting an instance of the class
+     */
     static getInstance (...rest) {
 		return new this(...rest);
 	}

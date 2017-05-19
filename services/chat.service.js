@@ -1,3 +1,8 @@
+/**
+ * Service of chat functionality. Provide sending and polling of messages.
+ * @module ChatService
+ */
+
 import {deepEqual} from '../framework/utils';
 import {Emitter} from '../framework/emitter';
 
@@ -69,10 +74,9 @@ export class ChatService {
 		this.trigger('messages', this._messages);
 	}
 
-	/**
-	 * Get instance of this class
-	 * @static 
-	 */
+    /**
+     * Getting an instance of the class
+     */
 	static getInstance (...rest) {
 		if (!this.__instance) {
 			this.__instance = new this(...rest);
