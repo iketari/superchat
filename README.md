@@ -59,7 +59,11 @@ Simple router based on HTML5 History API
     * [~node](#module_Router..node) : <code>HTMLElement</code>
     * [~history](#module_Router..history) : <code>History</code>
     * [~routes](#module_Router..routes) : <code>Object</code>
-    * [~register(route, view)](#module_Router..register)
+    * [~route(path, view)](#module_Router..route)
+    * [~_getViewByRoute(route)](#module_Router.._getViewByRoute) ⇒ <code>BaseView</code>
+    * [~onRouteChange(event)](#module_Router..onRouteChange)
+    * [~start()](#module_Router..start)
+    * [~go(path)](#module_Router..go) ⇒ <code>boolean</code>
 
 <a name="module_Router..{Router}"></a>
 
@@ -77,17 +81,57 @@ Simple router based on HTML5 History API
 
 ### Router~routes : <code>Object</code>
 **Kind**: inner property of [<code>Router</code>](#module_Router)  
-<a name="module_Router..register"></a>
+<a name="module_Router..route"></a>
 
-### Router~register(route, view)
-Регистрация маршрута
+### Router~route(path, view)
+Register the view for the path
+
+**Kind**: inner method of [<code>Router</code>](#module_Router)  
+
+| Param | Type |
+| --- | --- |
+| path | <code>string</code> | 
+| view | <code>BaseView</code> | 
+
+<a name="module_Router.._getViewByRoute"></a>
+
+### Router~_getViewByRoute(route) ⇒ <code>BaseView</code>
+Get registred view by path of route
 
 **Kind**: inner method of [<code>Router</code>](#module_Router)  
 
 | Param | Type |
 | --- | --- |
 | route | <code>string</code> | 
-| view | <code>BaseView</code> | 
+
+<a name="module_Router..onRouteChange"></a>
+
+### Router~onRouteChange(event)
+Handle clicks on links into the node
+
+**Kind**: inner method of [<code>Router</code>](#module_Router)  
+
+| Param | Type |
+| --- | --- |
+| event | <code>MouseEvent</code> | 
+
+<a name="module_Router..start"></a>
+
+### Router~start()
+Start listening popstate event and clicks on links into the node
+
+**Kind**: inner method of [<code>Router</code>](#module_Router)  
+<a name="module_Router..go"></a>
+
+### Router~go(path) ⇒ <code>boolean</code>
+Switch route to the path
+
+**Kind**: inner method of [<code>Router</code>](#module_Router)  
+**Returns**: <code>boolean</code> - - is route exists  
+
+| Param | Type |
+| --- | --- |
+| path | <code>string</code> | 
 
 <a name="module_utils"></a>
 

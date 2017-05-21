@@ -21,30 +21,31 @@ export class Router {
     }
 
     /**
-     * Регистрация маршрута
-     * @param {string} route
+     * Register the view for the path
+     * @param {string} path
      * @param {BaseView} view
-     * @method register
+     * @method route
      */
-    register(route, view) {
-        this.routes[route] = view;
+    route(path, view) {
+        this.routes[path] = view;
     }
 
     /**
-     * Выбор View по маршруту
+     * Get registred view by path of route
      * @param {string} route
      * @returns {BaseView}
+     * @method _getViewByRoute
      */
     _getViewByRoute(route) {
         return this.routes[route];
     }
 
     /**
-     * Обрботчик события клика по ссылке
+     * Handle clicks on links into the node
      * @param {MouseEvent} event
+     * @method onRouteChange
      */
     onRouteChange(event) {
-
         if (!(event.target instanceof HTMLAnchorElement)) {
             return;
         }
@@ -55,7 +56,8 @@ export class Router {
     }
 
     /**
-     * Запустить процес маршрутизации
+     * Start listening popstate event and clicks on links into the node
+     * @method start
      */
     start() {
         this.node
@@ -67,9 +69,10 @@ export class Router {
     }
 
     /**
-     * Перетий по маршруту
+     * Switch route to the path
      * @param {string} path
-     * @returns {boolean} - если есть маршрурт
+     * @returns {boolean} - is route exists
+     * @method go
      */
     go(path) {
         let view = this._getViewByRoute(path);
