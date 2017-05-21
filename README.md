@@ -14,7 +14,7 @@ https://components-e2e6e.firebaseapp.com/
 ## Modules
 
 <dl>
-<dt><a href="#module_framework/router">framework/router</a></dt>
+<dt><a href="#module_Router">Router</a> : <code>Router</code></dt>
 <dd><p>Simple router based on HTML5 History API</p>
 </dd>
 <dt><a href="#module_utils">utils</a></dt>
@@ -48,15 +48,47 @@ be used directly.</p>
 <dd></dd>
 </dl>
 
-<a name="module_framework/router"></a>
+<a name="module_Router"></a>
 
-## framework/router
+## Router : <code>Router</code>
 Simple router based on HTML5 History API
 
-<a name="module_framework/router..{Router}"></a>
 
-### framework/router~{Router}
-**Kind**: inner class of [<code>framework/router</code>](#module_framework/router)  
+* [Router](#module_Router) : <code>Router</code>
+    * [~{Router}](#module_Router..{Router})
+    * [~node](#module_Router..node) : <code>HTMLElement</code>
+    * [~history](#module_Router..history) : <code>History</code>
+    * [~routes](#module_Router..routes) : <code>Object</code>
+    * [~register(route, view)](#module_Router..register)
+
+<a name="module_Router..{Router}"></a>
+
+### Router~{Router}
+**Kind**: inner class of [<code>Router</code>](#module_Router)  
+<a name="module_Router..node"></a>
+
+### Router~node : <code>HTMLElement</code>
+**Kind**: inner property of [<code>Router</code>](#module_Router)  
+<a name="module_Router..history"></a>
+
+### Router~history : <code>History</code>
+**Kind**: inner property of [<code>Router</code>](#module_Router)  
+<a name="module_Router..routes"></a>
+
+### Router~routes : <code>Object</code>
+**Kind**: inner property of [<code>Router</code>](#module_Router)  
+<a name="module_Router..register"></a>
+
+### Router~register(route, view)
+Регистрация маршрута
+
+**Kind**: inner method of [<code>Router</code>](#module_Router)  
+
+| Param | Type |
+| --- | --- |
+| route | <code>string</code> | 
+| view | <code>BaseView</code> | 
+
 <a name="module_utils"></a>
 
 ## utils
