@@ -9,11 +9,13 @@ https://components-e2e6e.firebaseapp.com/
 ## Разработка ##
 
 - `npm i`
-- `npm run serve`## Modules
+- `npm run serve`
+
+## Modules
 
 <dl>
-<dt><a href="#module_Router">Router</a> : <code>Router</code></dt>
-<dd><p>Простой роутер на History API</p>
+<dt><a href="#module_framework/router">framework/router</a></dt>
+<dd><p>Simple router based on HTML5 History API</p>
 </dd>
 <dt><a href="#module_utils">utils</a></dt>
 <dd></dd>
@@ -46,93 +48,15 @@ be used directly.</p>
 <dd></dd>
 </dl>
 
-<a name="module_Router"></a>
+<a name="module_framework/router"></a>
 
-## Router : <code>Router</code>
-Простой роутер на History API
+## framework/router
+Simple router based on HTML5 History API
 
+<a name="module_framework/router..{Router}"></a>
 
-* [Router](#module_Router) : <code>Router</code>
-    * [~{Router}](#module_Router..{Router})
-    * [~Router(route, view)](#module_Router..Router)
-        * _instance_
-            * [._getViewByRoute(route)](#module_Router..Router+_getViewByRoute) ⇒ <code>BaseView</code>
-            * [.onRouteChange(event)](#module_Router..Router+onRouteChange)
-            * [.start()](#module_Router..Router+start)
-            * [.go(path)](#module_Router..Router+go) ⇒ <code>boolean</code>
-        * _static_
-            * [.Router](#module_Router..Router.Router)
-
-<a name="module_Router..{Router}"></a>
-
-### Router~{Router}
-**Kind**: inner class of [<code>Router</code>](#module_Router)  
-<a name="module_Router..Router"></a>
-
-### Router~Router(route, view)
-Регистрация маршрута
-
-**Kind**: inner method of [<code>Router</code>](#module_Router)  
-
-| Param | Type |
-| --- | --- |
-| route | <code>string</code> | 
-| view | <code>BaseView</code> | 
-
-
-* [~Router(route, view)](#module_Router..Router)
-    * _instance_
-        * [._getViewByRoute(route)](#module_Router..Router+_getViewByRoute) ⇒ <code>BaseView</code>
-        * [.onRouteChange(event)](#module_Router..Router+onRouteChange)
-        * [.start()](#module_Router..Router+start)
-        * [.go(path)](#module_Router..Router+go) ⇒ <code>boolean</code>
-    * _static_
-        * [.Router](#module_Router..Router.Router)
-
-<a name="module_Router..Router+_getViewByRoute"></a>
-
-#### router._getViewByRoute(route) ⇒ <code>BaseView</code>
-Выбор View по маршруту
-
-**Kind**: instance method of [<code>Router</code>](#module_Router..Router)  
-
-| Param | Type |
-| --- | --- |
-| route | <code>string</code> | 
-
-<a name="module_Router..Router+onRouteChange"></a>
-
-#### router.onRouteChange(event)
-Обрботчик события клика по ссылке
-
-**Kind**: instance method of [<code>Router</code>](#module_Router..Router)  
-
-| Param | Type |
-| --- | --- |
-| event | <code>MouseEvent</code> | 
-
-<a name="module_Router..Router+start"></a>
-
-#### router.start()
-Запустить процес маршрутизации
-
-**Kind**: instance method of [<code>Router</code>](#module_Router..Router)  
-<a name="module_Router..Router+go"></a>
-
-#### router.go(path) ⇒ <code>boolean</code>
-Перетий по маршруту
-
-**Kind**: instance method of [<code>Router</code>](#module_Router..Router)  
-**Returns**: <code>boolean</code> - - если есть маршрурт  
-
-| Param | Type |
-| --- | --- |
-| path | <code>string</code> | 
-
-<a name="module_Router..Router.Router"></a>
-
-#### Router.Router
-**Kind**: static class of [<code>Router</code>](#module_Router..Router)  
+### framework/router~{Router}
+**Kind**: inner class of [<code>framework/router</code>](#module_framework/router)  
 <a name="module_utils"></a>
 
 ## utils

@@ -1,6 +1,6 @@
 /**
- * Простой роутер на History API
- * @module {Router} Router
+ * Simple router based on HTML5 History API
+ * @module
  */
 
 /**
@@ -22,7 +22,6 @@ export class Router {
      * Регистрация маршрута
      * @param {string} route
      * @param {BaseView} view
-     * @method Router
      */
     register(route, view) {
         this.routes[route] = view;
