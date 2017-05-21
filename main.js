@@ -21,7 +21,7 @@ const router = new Router({
     el.hidden = true;
     appEl.appendChild(el);
 
-    router.register(`/${viewName}`, new View({ el, router }));
+    router.route(`/${viewName}`, new View({ el, router }));
 });
 
 if (location.pathname === '/') {
