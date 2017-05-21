@@ -6,8 +6,16 @@
 import {deepEqual} from '../framework/utils';
 import {Emitter} from '../framework/emitter';
 
+/**
+ * @alias module:ChatService
+ * @mixes Emitter
+ */
 export class ChatService {
 
+	/**
+	 * @constructor
+	 * @param {Object}
+	 */
 	constructor ({baseUrl, pollingInterval = 15000, http}) {
 		Emitter.apply(this);
 
@@ -22,6 +30,11 @@ export class ChatService {
 		this._username = 'anonimus';
 	}
 
+	/**
+	 * @method setUserName
+	 * @public 
+	 * @param {string} name - set username field
+	 */
 	setUserName (name) {
 		this._username = name;
 	}

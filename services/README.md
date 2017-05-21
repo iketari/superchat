@@ -22,6 +22,25 @@ Service for getting users avatars in chat
 ## ChatService
 Service of chat functionality. Provide sending and polling of messages.
 
+
+* [ChatService](#module_ChatService)
+    * [exports.ChatService](#exp_module_ChatService--exports.ChatService) ⏏
+        * [~setUserName(name)](#module_ChatService--exports.ChatService..setUserName)
+
+<a name="exp_module_ChatService--exports.ChatService"></a>
+
+### exports.ChatService ⏏
+**Kind**: Exported class  
+<a name="module_ChatService--exports.ChatService..setUserName"></a>
+
+#### exports.ChatService~setUserName(name)
+**Kind**: inner method of [<code>exports.ChatService</code>](#exp_module_ChatService--exports.ChatService)  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| name | <code>string</code> | set username field |
+
 <a name="module_HttpService"></a>
 
 ## HttpService

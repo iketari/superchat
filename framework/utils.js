@@ -2,14 +2,37 @@
  * @module utils
  */
 
+function _isPrimitive (target) {
+    return typeof target !== 'object' && target !== null;
+}
+
 /**
  * Сравнивает объекты по значниию
  * @param {Object} src
  * @param {Object} dest
  * @returns {boolean}
  */
-function deepEqual (src, dest) {
-	return JSON.stringify(src) === JSON.stringify(dest);
+function deepEqual (x, y) {
+  if ((typeof x === 'object' && x != null) && (typeof y === 'object' && y != null)) {
+    if (Object.keys(x).length != Object.keys(y).length) {
+        return false;
+    }
+
+    for (let prop in x) {
+      if (y.hasOwnProperty(prop)) {  
+        if (! deepEqual(x[prop], y[prop])) {
+            return false;
+        }
+      }
+      else {
+        return false;
+      }
+    }
+
+    return true;
+  } else {
+    return x === y;
+  }
 }
 
 /**
