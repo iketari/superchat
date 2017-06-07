@@ -6,16 +6,20 @@
 /**
  * @class {Router}
  */
-export class Router {
+export default class Router {
 
     /**
      * @constructor
+     * @param {HTMLElement} node
+     * @param {History} history
      */
     constructor({node, history}) {
         /** @member {HTMLElement} node */
         this.node = node;
+        
         /** @member {History} history */
         this.history = history;
+
         /** @member {Object} routes */
         this.routes = {};
     }

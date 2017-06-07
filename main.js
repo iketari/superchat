@@ -1,7 +1,7 @@
 import 'milligram/dist/milligram.css';
 import './components/app/app.css';
 
-import {Router} from './framework/router';
+import Router from './framework/router';
 import {capitalize} from './framework/utils';
 
 import views from './views';

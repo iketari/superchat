@@ -39,6 +39,8 @@
         "deepEqual": true,
         "window": true,
         "document": true,
-        "performance": true
+        "performance": true,
+        "sinon": true,
+        "assert": true
     }
 }

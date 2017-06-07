@@ -46,7 +46,7 @@ module.exports = function(config) {
           // instrument only testing sources with Istanbul 
           {
             test: /\.js$/,
-            exclude: /(node_modules|\.spec\.ts$)/,
+            exclude: /(node_modules|\.spec\.js$)/,
             loader: 'istanbul-instrumenter-loader',
             enforce: 'post',
             options: {
