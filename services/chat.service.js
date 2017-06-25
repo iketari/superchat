@@ -4,7 +4,7 @@
  */
 
 import {deepEqual} from '../framework/utils';
-import {Emitter} from '../framework/emitter';
+import Emitter from '../framework/emitter';
 
 /**
  * @alias module:ChatService

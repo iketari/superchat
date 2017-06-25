@@ -1,4 +1,4 @@
-import {Emitter} from './emitter';
+import Emitter from './emitter';
 
 describe('Emitter', () => {
     let someObj, anotherObj;
@@ -10,7 +10,6 @@ describe('Emitter', () => {
     it('static method apply', () => {
         Emitter.apply(someObj); 
 
-        
         assert(someObj.hasOwnProperty('on'));
     });
 

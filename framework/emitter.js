@@ -5,7 +5,7 @@
  * 
  * @mixin Emitter
  */
-export function Emitter () {
+export default function Emitter () {
     /**
 	 * Fire an event, causing all handlers for that event name to run.
 	 * @param {string} name event name

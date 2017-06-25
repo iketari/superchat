@@ -1,7 +1,7 @@
 import tmpl from './form.tmpl.pug';
 import './form.css';
 
-import {Emitter} from '../../framework/emitter';
+import Emitter from '../../framework/emitter';
 
 
 export class Form {
