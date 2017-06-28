@@ -1,4 +1,4 @@
-export class BaseView {
+export default class BaseView {
 
     constructor({el, router}) {
         this.el = el;

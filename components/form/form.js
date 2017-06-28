@@ -4,7 +4,7 @@ import './form.css';
 import Emitter from '../../framework/emitter';
 
 
-export class Form {
+export default class Form {
 	constructor({el, data = {}}) {
 		Emitter.apply(this);
 		this.el = el;

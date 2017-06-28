@@ -1,10 +1,10 @@
-import {BaseView} from '../framework/view';
+import BaseView from '../framework/view';
 
-import {Chat} from '../components/chat/chat';
-import {Form} from '../components/form/form';
-import {AvatarService} from '../services/avatar.service';
-import {ChatService} from '../services/chat.service';
-import {HttpService} from '../services/http.service';
+import Chat from '../components/chat/chat';
+import Form from '../components/form/form';
+import AvatarService from '../services/avatar.service';
+import ChatService from '../services/chat.service';
+import HttpService from '../services/http.service';
 
 
 const chatService = ChatService.getInstance({
@@ -15,7 +15,7 @@ const chatService = ChatService.getInstance({
 
 const avatarService = AvatarService.getInstance();
 
-export class ChatView extends BaseView {
+export default class ChatView extends BaseView {
     constructor (...rest) {
         super(...rest);
 

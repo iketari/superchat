@@ -3,7 +3,7 @@
  * @module HttpService
  */
 
-export class HttpService {
+export default class HttpService {
     constructor () {}
 
     /**

@@ -16,7 +16,7 @@ import './chat.css';
  * @property {string} name - имя отправителя сообщения
  */
 
-export class Chat {
+export default class Chat {
 	constructor({
 			el,
 			data = {messages: []},

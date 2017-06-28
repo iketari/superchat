@@ -3,7 +3,7 @@
  * @module AvatarService
  */
 
-export class AvatarService {
+export default class AvatarService {
 
 	constructor () {
 		this._avatars = {
@@ -15,7 +15,7 @@ export class AvatarService {
 	}
 
 	/**
-	 * Get an avatar url by username
+	 * Get an avatar url by username  
 	 * @param {string} name
 	 * @returns {string}
 	 */
@@ -27,9 +27,9 @@ export class AvatarService {
 		return this._avatars[name];
 	}
 
-    /**
-     * Getting an instance of the class
-     */
+	/**
+	 * Getting an instance of the class
+	 */
 	static getInstance (...rest) {
 		return new this(...rest);
 	}

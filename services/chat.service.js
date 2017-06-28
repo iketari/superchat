@@ -10,7 +10,7 @@ import Emitter from '../framework/emitter';
  * @alias module:ChatService
  * @mixes Emitter
  */
-export class ChatService {
+export default class ChatService {
 
 	/**
 	 * @constructor

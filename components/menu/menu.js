@@ -2,7 +2,7 @@ import tmpl from './menu.tmpl.pug';
 import './menu.css';
 
 
-export class Menu {
+export default class Menu {
     constructor ({el, data = {}}) {
         this.el = el;
         this.data = data;

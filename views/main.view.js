@@ -1,8 +1,8 @@
-import {BaseView} from '../framework/view';
+import BaseView from '../framework/view';
 
-import {Menu} from '../components/menu/menu';
+import Menu from '../components/menu/menu';
 
-export class MainView extends BaseView {
+export default class MainView extends BaseView {
     constructor (...rest) {
         super(...rest);
 

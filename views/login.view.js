@@ -1,11 +1,11 @@
-import {BaseView} from '../framework/view';
+import BaseView from '../framework/view';
 
-import {Form} from '../components/form/form';
-import {Menu} from '../components/menu/menu';
+import Form from '../components/form/form';
+import Menu from '../components/menu/menu';
 
-import {ChatService} from '../services/chat.service';
+import ChatService from '../services/chat.service';
 
-export class LoginView extends BaseView {
+export default class LoginView extends BaseView {
     constructor (...rest) {
         super(...rest);
 

@@ -13,8 +13,4 @@ describe('Emitter', () => {
         assert(someObj.hasOwnProperty('on'));
     });
 
-
-
-   
-
 });
