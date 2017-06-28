@@ -9,25 +9,22 @@ import views from './views';
 const appEl = document.querySelector('.app');
 
 const router = new Router({
-    node: appEl,
-    history: window.history
+	node: appEl
 });
 
 ['main', 'chat', 'login'].forEach(viewName => {
-    let el = document.createElement('div');
-    let View = views[capitalize(viewName)];
+	const ViewClass = views[capitalize(viewName)];
+	const view = ViewClass.create({router});
 
-    el.classList.add(viewName);
-    el.hidden = true;
-    appEl.appendChild(el);
+	appEl.appendChild(view.el);
 
-    router.route(`/${viewName}`, new View({ el, router }));
+	router.route(`/${viewName}`, view);
 });
 
 if (location.pathname === '/') {
-    router.go('/main');
+	router.go('/main');
 } else {
-    router.go(location.pathname);
+	router.go(location.pathname);
 }
 
 router.start();

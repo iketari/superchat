@@ -3,12 +3,12 @@ import './menu.css';
 
 
 export default class Menu {
-    constructor ({el, data = {}}) {
-        this.el = el;
-        this.data = data;
-    }
+	constructor ({el, data = {}}) {
+		this.el = el;
+		this.data = data;
+	}
 
-    render () {
-        this.el.innerHTML = tmpl(this.data);
-    }
+	render () {
+		this.el.innerHTML = tmpl(this.data);
+	}
 }

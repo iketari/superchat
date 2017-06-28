@@ -1,16 +1,16 @@
 import Emitter from './emitter';
 
 describe('Emitter', () => {
-    let someObj, anotherObj;
+	let someObj, anotherObj;
 
-    beforeEach(() => {
-        someObj = {};
-    });
+	beforeEach(() => {
+		someObj = {};
+	});
 
-    it('static method apply', () => {
-        Emitter.apply(someObj); 
+	it('static method apply', () => {
+		Emitter.apply(someObj); 
 
-        assert(someObj.hasOwnProperty('on'));
-    });
+		assert(someObj.hasOwnProperty('on'));
+	});
 
 });
