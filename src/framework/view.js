@@ -12,6 +12,11 @@ export default class BaseView {
 
 		this.el.classList.add(this.name);
 		this.el.hidden = true;
+
+		this._createComponents();
+		this._initMediate();
+
+		this.render();
 	}
 
 	/**
@@ -49,4 +54,19 @@ export default class BaseView {
 	hide () {
 		this.el.hidden = true;
 	}
+
+	/**
+	 * Rendering nestend components
+	 */
+	render () {}
+
+	/**
+	 * Creating nested components
+	 */
+	_createComponents () {}
+
+	/**
+	 * Initing an messaging between components
+	 */
+	_initMediate () {}
 }
