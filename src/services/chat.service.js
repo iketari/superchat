@@ -87,9 +87,9 @@ export default class ChatService {
 		this.trigger('messages', this._messages);
 	}
 
-    /**
-     * Getting an instance of the class
-     */
+	/**
+	 * Getting an instance of the class
+	 */
 	static getInstance (...rest) {
 		if (!this.__instance) {
 			this.__instance = new this(...rest);
