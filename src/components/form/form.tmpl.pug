@@ -1,5 +1,5 @@
 form
-    each widget in widgets
-        - var tagName = widget.tag || 'input'
-        - var inner = widget.inner || ''
-        #{tagName}&attributes(widget.attributes)=inner
+	each widget in widgets
+		- var tagName = widget.tag || 'input'
+		- var inner = widget.inner || ''
+		#{tagName}&attributes(widget.attributes)=inner

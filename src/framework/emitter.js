@@ -6,11 +6,11 @@
  * @mixin Emitter
  */
 export default function Emitter () {
-    /**
+	/**
 	 * Fire an event, causing all handlers for that event name to run.
 	 * @param {string} name event name
 	 * @param {*} data event payload
-     * @lends Emitter
+	 * @lends Emitter
 	 */
 	this.trigger = function (name, data) {
 		if (this[Emitter.symbol][name]) {
