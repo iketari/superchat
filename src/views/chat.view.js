@@ -82,7 +82,7 @@ export default class ChatView extends BaseView {
 	_initMediate () {
 		this.form.on('submit', (formData) => {
 			let data = {
-				text: formData.message.value
+				text: formData.message
 			};
 
 			chatService.sendMessage(data);

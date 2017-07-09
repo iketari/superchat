@@ -4,6 +4,7 @@ import Form from '../components/form/form';
 import Menu from '../components/menu/menu';
 
 import ChatService from '../services/chat.service';
+import firebaseService from '../services/firebase.service';
 
 export default class LoginView extends BaseView {
 	constructor (...rest) {
@@ -36,13 +37,22 @@ export default class LoginView extends BaseView {
 						attributes: {
 							type: 'text',
 							name: 'username',
-							placeholder: 'Имя пользователя...'
+							placeholder: 'Введите имя пользователя'
+						}
+					},
+					{
+						tag: 'input',
+						attributes: {
+							type: 'password',
+							name: 'password',
+							placeholder: 'Введите пароль'
 						}
 					},
 					{
 						tag: 'input',
 						attributes: {
 							type: 'submit',
+							name: 'action',
 							value: 'Войти'
 						}
 					}
@@ -53,10 +63,25 @@ export default class LoginView extends BaseView {
 
 	_initMediate () {
 		this.form.on('submit', formData => {
-			let chatService = ChatService.getInstance();
+			firebaseService.auth()
+				.signInWithEmailAndPassword(formData.username, formData.password)
+				.catch(function(error) {
+					// Handle Errors here.
+					const errorCode = error.code;
+					const errorMessage = error.message;
 
-			chatService.setUserName(formData.username.value);
-			this.router.go('/chat');
+					console.log(errorCode, errorMessage);
+				});
+		});
+
+		firebaseService.auth().onAuthStateChanged((user) => {
+			if (user) {
+				let chatService = ChatService.getInstance();
+				chatService.setUserName(user.email);
+				this.router.go('/chat');
+			} else {
+				this.router.go('/login');
+			}
 		});
 	}
 }

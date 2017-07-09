@@ -42,9 +42,7 @@ export default class Form {
 		let formData = {};
 
 		[...this._getInputs()].forEach(input => {
-			formData[input.name] = {
-				value: input.value
-			};
+			formData[input.name] = input.value;
 		});
 
 		return formData;

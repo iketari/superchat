@@ -4,7 +4,19 @@ import './components/app/app.css';
 import Router from './framework/router';
 import {capitalize} from './framework/utils';
 
+import * as firebase from 'firebase/app';
+import * as auth from 'firebase/auth';
+import * as database from 'firebase/database';
+
+import firebaseService from './services/firebase.service';
+
 import views from './views';
+
+firebaseService.setup({
+	firebase,
+	auth,
+	database
+});
 
 const appEl = document.querySelector('.app');
 
