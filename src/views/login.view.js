@@ -78,9 +78,18 @@ export default class LoginView extends BaseView {
 			if (user) {
 				let chatService = ChatService.getInstance();
 				chatService.setUserName(user.email);
+				
+				firebaseService.auth().currentUser.getToken(/* forceRefresh */ true).then(function(idToken) {
+					console.log(idToken);
+					sessionStorage.setItem('token', idToken);
+				}).catch(function(error) {
+					// Handle error
+				});
+
+				
 				this.router.go('/chat');
 			} else {
-				this.router.go('/login');
+				this.router.go('/main');
 			}
 		});
 	}

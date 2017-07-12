@@ -4,7 +4,9 @@
  */
 
 export default class HttpService {
-	constructor () {}
+	constructor () {
+		this.token = sessionStorage.getItem('token');
+	}
 
 	/**
 	 * Setting the base URL for requests
@@ -23,7 +25,9 @@ export default class HttpService {
 	makeRequest (type = 'GET', data = {}) {
 		return new Promise((resolve, reject) => {
 			let xhr = new XMLHttpRequest();
-			xhr.open(type, this.baseUrl, true);
+			let url = this.baseUrl + `?auth=${this.token}`;
+
+			xhr.open(type, url, true);
 
 			xhr.addEventListener('load', () => resolve({
 				data: JSON.parse(xhr.responseText),
