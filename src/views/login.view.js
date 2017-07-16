@@ -115,9 +115,6 @@ export default class LoginView extends BaseView {
 	}
 
 	_signUp (formData) {
-		firebaseService.signUp(formData.username, formData.password)
-			.then(data => {
-				console.log(data);
-			})
+		firebaseService.signUp(formData.username, formData.password);
 	}
 }
