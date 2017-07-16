@@ -11,5 +11,6 @@
 				"debug": true
 			}
 		]
-	]
+	],
+	"plugins": ["transform-es2015-typeof-symbol"]
 }
