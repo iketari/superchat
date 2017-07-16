@@ -1,57 +1,4 @@
 {
-<<<<<<< HEAD
-	"name": "superchat",
-	"version": "1.0.0",
-	"description": "Учебный проект. Чат.",
-	"main": "index.js",
-	"scripts": {
-		"lint": "eslint './**/*.js'",
-		"start": "webpack-dev-server --open",
-		"build": "webpack",
-		"deploy": "webpack && firebase deploy",
-		"test": "NODE_ENV=testing karma start --single-run",
-		"test:watch": "NODE_ENV=testing karma start"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/iketari/components_1303_2130.git"
-	},
-	"author": "Artsiom Mezin",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/iketari/components_1303_2130/issues"
-	},
-	"homepage": "https://github.com/iketari/components_1303_2130#readme",
-	"devDependencies": {
-		"babel-core": "^6.24.1",
-		"babel-loader": "^7.0.0",
-		"babel-preset-env": "^1.6.0",
-		"chai": "^3.5.0",
-		"css-loader": "^0.28.1",
-		"eslint": "^4.2.0",
-		"istanbul-instrumenter-loader": "^2.0.0",
-		"jsdoc-to-markdown": "^3.0.0",
-		"karma": "^1.7.0",
-		"karma-chai": "^0.1.0",
-		"karma-chrome-launcher": "^2.1.1",
-		"karma-coverage-istanbul-reporter": "^1.2.1",
-		"karma-mocha": "^1.3.0",
-		"karma-phantomjs-launcher": "^1.0.4",
-		"karma-sinon": "^1.0.5",
-		"karma-webpack": "^2.0.3",
-		"mocha": "^3.4.1",
-		"pug": "^2.0.0-rc.1",
-		"pug-loader": "^2.3.0",
-		"sinon": "^2.2.0",
-		"style-loader": "^0.17.0",
-		"webpack": "^2.5.1",
-		"webpack-dev-server": "^2.4.5"
-	},
-	"dependencies": {
-		"firebase": "^4.1.3",
-		"milligram": "^1.3.0"
-	}
-=======
   "name": "superchat",
   "version": "1.0.0",
   "description": "Учебный проект. Чат.",
@@ -105,5 +52,4 @@
     "firebase": "^4.1.3",
     "milligram": "^1.3.0"
   }
->>>>>>> 56f684956f8361f1169ea629a7eb173ebad56dfb
 }
