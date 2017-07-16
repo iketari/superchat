@@ -8,9 +8,8 @@ describe('Emitter', () => {
 	});
 
 	it('static method apply', () => {
-		Emitter.apply(someObj); 
+		Emitter.apply(someObj);
 
 		assert(someObj.hasOwnProperty('on'));
 	});
-
 });
