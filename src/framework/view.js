@@ -10,6 +10,7 @@
 export default class BaseView {
 	/**
 	 * Constructor of View
+	 * @constructor
 	 * @param {Object} param0
 	 * @param {HTMLElement} param0.el
 	 * @param {Router} param0.router

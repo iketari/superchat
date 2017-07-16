@@ -7,6 +7,9 @@ import ChatService from '../services/chat.service';
 import firebaseService from '../services/firebase.service';
 
 
+/**
+ * @class LoginView
+ */
 export default class LoginView extends BaseView {
 	render () {
 		this.form.render();

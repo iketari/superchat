@@ -5,7 +5,7 @@
  */
 
 import Emitter from './emitter';
-
+import { deepEqual } from './utils';
 
 const stores = {};
 
@@ -101,13 +101,15 @@ export default class Store {
 
 		window.localStorage.setItem(key, setted);
 
-		this.trigger('change', {
-			key,
-			name,
-			oldValue,
-			newValue,
-			scope: this.scope
-		});
+		if (!deepEqual(oldValue, newValue)) {
+			this.trigger('change', {
+				key,
+				name,
+				oldValue,
+				newValue,
+				scope: this.scope
+			});
+		}
 
 		return true;
 	}
@@ -133,14 +135,15 @@ export default class Store {
 		let newValue = null;
 
 		window.localStorage.removeItem(key);
-
-		this.trigger('change', {
-			key,
-			name,
-			oldValue,
-			newValue,
-			scope: this.scope
-		});
+		if (!deepEqual(oldValue, newValue)) {
+			this.trigger('change', {
+				key,
+				name,
+				oldValue,
+				newValue,
+				scope: this.scope
+			});
+		}
 
 		return true;
 	}
@@ -164,13 +167,15 @@ export default class Store {
 			}
 			window.localStorage.removeItem(key);
 			let newValue = null;
-			events.push({
-				key,
-				name: key.replace(replaceRegex, ''),
-				oldValue,
-				newValue,
-				scope: this.scope,
-			});
+			if (!deepEqual(oldValue, newValue)) {
+				events.push({
+					key,
+					name: key.replace(replaceRegex, ''),
+					oldValue,
+					newValue,
+					scope: this.scope,
+				});
+			}
 		}
 
 		events.forEach(event => this.trigger('change', event));
@@ -214,11 +219,13 @@ window.addEventListener('storage', function (e) {
 	const replaceRegex = new RegExp(`^${scope}\\.`);
 	const name = key.replace(replaceRegex, '');
 
-	store.trigger('change', {
-		key,
-		name,
-		oldValue,
-		newValue,
-		scope
-	});
+	if (!deepEqual(oldValue, newValue)) {
+		store.trigger('change', {
+			key,
+			name,
+			oldValue,
+			newValue,
+			scope
+		});
+	}
 });
