@@ -39,21 +39,8 @@ module.exports = function (config) {
 						use: [{
 							loader: 'babel-loader',
 							options: {
-								babelrc: false,       // брать настройки из options
-								cacheDirectory: true, // включить кширование (node_modules/.cache/babel-loader)
-								presets: [
-									[
-										'env',
-										{
-											targets: {
-												browsers: ['last 2 versions'],
-												chrome: 49,
-												safari: 9,
-											},
-											debug: true
-										}
-									]
-								]
+								babelrc: true,       // брать настройки из options
+								cacheDirectory: true // включить кширование (node_modules/.cache/babel-loader)
 							},
 						}],
 					},
