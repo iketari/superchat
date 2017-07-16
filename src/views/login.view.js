@@ -7,10 +7,6 @@ import ChatService from '../services/chat.service';
 import firebaseService from '../services/firebase.service';
 
 export default class LoginView extends BaseView {
-	constructor (...rest) {
-		super(...rest);
-	}
-
 	render () {
 		this.form.render();
 		this.menu.render();
@@ -23,8 +19,9 @@ export default class LoginView extends BaseView {
 		this.menu = new Menu({
 			el: document.createElement('div'),
 			data: {
-				title: 'Авторизация',
-				items: []
+				title: 'Sign in',
+				items: [],
+				home: true,
 			}
 		});
 
@@ -35,9 +32,13 @@ export default class LoginView extends BaseView {
 					{
 						tag: 'input',
 						attributes: {
-							type: 'text',
+							type: 'email',
 							name: 'username',
-							placeholder: 'Введите имя пользователя'
+							id: 'user_username',
+							placeholder: 'Enter your email address',
+						},
+						label: {
+							inner: 'Username'
 						}
 					},
 					{
@@ -45,7 +46,11 @@ export default class LoginView extends BaseView {
 						attributes: {
 							type: 'password',
 							name: 'password',
-							placeholder: 'Введите пароль'
+							id: 'user_password',
+							placeholder: 'Enter your password'
+						},
+						label: {
+							inner: 'Password'
 						}
 					},
 					{
@@ -53,17 +58,18 @@ export default class LoginView extends BaseView {
 						attributes: {
 							type: 'checkbox',
 							name: 'new',
+							id: 'new_user',
+						},
+						label: {
+							inner: 'New user'
 						}
-					},
-					{
-						tag: 'br'
 					},
 					{
 						tag: 'input',
 						attributes: {
 							type: 'submit',
 							name: 'action',
-							value: 'Войти'
+							value: 'Sign in'
 						}
 					}
 				]
