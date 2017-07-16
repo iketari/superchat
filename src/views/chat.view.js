@@ -16,10 +16,6 @@ const chatService = ChatService.getInstance({
 const avatarService = AvatarService.getInstance();
 
 export default class ChatView extends BaseView {
-	constructor (...rest) {
-		super(...rest);
-	}
-
 	show () {
 		this.chat.setUserName(chatService.getUserName());
 		this.render();

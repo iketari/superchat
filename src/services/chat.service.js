@@ -1,12 +1,14 @@
 /**
  * Service of chat functionality. Provide sending and polling of messages.
- * @module ChatService
+ * @module {ChatService} ChatService
  */
 
 import {deepEqual} from '../framework/utils';
 import Emitter from '../framework/emitter';
 
+
 /**
+ * @class ChatService
  * @alias module:ChatService
  * @mixes Emitter
  */

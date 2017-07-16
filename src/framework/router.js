@@ -5,6 +5,7 @@
 
 /**
  * @class {Router}
+ * @alias module:Router
  */
 export default class Router {
 

@@ -2,6 +2,7 @@ import BaseView from '../framework/view';
 
 import Menu from '../components/menu/menu';
 
+
 export default class MainView extends BaseView {
 	render () {
 		this.menu.render();

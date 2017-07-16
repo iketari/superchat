@@ -1,8 +1,12 @@
 /**
  * Service for getting users avatars in chat
- * @module AvatarService
+ * @module {AvatarService} AvatarService
  */
 
+/**
+ * @class AvatarService
+ * @alias module:AvatarService
+ */
 export default class AvatarService {
 
 	constructor() {

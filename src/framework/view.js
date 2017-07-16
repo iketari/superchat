@@ -1,5 +1,13 @@
-export default class BaseView {
+/**
+ * Module that provides basic view functionality
+ * @module {BaseView} BaseView
+ */
 
+/**
+ * @class BaseView
+ * @alias module:BaseView
+ */
+export default class BaseView {
 	/**
 	 * Constructor of View
 	 * @param {Object} param0

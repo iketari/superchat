@@ -1,8 +1,11 @@
 /**
- * This provides methods used for event handling. It's not meant to
- * be used directly.
+ * This provides methods used for event handling. It's not meant to be used directly.
  * @module {Emitter} Emitter
- *
+ */
+
+/**
+ * @class Emitter
+ * @alias module:Emitter
  * @mixin Emitter
  */
 export default function Emitter () {

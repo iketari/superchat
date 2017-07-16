@@ -6,6 +6,7 @@ import Menu from '../components/menu/menu';
 import ChatService from '../services/chat.service';
 import firebaseService from '../services/firebase.service';
 
+
 export default class LoginView extends BaseView {
 	render () {
 		this.form.render();
