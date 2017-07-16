@@ -2,6 +2,7 @@ import 'milligram/dist/milligram.css';
 import './components/app/app.css';
 
 import Router from './framework/router';
+import Store from './framework/store';
 import { capitalize } from './framework/utils';
 
 import * as firebase from 'firebase/app';
