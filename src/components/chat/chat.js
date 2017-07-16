@@ -66,7 +66,7 @@ export default class Chat {
 	_updateMessages () {
 		this.data.messages = this.data.messages.sort((message1, message2) => {
 			return message2.date - message1.date;
-		});	
+		});
 	}
 
 	setMessages (messages = []) {
@@ -108,5 +108,4 @@ export default class Chat {
 	setUserName (name) {
 		this.data.user = name;
 	}
-
 }

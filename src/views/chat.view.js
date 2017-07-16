@@ -54,7 +54,7 @@ export default class ChatView extends BaseView {
 			data: {
 				widgets: [
 					{
-						tag: 'textarea', 
+						tag: 'textarea',
 						attributes: {
 							name: 'message',
 							placeholder: 'Введите сообщение...'
@@ -96,5 +96,4 @@ export default class ChatView extends BaseView {
 	addMessage (data) {
 		this.chat.addOne(data);
 	}
-
 }

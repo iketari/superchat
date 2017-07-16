@@ -1,5 +1,3 @@
-import ChatView from './chat.view';
-import LoginView from './login.view';
-import MainView from './main.view';
-
-export default {Chat: ChatView, Main: MainView, Login: LoginView};
+export { default as LoginView } from './login.view';
+export { default as ChatView } from './chat.view';
+export { default as MainView } from './main.view';

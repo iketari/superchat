@@ -2,7 +2,7 @@ export default class BaseView {
 
 	/**
 	 * Constructor of View
-	 * @param {Object} param0 
+	 * @param {Object} param0
 	 * @param {HTMLElement} param0.el
 	 * @param {Router} param0.router
 	 */
@@ -21,7 +21,7 @@ export default class BaseView {
 
 	/**
 	 * Creating an instance of View
-	 * @param {Object} param0 
+	 * @param {Object} param0
 	 * @param {Router} param0.router
 	 * @returns {View}
 	 */

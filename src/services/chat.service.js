@@ -32,7 +32,7 @@ export default class ChatService {
 
 	/**
 	 * @method setUserName
-	 * @public 
+	 * @public
 	 * @param {string} name - set username field
 	 */
 	setUserName (name) {
@@ -97,5 +97,4 @@ export default class ChatService {
 
 		return this.__instance;
 	}
-
 }

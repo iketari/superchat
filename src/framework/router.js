@@ -103,5 +103,4 @@ export default class Router {
 		this.currentView = view;
 		return true;
 	}
-
 }

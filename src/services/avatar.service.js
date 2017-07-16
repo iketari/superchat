@@ -5,7 +5,7 @@
 
 export default class AvatarService {
 
-	constructor () {
+	constructor() {
 		this._avatars = {
 			'Tim': 'http://i.imgur.com/FHMnsVNt.jpg',
 			'Matt': '//1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=200&r=pg&d=mm'
@@ -15,11 +15,11 @@ export default class AvatarService {
 	}
 
 	/**
-	 * Get an avatar url by username  
+	 * Get an avatar url by username
 	 * @param {string} name
 	 * @returns {string}
 	 */
-	getAvatar (name = '') {
+	getAvatar(name = '') {
 		if (!this._avatars[name]) {
 			this._avatars[name] = this._defaultAvatar + `=${Math.random()}`;
 		}
@@ -30,9 +30,7 @@ export default class AvatarService {
 	/**
 	 * Getting an instance of the class
 	 */
-	static getInstance (...rest) {
+	static getInstance(...rest) {
 		return new this(...rest);
 	}
 }
-
-

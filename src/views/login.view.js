@@ -32,7 +32,7 @@ export default class LoginView extends BaseView {
 			el: document.createElement('div'),
 			data: {
 				widgets: [
-					{   
+					{
 						tag: 'input',
 						attributes: {
 							type: 'text',
@@ -88,7 +88,7 @@ export default class LoginView extends BaseView {
 			if (user) {
 				let chatService = ChatService.getInstance();
 				chatService.setUserName(user.email);
-				
+
 				firebaseService.auth().currentUser.getToken(/* forceRefresh */ true).then(function(idToken) {
 					console.log(idToken);
 					sessionStorage.setItem('token', idToken);
@@ -96,7 +96,7 @@ export default class LoginView extends BaseView {
 					// Handle error
 				});
 
-				
+
 				this.router.go('/chat');
 			} else {
 				this.router.go('/main');
