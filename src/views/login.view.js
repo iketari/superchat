@@ -75,7 +75,7 @@ export default class LoginView extends BaseView {
 		this.form.on('submit', formData => {
 			firebaseService.auth()
 				.signInWithEmailAndPassword(formData.username, formData.password)
-				.catch(function(error) {
+				.catch(function (error) {
 					// Handle Errors here.
 					const errorCode = error.code;
 					const errorMessage = error.message;
@@ -89,12 +89,14 @@ export default class LoginView extends BaseView {
 				let chatService = ChatService.getInstance();
 				chatService.setUserName(user.email);
 
-				firebaseService.auth().currentUser.getToken(/* forceRefresh */ true).then(function(idToken) {
-					console.log(idToken);
-					sessionStorage.setItem('token', idToken);
-				}).catch(function(error) {
-					// Handle error
-				});
+				firebaseService.auth().currentUser.getToken(/* forceRefresh */ true)
+					.then(function (idToken) {
+						console.log(idToken);
+						sessionStorage.setItem('token', idToken);
+					})
+					.catch(function (error) {
+						// Handle error
+					});
 
 
 				this.router.go('/chat');
