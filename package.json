@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"lint": "eslint './**/*.js'",
-		"serve": "webpack-dev-server --open",
+		"start": "webpack-dev-server --open",
 		"build": "webpack",
 		"deploy": "webpack && firebase deploy",
 		"test": "NODE_ENV=testing karma start --single-run",

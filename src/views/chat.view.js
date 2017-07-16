@@ -5,6 +5,7 @@ import Form from '../components/form/form';
 import AvatarService from '../services/avatar.service';
 import ChatService from '../services/chat.service';
 import HttpService from '../services/http.service';
+import firebaseService from '../services/firebase.service';
 
 
 const chatService = ChatService.getInstance({
@@ -71,7 +72,7 @@ export default class ChatView extends BaseView {
 						tag: 'a',
 						inner: 'Выйти',
 						attributes: {
-							class: 'form__control_secondary',
+							class: 'form__control_secondary logout',
 							href: '/main',
 						}
 					}
@@ -82,17 +83,25 @@ export default class ChatView extends BaseView {
 
 	_initMediate () {
 		this.form.on('submit', (formData) => {
-			let data = {
+			chatService.sendMessage({
 				text: formData.message
-			};
-
-			chatService.sendMessage(data);
+			});
 
 			this.render();
 		});
+
+		this.el.addEventListener('click', this._onClick.bind(this));
 	}
 
 	addMessage (data) {
 		this.chat.addOne(data);
+	}
+
+	_onClick (event) {
+		if (event.target.classList.contains('logout')) {
+			event.preventDefault();
+			event.isRoutingPrevented = true;
+			firebaseService.logOut();
+		}
 	}
 }
