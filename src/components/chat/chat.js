@@ -18,11 +18,11 @@ import './chat.css';
 
 export default class Chat {
 	constructor({
-			el,
-			data = {messages: []},
-			avatarService,
-			chatService
-		}) {
+		el,
+		data = {messages: []},
+		avatarService,
+		chatService
+	}) {
 		this.el = el;
 		this.data = data;
 
