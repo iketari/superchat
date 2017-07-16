@@ -13,8 +13,8 @@ import Emitter from '../framework/emitter';
  * @mixes Emitter
  */
 export default class ChatService {
-
 	/**
+	 * @private
 	 * @constructor
 	 * @param {Object}
 	 */

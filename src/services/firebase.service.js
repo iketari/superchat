@@ -8,8 +8,6 @@ const config = {
 };
 
 export class FirebaseService {
-	constructor () {}
-
 	setup({firebase}) {
 		this.firebase = firebase;
 		this.app = firebase.initializeApp(config);

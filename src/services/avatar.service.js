@@ -8,7 +8,10 @@
  * @alias module:AvatarService
  */
 export default class AvatarService {
-
+	/**
+	 * @private
+	 * @constructor
+	 */
 	constructor() {
 		this._avatars = {
 			'Tim': 'http://i.imgur.com/FHMnsVNt.jpg',

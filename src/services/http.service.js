@@ -9,6 +9,10 @@
  * @mixes Emitter
  */
 export default class HttpService {
+	/**
+	 * @private
+	 * @constructor
+	 */
 	constructor () {
 		this.token = sessionStorage.getItem('token');
 	}

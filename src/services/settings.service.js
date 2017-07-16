@@ -4,7 +4,7 @@
  */
 
 import Emitter from '../framework/emitter';
-
+import Store from '../framework/store';
 
 /**
  * @class SettingsService
@@ -13,6 +13,7 @@ import Emitter from '../framework/emitter';
  */
 export default class SettingsService {
 	/**
+	 * @private
 	 * @constructor
 	 */
 	constructor () {
