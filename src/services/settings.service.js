@@ -37,16 +37,16 @@ export default class SettingsService {
 
 	_settingsChanged({name, oldValue, newValue}) {
 		switch (name) {
-			case 'html': {
-				this.settings.html = newValue;
-				this.trigger('change-settings:html', {name, oldValue, newValue});
-				break;
-			}
-			case 'sendKeys': {
-				this.settings.sendKeys = newValue;
-				this.trigger('change-settings:sendKeys', {name, oldValue, newValue});
-				break;
-			}
+		case 'html': {
+			this.settings.html = newValue;
+			this.trigger('change-settings:html', {name, oldValue, newValue});
+			break;
+		}
+		case 'sendKeys': {
+			this.settings.sendKeys = newValue;
+			this.trigger('change-settings:sendKeys', {name, oldValue, newValue});
+			break;
+		}
 		}
 	}
 
