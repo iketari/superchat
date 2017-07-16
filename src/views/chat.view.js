@@ -63,6 +63,7 @@ export default class ChatView extends BaseView {
 					{
 						tag: 'input',
 						attributes: {
+							class: 'form__control',
 							type: 'submit',
 							value: 'Отправить'
 						}
@@ -71,6 +72,7 @@ export default class ChatView extends BaseView {
 						tag: 'a',
 						inner: 'Выйти',
 						attributes: {
+							class: 'form__control_secondary',
 							href: '/main',
 						}
 					}

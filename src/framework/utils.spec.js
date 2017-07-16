@@ -2,21 +2,22 @@ import {deepEqual, capitalize} from './utils';
 
 describe('utils', () => {
 
-    describe('deepEqual - comparacing objects by value', () => {
+    // TODO: в it описать, что именно должна делать функция 
+    describe('deepEqual - comparing objects by value', () => {
 
-        let eqAssert = actual => assert(actual, 'Onjects should be equal');
-        let notEqAssert = actual => assert(actual, 'Onjects shouldn\'t be equal');
+        let eqAssert = actual => assert(actual, 'Objects should be equal');
+        let notEqAssert = actual => assert(actual, 'Objects shouldn\'t be equal');
 
-        it('empty objects', () => {
+        it('empty objects should be equal', () => {
             let actual = deepEqual({}, {});
-            
+
             eqAssert(actual);
         });
 
-
-        it('filled objects', () => {
+        
+        it('filled objects should be equal with the same data', () => {
             let actual = deepEqual({foo: 1}, {foo: 1});
-            
+
             eqAssert(actual);
         });
 
@@ -26,7 +27,7 @@ describe('utils', () => {
             notEqAssert(actual);
         });
 
-        it ('felled objects with inner objects',  () => {
+        it('felled objects with inner objects',  () => {
             let objA = {
                 foo: 1,
                 bar: {

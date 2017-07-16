@@ -51,6 +51,16 @@ export default class LoginView extends BaseView {
 					{
 						tag: 'input',
 						attributes: {
+							type: 'checkbox',
+							name: 'new',
+						}
+					},
+					{
+						tag: 'br'
+					},
+					{
+						tag: 'input',
+						attributes: {
 							type: 'submit',
 							name: 'action',
 							value: 'Войти'
