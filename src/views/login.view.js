@@ -31,6 +31,7 @@ export default class LoginView extends BaseView {
 
 		this.form = new Form({
 			el: document.createElement('div'),
+			fields: ['username', 'password', 'new'],
 			data: {
 				widgets: [
 					{
@@ -83,36 +84,37 @@ export default class LoginView extends BaseView {
 
 	_initMediate () {
 		this.form.on('submit', formData => {
-			firebaseService.auth()
-				.signInWithEmailAndPassword(formData.username, formData.password)
-				.catch(function (error) {
-					// Handle Errors here.
-					const errorCode = error.code;
-					const errorMessage = error.message;
-
-					console.log(errorCode, errorMessage);
-				});
+			if (formData.new) {
+				this._signUp(formData);
+			} else {
+				this._signIn(formData);
+			}
 		});
 
-		firebaseService.auth().onAuthStateChanged((user) => {
+		firebaseService.onAuthStateChanged((user) => {
 			if (user) {
 				let chatService = ChatService.getInstance();
 				chatService.setUserName(user.email);
 
-				firebaseService.auth().currentUser.getToken(/* forceRefresh */ true)
+				firebaseService.auth().currentUser.getIdToken(/* forceRefresh */ true)
 					.then(function (idToken) {
-						console.log(idToken);
 						sessionStorage.setItem('token', idToken);
 					})
 					.catch(function (error) {
-						// Handle error
+						// TODO: Handle error
 					});
-
-
 				this.router.go('/chat');
 			} else {
 				this.router.go('/main');
 			}
 		});
+	}
+
+	_signIn (formData) {
+		firebaseService.signIn(formData.username, formData.password);
+	}
+
+	_signUp (formData) {
+		firebaseService.signUp(formData.username, formData.password);
 	}
 }

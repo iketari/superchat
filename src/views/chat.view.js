@@ -5,6 +5,7 @@ import Form from '../components/form/form';
 import AvatarService from '../services/avatar.service';
 import ChatService from '../services/chat.service';
 import HttpService from '../services/http.service';
+import firebaseService from '../services/firebase.service';
 
 
 const chatService = ChatService.getInstance({
@@ -33,12 +34,9 @@ export default class ChatView extends BaseView {
 		super.hide();
 	}
 
-	render () {
-		this.chat.render();
+	render ({scroll} = {}) {
+		this.chat.render({scroll});
 		this.form.render();
-
-		this.el.appendChild(this.chat.el);
-		this.el.appendChild(this.form.el);
 	}
 
 	_createComponents () {
@@ -71,28 +69,45 @@ export default class ChatView extends BaseView {
 						tag: 'a',
 						inner: 'Выйти',
 						attributes: {
-							class: 'form__control_secondary',
+							class: 'form__control_secondary logout',
 							href: '/main',
 						}
 					}
 				]
 			}
 		});
+
+		this.el.appendChild(this.chat.el);
+		this.el.appendChild(this.form.el);
 	}
 
 	_initMediate () {
 		this.form.on('submit', (formData) => {
-			let data = {
+			chatService.sendMessage({
 				text: formData.message
-			};
+			});
 
-			chatService.sendMessage(data);
-
-			this.render();
+			this.chat.setScrollStrategy('bottom');
+			this.form.reset();
 		});
+
+		this.el.addEventListener('click', this._onClick.bind(this));
+		this.el.addEventListener('mousewheel', this._onMouseWheel.bind(this));
 	}
 
 	addMessage (data) {
 		this.chat.addOne(data);
+	}
+
+	_onMouseWheel () {
+		this.chat.setScrollStrategy('fixed');
+	}
+
+	_onClick (event) {
+		if (event.target.classList.contains('logout')) {
+			event.preventDefault();
+			event.isRoutingPrevented = true;
+			firebaseService.logOut();
+		}
 	}
 }
