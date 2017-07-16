@@ -18,13 +18,15 @@ import './chat.css';
 
 export default class Chat {
 	constructor({
-			el,
-			data = {messages: []},
-			avatarService,
-			chatService
-		}) {
+		el,
+		data = {messages: []},
+		avatarService,
+		chatService
+	}) {
 		this.el = el;
 		this.data = data;
+
+		this._scrollStrategy = 'fixed';
 
 		this.avatarService = avatarService;
 		this.chatService = chatService;
@@ -36,10 +38,10 @@ export default class Chat {
 		this.chatService.on('messages', this._onMessages.bind(this));
 	}
 
-	render () {
+	render ({scroll} = {}) {
 		this._saveScrollTop();
 		this.el.innerHTML = tmpl(this.data);
-		this._restoreScrollTop();
+		this._restoreScrollTop(scroll);
 	}
 
 	_onMessages (messages) {
@@ -59,7 +61,13 @@ export default class Chat {
 		let chatBox = this.el.querySelector('.chat__box');
 
 		if (chatBox) {
-			chatBox.scrollTop = this._scrollTop;
+			switch (this._scrollStrategy) {
+			case 'bottom':
+				chatBox.scrollTop = chatBox.scrollHeight;
+				break;
+			case 'fixed':
+				chatBox.scrollTop = this._scrollTop;
+			}
 		}
 	}
 
@@ -72,6 +80,14 @@ export default class Chat {
 	setMessages (messages = []) {
 		this.data.messages.length = 0;
 		this.add(messages);
+	}
+
+	/**
+	 * How to restore scroll after render
+	 * @param {string} strategy 
+	 */
+	setScrollStrategy (strategy) {
+		this._scrollStrategy = strategy;
 	}
 
 	/**

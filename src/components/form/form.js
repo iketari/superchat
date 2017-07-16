@@ -37,6 +37,7 @@ export default class Form {
 
 	_initEvents () {
 		this.el.addEventListener('submit', this._onSubmit.bind(this));
+		this.el.addEventListener('keydown', this._onKeyDown.bind(this));
 	}
 
 	_onSubmit (event) {
@@ -44,6 +45,12 @@ export default class Form {
 		let formData = this._getFormData();
 
 		this.trigger('submit', formData);
+	}
+
+	_onKeyDown (event) {
+		if (event.which === 13 && event.ctrlKey) {
+			this.el.dispatchEvent(new Event('submit'));
+		} 
 	}
 
 	_getInputs () {

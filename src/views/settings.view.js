@@ -64,7 +64,9 @@ export default class SettingsView extends BaseView {
 		}
 
 		settings.setSendMessageKeys(
-			e.send_keys === SettingsService.SEND_KEYS.ALT_ENTER ? SettingsService.SEND_KEYS.ALT_ENTER : SettingsService.SEND_KEYS.ENTER
+			e.send_keys === SettingsService.SEND_KEYS.ALT_ENTER ? 
+				SettingsService.SEND_KEYS.ALT_ENTER : 
+				SettingsService.SEND_KEYS.ENTER
 		);
 
 		this.router.go('/main');

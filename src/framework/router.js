@@ -56,6 +56,10 @@ export default class Router {
 			return;
 		}
 
+		if (event.isRoutingPrevented) {
+			return;
+		}
+
 		if (this.go(event.target.getAttribute('href'))) {
 			event.preventDefault();
 		}
