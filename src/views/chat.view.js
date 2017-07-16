@@ -34,12 +34,9 @@ export default class ChatView extends BaseView {
 		super.hide();
 	}
 
-	render () {
-		this.chat.render();
+	render ({scroll} = {}) {
+		this.chat.render({scroll});
 		this.form.render();
-
-		this.el.appendChild(this.chat.el);
-		this.el.appendChild(this.form.el);
 	}
 
 	_createComponents () {
@@ -79,6 +76,9 @@ export default class ChatView extends BaseView {
 				]
 			}
 		});
+
+		this.el.appendChild(this.chat.el);
+		this.el.appendChild(this.form.el);
 	}
 
 	_initMediate () {
@@ -87,14 +87,20 @@ export default class ChatView extends BaseView {
 				text: formData.message
 			});
 
-			this.render();
+			this.chat.setScrollStrategy('bottom');
+			this.form.reset();
 		});
 
 		this.el.addEventListener('click', this._onClick.bind(this));
+		this.el.addEventListener('mousewheel', this._onMouseWheel.bind(this));
 	}
 
 	addMessage (data) {
 		this.chat.addOne(data);
+	}
+
+	_onMouseWheel () {
+		this.chat.setScrollStrategy('fixed');
 	}
 
 	_onClick (event) {
