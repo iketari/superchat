@@ -5,6 +5,7 @@
 
 /**
  * @class {Router}
+ * @alias module:Router
  */
 export default class Router {
 
@@ -103,5 +104,4 @@ export default class Router {
 		this.currentView = view;
 		return true;
 	}
-
 }

@@ -1,9 +1,18 @@
 /**
  * Service for making of http requests
- * @module HttpService
+ * @module {HttpService} HttpService
  */
 
+/**
+ * @class HttpService
+ * @alias module:HttpService
+ * @mixes Emitter
+ */
 export default class HttpService {
+	/**
+	 * @private
+	 * @constructor
+	 */
 	constructor () {
 		this.token = sessionStorage.getItem('token');
 	}

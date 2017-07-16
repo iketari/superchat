@@ -5,12 +5,24 @@ import Emitter from '../../framework/emitter';
 
 
 export default class Form {
-	constructor({el, data = {}}) {
+	constructor({el, data = {}, fields = null}) {
 		Emitter.apply(this);
 		this.el = el;
 		this.data = data;
+		this.fields = fields || null;
 
 		this._initEvents();
+	}
+
+	fillFormValues(formdata) {
+		this.reset();
+		for (let [fieldname, fieldvalue] of Object.entries(formdata)) {
+			if (this.formEl.elements[fieldname].type === 'checkbox') {
+				this.formEl.elements[fieldname].checked = fieldvalue;
+				continue;
+			}
+			this.formEl.elements[fieldname].value = fieldvalue;
+		}
 	}
 
 	render () {
@@ -41,11 +53,22 @@ export default class Form {
 	_getFormData () {
 		let formData = {};
 
+		if (this.fields !== null) {
+			for (let name of this.fields) {
+				if (this.formEl.elements[name].type === 'checkbox') {
+					formData[name] = this.formEl.elements[name].checked;
+					continue;
+				}
+				formData[name] = this.formEl.elements[name].value;
+			}
+
+			return formData;
+		}
+
 		[...this._getInputs()].forEach(input => {
 			formData[input.name] = input.value;
 		});
 
 		return formData;
 	}
-
 }

@@ -15,11 +15,10 @@ const chatService = ChatService.getInstance({
 
 const avatarService = AvatarService.getInstance();
 
+/**
+ * @class ChatView
+ */
 export default class ChatView extends BaseView {
-	constructor (...rest) {
-		super(...rest);
-	}
-
 	show () {
 		this.chat.setUserName(chatService.getUserName());
 		this.render();
@@ -54,7 +53,7 @@ export default class ChatView extends BaseView {
 			data: {
 				widgets: [
 					{
-						tag: 'textarea', 
+						tag: 'textarea',
 						attributes: {
 							name: 'message',
 							placeholder: 'Введите сообщение...'
@@ -96,5 +95,4 @@ export default class ChatView extends BaseView {
 	addMessage (data) {
 		this.chat.addOne(data);
 	}
-
 }

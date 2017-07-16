@@ -1,0 +1,15 @@
+{
+	"presets": [
+		[
+			"env",
+			{
+				"targets": {
+					"browsers": ["last 2 versions"],
+					"chrome": 49,
+					"safari": 9
+				},
+				"debug": true
+			}
+		]
+	]
+}

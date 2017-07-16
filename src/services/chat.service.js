@@ -1,18 +1,20 @@
 /**
  * Service of chat functionality. Provide sending and polling of messages.
- * @module ChatService
+ * @module {ChatService} ChatService
  */
 
 import {deepEqual} from '../framework/utils';
 import Emitter from '../framework/emitter';
 
+
 /**
+ * @class ChatService
  * @alias module:ChatService
  * @mixes Emitter
  */
 export default class ChatService {
-
 	/**
+	 * @private
 	 * @constructor
 	 * @param {Object}
 	 */
@@ -32,7 +34,7 @@ export default class ChatService {
 
 	/**
 	 * @method setUserName
-	 * @public 
+	 * @public
 	 * @param {string} name - set username field
 	 */
 	setUserName (name) {
@@ -97,5 +99,4 @@ export default class ChatService {
 
 		return this.__instance;
 	}
-
 }
