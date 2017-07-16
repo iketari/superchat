@@ -54,6 +54,33 @@ export default class Store {
 	}
 
 	/**
+	 * Returns all stored values (in this scope) in one big object
+	 * @return {{}}
+	 */
+	getAll() {
+		const testRegex = new RegExp(`^${this.scope}\\..+`);
+		const replaceRegex = new RegExp(`^${this.scope}\\.`);
+		const returned = {};
+		for (const key of Object.keys(window.localStorage)) {
+			if (!testRegex.test(key)) {
+				continue;
+			}
+
+			let value = window.localStorage.getItem(key);
+			try {
+				value = JSON.parse(value)
+			} catch (_) {
+				// ignore
+			}
+			const name = key.replace(replaceRegex, '');
+
+			returned[name] = value;
+		}
+
+		return returned;
+	}
+
+	/**
 	 * Set item value
 	 * @param {String} name
 	 * @param {*} value
@@ -126,23 +153,24 @@ export default class Store {
 		const replaceRegex = new RegExp(`^${this.scope}\\.`);
 		const events = [];
 		for (const key of Object.keys(window.localStorage)) {
-			if (testRegex.test(key)) {
-				let oldValue = window.localStorage.getItem(key);
-				try {
-					oldValue = JSON.parse(oldValue)
-				} catch (_) {
-					// ignore
-				}
-				window.localStorage.removeItem(key);
-				let newValue = null;
-				events.push({
-					key,
-					name: key.replace(replaceRegex, ''),
-					oldValue,
-					newValue,
-					scope: this.scope,
-				});
+			if (!testRegex.test(key)) {
+				continue;
 			}
+			let oldValue = window.localStorage.getItem(key);
+			try {
+				oldValue = JSON.parse(oldValue)
+			} catch (_) {
+				// ignore
+			}
+			window.localStorage.removeItem(key);
+			let newValue = null;
+			events.push({
+				key,
+				name: key.replace(replaceRegex, ''),
+				oldValue,
+				newValue,
+				scope: this.scope,
+			});
 		}
 
 		events.forEach(event => this.trigger('change', event));
@@ -161,7 +189,7 @@ export default class Store {
 	}
 }
 
-window.addEventListener('storage', function(e) {
+window.addEventListener('storage', function (e) {
 	let {key, oldValue, newValue} = e;
 	let scope = key.split('.')[0];
 
