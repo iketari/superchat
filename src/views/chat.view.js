@@ -8,13 +8,14 @@ import HttpService from '../services/http.service';
 import firebaseService from '../services/firebase.service';
 
 
+const httpService = HttpService.getInstance();
+const avatarService = AvatarService.getInstance();
+
 const chatService = ChatService.getInstance({
 	baseUrl: 'https://components-e2e6e.firebaseio.com/chat/messages/iketari.json',
-	http: HttpService.getInstance(),
+	http: httpService,
 	pollingInterval: 1000
 });
-
-const avatarService = AvatarService.getInstance();
 
 /**
  * @class ChatView
@@ -23,7 +24,15 @@ export default class ChatView extends BaseView {
 	show () {
 		this.chat.setUserName(chatService.getUserName());
 		this.render();
-		chatService.startPolling();
+
+		const token = sessionStorage.getItem('token');
+		if (token) {
+			httpService.setToken(token);
+			chatService.startPolling();
+		} else {
+			this.router.go('/login');
+			return;
+		}
 
 		super.show();
 	}
