@@ -39,6 +39,7 @@ export default class ChatService {
 	 */
 	setUserName (name) {
 		this._username = name;
+		this.trigger('username:change', {name});
 	}
 
 	getUserName () {

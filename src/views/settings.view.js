@@ -31,14 +31,11 @@ export default class SettingsView extends BaseView {
 	 * @private
 	 */
 	_initMediate () {
-		const selfView = this;
-		settings.on('change-settings:html', function (e) {
-			// console.log('change-settings:html', e);
-			selfView._updateSettingsForm();
+		settings.on('change-settings:html', () => {
+			this._updateSettingsForm();
 		});
-		settings.on('change-settings:sendKeys', function (e) {
-			// console.log('change-settings:sendKeys', e);
-			selfView._updateSettingsForm();
+		settings.on('change-settings:sendKeys',() => {
+			this._updateSettingsForm();
 		});
 	}
 
@@ -46,11 +43,12 @@ export default class SettingsView extends BaseView {
 	 * @private
 	 */
 	_updateSettingsForm() {
-		const formdata = {};
-		formdata.use_html = settings.settings.html;
-		formdata.send_keys = settings.settings.sendKeys;
+		const formData = {
+			use_html: settings.settings.html,
+			send_keys: settings.settings.sendKeys
+		};
 
-		this.form.fillFormValues(formdata);
+		this.form.fillFormValues(formData);
 	}
 
 	/**

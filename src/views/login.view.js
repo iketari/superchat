@@ -90,24 +90,6 @@ export default class LoginView extends BaseView {
 				this._signIn(formData);
 			}
 		});
-
-		firebaseService.onAuthStateChanged((user) => {
-			if (user) {
-				let chatService = ChatService.getInstance();
-				chatService.setUserName(user.email);
-
-				firebaseService.auth().currentUser.getIdToken(/* forceRefresh */ true)
-					.then(function (idToken) {
-						sessionStorage.setItem('token', idToken);
-					})
-					.catch(function (error) {
-						// TODO: Handle error
-					});
-				this.router.go('/chat');
-			} else {
-				this.router.go('/main');
-			}
-		});
 	}
 
 	_signIn (formData) {

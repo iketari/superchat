@@ -2,19 +2,24 @@
  * @module utils
  */
 
-function _isPrimitive(target) {
-	return typeof target !== 'object' && target !== null;
+ /**
+  * Returns true if argument belongs to primitive type
+  * @param {*} target
+  * @returns {boolean}
+  */
+function isPrimitive(target) {
+	return typeof target !== 'object' || target === null;
 }
 
 /**
- * Сравнивает объекты по значниию
+ * Compares two objects by value
  * @param {Object} src
  * @param {Object} dest
  * @returns {boolean}
  */
 function deepEqual(x, y) {
-	if ((typeof x === 'object' && x != null) && (typeof y === 'object' && y != null)) {
-		if (Object.keys(x).length != Object.keys(y).length) {
+	if (!isPrimitive(x) && !isPrimitive(y)) {
+		if (Object.keys(x).length !== Object.keys(y).length) {
 			return false;
 		}
 
@@ -43,4 +48,4 @@ function capitalize(str) {
 	return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-export { deepEqual, capitalize };
+export { deepEqual, capitalize, isPrimitive };

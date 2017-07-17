@@ -1,33 +1,33 @@
-import {deepEqual, capitalize} from './utils';
+import chai from 'chai';
+import {deepEqual, capitalize, isPrimitive} from './utils';
 
 describe('utils', () => {
 
-	// TODO: в it описать, что именно должна делать функция 
-	describe('deepEqual - comparing objects by value', () => {
+	describe('deepEqual - compares two objects by value.', () => {
 
 		let eqAssert = actual => assert(actual, 'Objects should be equal');
-		let notEqAssert = actual => assert(actual, 'Objects shouldn\'t be equal');
+		let notEqAssert = actual => assert(!actual, 'Objects should not be equal');
 
-		it('empty objects should be equal', () => {
+		it('should be true for two empty objects', () => {
 			let actual = deepEqual({}, {});
 
 			eqAssert(actual);
 		});
 
-        
-		it('filled objects should be equal with the same data', () => {
+
+		it('should be true for two filled objects with the same data', () => {
 			let actual = deepEqual({foo: 1}, {foo: 1});
 
 			eqAssert(actual);
 		});
 
-		it('filled different objects', () => {
-			let actual = !deepEqual({foo: 1}, {foo: 2});
-            
+		it('should be false for two filled different objects', () => {
+			let actual = deepEqual({foo: 1}, {foo: 2});
+
 			notEqAssert(actual);
 		});
 
-		it('felled objects with inner objects',  () => {
+		it('should be true for two the same filled nested objects',  () => {
 			let objA = {
 				foo: 1,
 				bar: {
@@ -45,7 +45,7 @@ describe('utils', () => {
 			eqAssert(deepEqual(objA, objB));
 		});
 
-		it ('felled objects with inner arrays',  () => {
+		it('should be true for two filled objects with inner arrays',  () => {
 			let objA = {
 				foo: 1,
 				bar: {
@@ -63,7 +63,7 @@ describe('utils', () => {
 			eqAssert(deepEqual(objA, objB));
 		});
 
-		it ('felled objects with inner array consists of objects',  () => {
+		it('should be true for two filled objects with inner array of objects',  () => {
 			let objA = {
 				foo: 1,
 				bar: {
@@ -81,7 +81,7 @@ describe('utils', () => {
 			eqAssert(deepEqual(objA, objB));
 		});
 
-		it ('felled objects with inner array consists of dates',  () => {
+		it('should be true for two filled objects with inner array consists of dates',  () => {
 			let ts = Date.now();
 
 			let objA = {
@@ -100,20 +100,48 @@ describe('utils', () => {
 
 			eqAssert(deepEqual(objA, objB));
 		});
+
+		it('should be false for null and undefined', () => {
+			let foo = null;
+			let bar = undefined;
+
+			let actual = deepEqual(foo, bar);
+
+			notEqAssert(actual);
+		});
 	});
 
-	describe('capitalize', function () {
-		it('Capitalize filled string', () => {
+	describe('capitalize - raises the first letter of the string to uppercase.', () => {
+		it('should capitalize only first letter', () => {
 			expect(capitalize('foo')).to.equal('Foo');
 		});
 
-		it('Capitalize one char string', () => {
+		it('should capitalize one letter', () => {
 			expect(capitalize('f')).to.equal('F');
 		});
 
-		it('Capitalize empty string', () => {
+		it('should not capitalize empty string', () => {
 			expect(capitalize('')).to.equal('');
 		});
+	});
+
+	describe('isPrimitive - returns true if argument belongs to primitive type.', () => {
+		chai.should();
+
+		it('should return true for numbers, strings, booleans, null, undefined', () => {
+			isPrimitive(1).should.equal(true);
+			isPrimitive('1').should.equal(true);
+			isPrimitive(true).should.equal(true);
+			isPrimitive(null).should.equal(true);
+			isPrimitive(undefined).should.equal(true);
+		});
+
+		it('should return false for objects, arrays, dates, regexps', () => {
+			isPrimitive({}).should.equal(false);
+			isPrimitive([]).should.equal(false);
+			isPrimitive(new Date).should.equal(false);
+			isPrimitive(/.*/g).should.equal(false);
+		})
 	});
 
 });

@@ -53,8 +53,9 @@ export default class ChatView extends BaseView {
 					{
 						tag: 'textarea',
 						attributes: {
+							required: true,
 							name: 'message',
-							placeholder: 'Введите сообщение...'
+							placeholder: 'Enter message...'
 						}
 					},
 					{
@@ -62,12 +63,12 @@ export default class ChatView extends BaseView {
 						attributes: {
 							class: 'form__control',
 							type: 'submit',
-							value: 'Отправить'
+							value: 'Send'
 						}
 					},
 					{
 						tag: 'a',
-						inner: 'Выйти',
+						inner: 'Log out',
 						attributes: {
 							class: 'form__control_secondary logout',
 							href: '/main',
@@ -91,6 +92,16 @@ export default class ChatView extends BaseView {
 			this.form.reset();
 		});
 
+		chatService.on('username:change', ({name}) => {
+			this.chat.setUserName(name);
+			this.chat.render();
+		});
+
+		chatService.on('messages', messages => {
+			this.chat.setMessages(messages);
+			this.chat.render();
+		})
+
 		this.el.addEventListener('click', this._onClick.bind(this));
 		this.el.addEventListener('mousewheel', this._onMouseWheel.bind(this));
 	}
@@ -107,7 +118,11 @@ export default class ChatView extends BaseView {
 		if (event.target.classList.contains('logout')) {
 			event.preventDefault();
 			event.isRoutingPrevented = true;
-			firebaseService.logOut();
+
+			firebaseService.logOut().then( _ => {
+				sessionStorage.removeItem('token');
+				this.router.go('/main');
+			});
 		}
 	}
 }
