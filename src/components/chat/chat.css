@@ -4,6 +4,10 @@
 	overflow: hidden;
 }
 
+.form__control-helper {
+	margin-left: 10px;
+}
+
 .header{
 	padding:20px 20px 18px 20px;
 	background:#9b4dca;
@@ -100,3 +104,4 @@
 	border-top: 6px solid transparent;
 	border-bottom:6px solid transparent;
 }
+
