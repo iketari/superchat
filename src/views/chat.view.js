@@ -6,10 +6,12 @@ import AvatarService from '../services/avatar.service';
 import ChatService from '../services/chat.service';
 import HttpService from '../services/http.service';
 import firebaseService from '../services/firebase.service';
+import SettingsService from '../services/settings.service';
 
 
 const httpService = HttpService.getInstance();
 const avatarService = AvatarService.getInstance();
+const settingsService = SettingsService.getInstance();
 
 const chatService = ChatService.getInstance({
 	baseUrl: 'https://components-e2e6e.firebaseio.com/chat/messages/iketari.json',
@@ -46,6 +48,21 @@ export default class ChatView extends BaseView {
 	render ({scroll} = {}) {
 		this.chat.render({scroll});
 		this.form.render();
+
+		const sendButton = this.form.formEl.querySelector('input.form__control');
+		if (sendButton) {
+			const span = document.createElement('span');
+			span.classList.add('form__control-helper');
+			sendButton.parentNode.appendChild(span);
+
+			const settingsChangedCallback = function () {
+				console.log(settingsService.settings);
+				span.innerHTML = `Send messages by ${settingsService.settings.sendKeys}<br />Line break by ${settingsService.settings.sendKeys === SettingsService.SEND_KEYS.ALT_ENTER ? SettingsService.SEND_KEYS.ENTER : SettingsService.SEND_KEYS.ALT_ENTER}`;
+			};
+
+			settingsService.on('change-settings:sendKeys', settingsChangedCallback);
+			settingsChangedCallback();
+		}
 	}
 
 	_createComponents () {
@@ -109,7 +126,7 @@ export default class ChatView extends BaseView {
 		chatService.on('messages', messages => {
 			this.chat.setMessages(messages);
 			this.chat.render();
-		})
+		});
 
 		this.el.addEventListener('click', this._onClick.bind(this));
 		this.el.addEventListener('mousewheel', this._onMouseWheel.bind(this));

@@ -2,7 +2,9 @@ import tmpl from './form.tmpl.pug';
 import './form.css';
 
 import Emitter from '../../framework/emitter';
+import SettingsService from '../../services/settings.service';
 
+const settingsService = SettingsService.getInstance();
 
 export default class Form {
 	constructor({el, data = {}, fields = null}) {
@@ -48,9 +50,52 @@ export default class Form {
 	}
 
 	_onKeyDown (event) {
-		if (event.which === 13 && event.ctrlKey) {
-			this.el.dispatchEvent(new Event('submit'));
-		} 
+		// If not Enter
+		if (event.which !== 13) {
+			return;
+		}
+
+		const sendKeys = settingsService.settings.sendKeys;
+		switch (sendKeys) {
+			case SettingsService.SEND_KEYS.ENTER: {
+				if (!event.altKey) {
+					event.preventDefault();
+					return this._submitForm();
+				}
+
+				this._pasteIntoInput(event.target, '\n');
+
+				break;
+			}
+			case SettingsService.SEND_KEYS.ALT_ENTER: {
+				if (event.altKey) {
+					event.preventDefault();
+					return this._submitForm();
+				}
+
+				break;
+			}
+		}
+	}
+
+	_pasteIntoInput(el, text) {
+		el.focus();
+		// if
+		if (typeof el.selectionStart === 'number' && typeof el.selectionEnd === 'number') {
+			const val = el.value;
+			const selStart = el.selectionStart;
+			el.value = val.slice(0, selStart) + text + val.slice(el.selectionEnd);
+			el.selectionEnd = el.selectionStart = selStart + text.length;
+		} else if (typeof document.selection !== 'undefined') {
+			const textRange = document.selection.createRange();
+			textRange.text = text;
+			textRange.collapse(false);
+			textRange.select();
+		}
+	}
+
+	_submitForm() {
+		this.el.dispatchEvent(new Event('submit'));
 	}
 
 	_getInputs () {
