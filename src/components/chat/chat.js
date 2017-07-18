@@ -20,33 +20,24 @@ export default class Chat {
 	constructor({
 		el,
 		data = {messages: []},
-		avatarService,
-		chatService
+		avatarService
 	}) {
 		this.el = el;
 		this.data = data;
 
-		this._scrollStrategy = 'fixed';
+		this._scrollStrategy = 'bottom';
 
 		this.avatarService = avatarService;
-		this.chatService = chatService;
 
 		this._initEvents();
 	}
 
-	_initEvents () {
-		this.chatService.on('messages', this._onMessages.bind(this));
-	}
+	_initEvents () {}
 
 	render ({scroll} = {}) {
 		this._saveScrollTop();
 		this.el.innerHTML = tmpl(this.data);
 		this._restoreScrollTop(scroll);
-	}
-
-	_onMessages (messages) {
-		this.setMessages(messages);
-		this.render();
 	}
 
 	_saveScrollTop () {

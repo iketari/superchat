@@ -10,6 +10,7 @@ import * as auth from 'firebase/auth';
 import * as database from 'firebase/database';
 
 import firebaseService from './services/firebase.service';
+import ChatService from './services/chat.service';
 
 import * as views from './views';
 
@@ -40,5 +41,21 @@ if (location.pathname === '/') {
 } else {
 	router.go(location.pathname);
 }
+
+firebaseService.onAuthStateChanged((user) => {
+	if (user) {
+		let chatService = ChatService.getInstance();
+		chatService.setUserName(user.email);
+
+		firebaseService.auth().currentUser.getIdToken(/* forceRefresh */ true)
+			.then(idToken => sessionStorage.setItem('token', idToken))
+			.catch(error => {
+				// TODO: Handle error
+			});
+		router.go('/chat');
+	} else {
+		router.go('/main');
+	}
+});
 
 router.start();

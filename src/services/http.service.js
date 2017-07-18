@@ -14,7 +14,6 @@ export default class HttpService {
 	 * @constructor
 	 */
 	constructor () {
-		this.token = sessionStorage.getItem('token');
 	}
 
 	/**
@@ -23,6 +22,14 @@ export default class HttpService {
 	 */
 	setBaseUrl (url) {
 		this.baseUrl = url;
+	}
+
+	/**
+	 * Setting a JWT token
+	 * @param {string} token 
+	 */
+	setToken (token) {
+		this.token = token;
 	}
 
 	/**

@@ -9,7 +9,7 @@ module.exports = {
 		"node": true,
 		"es6": true,
 		"mocha": true,
-		"jasmine": true,
+		"jasmine": true
 	},
 	"rules": {
 		"camelcase": 1,

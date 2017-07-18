@@ -8,13 +8,14 @@ import HttpService from '../services/http.service';
 import firebaseService from '../services/firebase.service';
 
 
+const httpService = HttpService.getInstance();
+const avatarService = AvatarService.getInstance();
+
 const chatService = ChatService.getInstance({
 	baseUrl: 'https://components-e2e6e.firebaseio.com/chat/messages/iketari.json',
-	http: HttpService.getInstance(),
+	http: httpService,
 	pollingInterval: 1000
 });
-
-const avatarService = AvatarService.getInstance();
 
 /**
  * @class ChatView
@@ -23,7 +24,15 @@ export default class ChatView extends BaseView {
 	show () {
 		this.chat.setUserName(chatService.getUserName());
 		this.render();
-		chatService.startPolling();
+
+		const token = sessionStorage.getItem('token');
+		if (token) {
+			httpService.setToken(token);
+			chatService.startPolling();
+		} else {
+			this.router.go('/login');
+			return;
+		}
 
 		super.show();
 	}
@@ -53,8 +62,9 @@ export default class ChatView extends BaseView {
 					{
 						tag: 'textarea',
 						attributes: {
+							required: true,
 							name: 'message',
-							placeholder: 'Введите сообщение...'
+							placeholder: 'Enter message...'
 						}
 					},
 					{
@@ -62,12 +72,12 @@ export default class ChatView extends BaseView {
 						attributes: {
 							class: 'form__control',
 							type: 'submit',
-							value: 'Отправить'
+							value: 'Send'
 						}
 					},
 					{
 						tag: 'a',
-						inner: 'Выйти',
+						inner: 'Log out',
 						attributes: {
 							class: 'form__control_secondary logout',
 							href: '/main',
@@ -91,6 +101,16 @@ export default class ChatView extends BaseView {
 			this.form.reset();
 		});
 
+		chatService.on('username:change', ({name}) => {
+			this.chat.setUserName(name);
+			this.chat.render();
+		});
+
+		chatService.on('messages', messages => {
+			this.chat.setMessages(messages);
+			this.chat.render();
+		})
+
 		this.el.addEventListener('click', this._onClick.bind(this));
 		this.el.addEventListener('mousewheel', this._onMouseWheel.bind(this));
 	}
@@ -107,7 +127,11 @@ export default class ChatView extends BaseView {
 		if (event.target.classList.contains('logout')) {
 			event.preventDefault();
 			event.isRoutingPrevented = true;
-			firebaseService.logOut();
+
+			firebaseService.logOut().then( _ => {
+				sessionStorage.removeItem('token');
+				this.router.go('/main');
+			});
 		}
 	}
 }
