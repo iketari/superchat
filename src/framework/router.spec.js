@@ -43,7 +43,7 @@ describe('Router', () => {
 	});
 
 	describe('fn._onClick', () => {
-		it('should switch to the view on route after click by <a href="/someroute">', () => {
+		it('should switch to the route after click by <a href="/someroute">', () => {
 			let spy = sinon.spy(router, 'go');
 			let a = document.createElement('a');
 			let click = new Event('click', {
@@ -62,6 +62,80 @@ describe('Router', () => {
 
 			assert.isTrue(spy.called, 'fn.go should be called');
 			assert.isTrue(spy.calledWithExactly('/someroute'), 'fn.go should be called');
+		});
+
+		it('should not switch to the route after click by <a href="/someroute"> after routing preventing', () => {
+			let spy = sinon.spy(router, 'go');
+			let a = document.createElement('a');
+			let click = new Event('click', {
+				bubbles: true,
+				cancelable: true
+			});
+
+			a.href = '/someroute';
+			node.appendChild(a);
+			document.body.appendChild(node);
+
+			router.route('/someroute', view);
+			router.start();
+
+			a.addEventListener('click', event => {
+				// prevent routing
+				event.isRoutingPrevented = true;
+
+				//prevent reload
+				event.preventDefault();
+			});
+
+			a.dispatchEvent(click);
+
+			assert.isTrue(spy.notCalled, 'fn.go should not be called');
+		});
+
+		it('should not switch to the route after click by <a href="/somewrongroute">', () => {
+			let spy = sinon.spy(router, 'go');
+			let a = document.createElement('a');
+			let click = new Event('click', {
+				bubbles: true,
+				cancelable: true
+			});
+
+			a.href = '/somewrongroute';
+			node.appendChild(a);
+			document.body.appendChild(node);
+
+			router.route('/someroute', view);
+			router.start();
+
+			a.addEventListener('click', event => {
+				//prevent reload
+				event.preventDefault();
+			});
+
+			a.dispatchEvent(click);
+
+			assert.isTrue(spy.called, 'fn.go should not be called');
+			assert.isTrue(spy.returned(false), 'fn.go should return false');
+		});
+
+		it('should not switch to the route after click by <div href="/someroute">', () => {
+			let spy = sinon.spy(router, 'go');
+			let div = document.createElement('div');
+			let click = new Event('click', {
+				bubbles: true,
+				cancelable: true
+			});
+
+			div.setAttribute('href','/someroute');
+			node.appendChild(div);
+			document.body.appendChild(node);
+
+			router.route('/someroute', view);
+			router.start();
+
+			div.dispatchEvent(click);
+
+			assert.isTrue(spy.notCalled, 'fn.go should not be called');
 		});
 
 	});
@@ -111,6 +185,17 @@ describe('Router', () => {
 			assert(spyHide.calledOnce, 'View.fn.hide should be called once');
 			assert(secondSpyShow.calledOnce, 'View.fn.show (second) should be called once');
 			assert(secondSpyHide.notCalled, 'View.fn.hide should not be called');
+		});
+	});
+
+	describe('fn.start', () => {
+		it('should add eventListener on click', () => {
+			let spy = sinon.spy(node, 'addEventListener');
+
+			router.start();
+
+			assert(spy.called, 'window.addEventListener should be called');
+			assert(spy.calledWith('click'), 'window.addEventListener should be called with click');
 		});
 	});
 
