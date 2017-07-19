@@ -83,6 +83,7 @@ module.exports = function (config) {
 
 		// any of these options are valid: https://github.com/istanbuljs/istanbul-api/blob/47b7803fbf7ca2fb4e4a15f3813a8884891ba272/lib/config.js#L33-L38
 		coverageIstanbulReporter: {
+			skipFilesWithNoCoverage: false,
 			reports: ['html'],
 			dir: path.join(__dirname, 'coverage', 'html')
 		},

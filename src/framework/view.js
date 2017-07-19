@@ -35,12 +35,10 @@ export default class BaseView {
 	 * @returns {View}
 	 */
 	static create ({router}) {
-		const view =new this({
+		return new this({
 			el: document.createElement('div'),
 			router
 		});
-
-		return view;
 	}
 
 	/**
@@ -65,7 +63,7 @@ export default class BaseView {
 	}
 
 	/**
-	 * Rendering nestend components
+	 * Rendering nested components
 	 */
 	render () {}
 
@@ -75,7 +73,7 @@ export default class BaseView {
 	_createComponents () {}
 
 	/**
-	 * Initing an messaging between components
+	 * Initiate an messaging between components
 	 */
 	_initMediate () {}
 }
