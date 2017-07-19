@@ -26,62 +26,92 @@ describe('Router', () => {
 		});
 	});
 
-	it('indtanceof', () => {            
-		expect(router instanceof Router);
+	describe('constructor', () => {
+		it('should instantiate', () => {
+			expect(router instanceof Router);
+		});
 	});
 
-	it('fn._getViewByRoute', () => {
-		router.route('/someroute', view);
+	describe('fn.route / fn._getViewByRoute', () => {
+		it('should return a view, which was associated with a route', () => {
+			router.route('/someroute', view);
 
-		let resView = router._getViewByRoute('/someroute');
+			let resView = router._getViewByRoute('/someroute');
 
-		expect(resView === view, 'View shoud be the same');
+			assert.strictEqual(resView, view, 'View should be the same');
+		})
 	});
 
-	it('fn.go new view', () => {
-		let spy = sinon.spy(view, 'show');
-		router.route('/someroute', view);
+	describe('fn._onClick', () => {
+		it('should switch to the view on route after click by <a href="/someroute">', () => {
+			let spy = sinon.spy(router, 'go');
+			let a = document.createElement('a');
+			let click = new Event('click', {
+				bubbles: true,
+				cancelable: true
+			});
 
-		router.go('/someroute');
+			a.href = '/someroute';
+			node.appendChild(a);
+			document.body.appendChild(node);
 
-		assert(spy.called, 'View.fn.show should be called');
+			router.route('/someroute', view);
+			router.start();
+
+			a.dispatchEvent(click);
+
+			assert.isTrue(spy.called, 'fn.go should be called');
+			assert.isTrue(spy.calledWithExactly('/someroute'), 'fn.go should be called');
+		});
+
 	});
 
-	it('fn.go no view', () => {
-		let spy = sinon.spy(view, 'show');
-		router.route('/someroute', view);
+	describe('fn.go', () => {
+		it('should call show method of view on go to a correct route', () => {
+			let spy = sinon.spy(view, 'show');
+			router.route('/someroute', view);
 
-		router.go('/someotherroute');
+			router.go('/someroute');
 
-		assert(spy.notCalled, 'View.fn.show should not be called');
-	});
+			assert(spy.called, 'View.fn.show should be called');
+		});
 
-	it('fn.go several calls', () => {
-		let spy = sinon.spy(view, 'show');
-		router.route('/someroute', view);
+		it('should no call show method of view on go to a incorrect route', () => {
+			let spy = sinon.spy(view, 'show');
+			router.route('/someroute', view);
 
-		router.go('/someroute');
-		router.go('/someroute');
+			router.go('/someotherroute');
 
-		assert(spy.calledOnce, 'View.fn.show should be called once');
-	});
+			assert(spy.notCalled, 'View.fn.show should not be called');
+		});
 
-	it('fn.go several views', () => {
-		let spyShow = sinon.spy(view, 'show');
-		let spyHide = sinon.spy(view, 'hide');
-		let secondSpyShow = sinon.spy(secondView, 'show');
-		let secondSpyHide = sinon.spy(secondView, 'hide');
+		it('should call show method of view on go to a correct route only once by one route', () => {
+			let spy = sinon.spy(view, 'show');
+			router.route('/someroute', view);
 
-		router.route('/firstroute', view);
-		router.route('/secondroute', secondView);
+			router.go('/someroute');
+			router.go('/someroute');
 
-		router.go('/firstroute');
-		router.go('/secondroute');
+			assert(spy.calledOnce, 'View.fn.show should be called once');
+		});
 
-		assert(spyShow.calledOnce, 'View.fn.show should be called once');
-		assert(spyHide.calledOnce, 'View.fn.hide should be called once');
-		assert(secondSpyShow.calledOnce, 'View.fn.show (second) should be called once');
-		assert(secondSpyHide.notCalled, 'View.fn.hide should not be called');
+		it('should call show/hide methods of views properly', () => {
+			let spyShow = sinon.spy(view, 'show');
+			let spyHide = sinon.spy(view, 'hide');
+			let secondSpyShow = sinon.spy(secondView, 'show');
+			let secondSpyHide = sinon.spy(secondView, 'hide');
+
+			router.route('/firstroute', view);
+			router.route('/secondroute', secondView);
+
+			router.go('/firstroute');
+			router.go('/secondroute');
+
+			assert(spyShow.calledOnce, 'View.fn.show should be called once');
+			assert(spyHide.calledOnce, 'View.fn.hide should be called once');
+			assert(secondSpyShow.calledOnce, 'View.fn.show (second) should be called once');
+			assert(secondSpyHide.notCalled, 'View.fn.hide should not be called');
+		});
 	});
 
 });

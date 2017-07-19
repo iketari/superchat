@@ -1,7 +1,7 @@
 import filter from './html-filter';
 
 
-describe.only('html-filter', () => {
+describe('html-filter', () => {
 	it('Escapes simple texts', () => {
 		assert.strictEqual(filter(`- "42!", сказала Машина.\nЭто и был главный ответ на Вопрос жизни, вселенной & всего такого...`, ['strong', 'em']),
 			'- &quot;42!&quot;, сказала Машина.<br/>Это и был главный ответ на Вопрос жизни, вселенной &amp; всего такого...');

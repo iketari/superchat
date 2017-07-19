@@ -1,7 +1,7 @@
 import split from './tag-split';
 
 
-describe.only('tag-split', () => {
+describe('tag-split', () => {
 	it('Split open tags', () => {
 		const openTags1 = split('<b><b><b>', ['b']);
 		const openTags2 = split('<em><em><em>', ['em']);
@@ -24,7 +24,7 @@ describe.only('tag-split', () => {
 		const bothTags = split('<strong><em><i><b></i></em></strong></b>', ['em', 'strong', 'i', 'b']);
 		assert.deepEqual(bothTags, [
 			{tag: '<strong>'}, {tag: '<em>'}, {tag: '<i>'}, {tag: '<b>'}, {tag: '</i>'}, {tag: '</em>'}, {tag: '</strong>'}, {tag: '</b>'}
-			]);
+		]);
 	});
 
 	it('Split text nodes', () => {

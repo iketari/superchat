@@ -9,7 +9,8 @@
     "build": "webpack",
     "deploy": "webpack && firebase deploy",
     "test": "NODE_ENV=testing karma start --single-run",
-    "test:watch": "NODE_ENV=testing karma start"
+    "test:watch": "NODE_ENV=testing karma start",
+    "coverage": "static ./coverage/html"
   },
   "repository": {
     "type": "git",
@@ -40,6 +41,7 @@
     "karma-sinon": "^1.0.5",
     "karma-webpack": "^2.0.3",
     "mocha": "^3.4.1",
+    "node-static": "^0.7.9",
     "pug": "^2.0.0-rc.1",
     "pug-loader": "^2.3.0",
     "sinon": "^2.2.0",

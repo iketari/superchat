@@ -1,7 +1,7 @@
 import escape from './escape-html';
 
 
-describe.only('escape-html', () => {
+describe('escape-html', () => {
 	it('Escapes strings without special characters', () => {
 		assert.strictEqual(escape('42'), '42');
 		assert.strictEqual(escape('foo bar'), 'foo bar');
