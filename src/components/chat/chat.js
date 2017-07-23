@@ -75,7 +75,7 @@ export default class Chat {
 
 	/**
 	 * How to restore scroll after render
-	 * @param {string} strategy 
+	 * @param {string} strategy
 	 */
 	setScrollStrategy (strategy) {
 		this._scrollStrategy = strategy;
@@ -99,13 +99,14 @@ export default class Chat {
 		this.data.messages.push(this._prepareMessage(data));
 	}
 
-	_prepareMessage ({avatar, name, text, date = Date.now()}) {
+	_prepareMessage ({name, text, date = Date.now(), html}) {
 		return {
 			avatar: this.avatarService.getAvatar(name),
 			name,
 			isMine: name === this.data.user,
 			text,
-			date: new Date(date)
+			date: new Date(date),
+			html
 		};
 	}
 

@@ -111,7 +111,8 @@ export default class ChatView extends BaseView {
 	_initMediate () {
 		this.form.on('submit', (formData) => {
 			chatService.sendMessage({
-				text: formData.message
+				text: formData.message,
+				html: settingsService.settings.html
 			});
 
 			this.chat.setScrollStrategy('bottom');

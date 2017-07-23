@@ -6,6 +6,8 @@
 import {deepEqual} from '../framework/utils';
 import Emitter from '../framework/emitter';
 
+import filter from '../modules/html-filter';
+
 
 /**
  * @class ChatService
@@ -82,6 +84,14 @@ export default class ChatService {
 	}
 
 	setMessages (messages) {
+		messages = messages
+			.map(message => {
+				if (message.html) {
+					message.text = filter(message.text, ['em', 'strong']);
+				}
+				return message;
+			});
+
 		if (deepEqual(this._messages, messages)) {
 			return;
 		}
