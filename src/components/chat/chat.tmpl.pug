@@ -14,4 +14,7 @@ div.chat
 						span.time=message.date && message.date.toTimeString().split(' ')[0]
 					div.message
 						span=message.name
-						p=message.text
+						if message.html
+							p!=message.text
+						else
+							p=message.text

@@ -21,6 +21,10 @@
   "bugs": {
     "url": "https://github.com/iketari/components_1303_2130/issues"
   },
+  "engines": {
+    "node": ">=7.6",
+    "npm": ">=4.0"
+  },
   "homepage": "https://github.com/iketari/components_1303_2130#readme",
   "devDependencies": {
     "babel-core": "^6.24.1",
