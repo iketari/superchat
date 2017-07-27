@@ -56,7 +56,6 @@ export default class ChatView extends BaseView {
 			sendButton.parentNode.appendChild(span);
 
 			const settingsChangedCallback = function () {
-				console.log(settingsService.settings);
 				span.innerHTML = `Send messages by ${settingsService.settings.sendKeys}<br />Line break by ${settingsService.settings.sendKeys === SettingsService.SEND_KEYS.ALT_ENTER ? SettingsService.SEND_KEYS.ENTER : SettingsService.SEND_KEYS.ALT_ENTER}`;
 			};
 
@@ -90,6 +89,14 @@ export default class ChatView extends BaseView {
 							class: 'form__control',
 							type: 'submit',
 							value: 'Send'
+						}
+					},
+					{
+						tag: 'a',
+						inner: 'Settings',
+						attributes: {
+							class: 'form__control_secondary settings',
+							href: '/settings',
 						}
 					},
 					{
