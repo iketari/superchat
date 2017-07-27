@@ -1,13 +1,104 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<title>Чат!</title>
-</head>
-<body>
-<div class="app"></div>
+	<style>
+		body[preloader=active] {
+			overflow: hidden;
+		}
 
-<script src="bundle.js"></script>
+		#preloader-wrapper {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+			background-color: #fff;
+			z-index: 100;
+			transition: opacity .333s;
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		#preloader-wrapper[state=active] {
+			pointer-events: all;
+			opacity: 1;
+		}
+
+		.loader {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 100px;
+			height: 60px;
+		}
+
+		.loader span,
+		.loader:before,
+		.loader:after {
+			position: absolute;
+			display: block;
+			width: 15px;
+			height: 15px;
+			border-radius: 50%;
+			opacity: 0.15;
+			background: #248ACC;
+		}
+
+		@keyframes lightUp {
+			0% {
+				opacity: 0.2;
+			}
+			40% {
+				opacity: 1;
+			}
+			60% {
+				opacity: 0.2;
+			}
+			100% {
+				opacity: 0.2;
+			}
+		}
+
+		span {
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			animation: lightUp 1.5s linear infinite 0.5s;
+		}
+
+		.loader:before,
+		.loader:after {
+			content: "";
+			top: 50%;
+			transform: translate(0, -50%);
+		}
+
+		.loader:before {
+			left: 0;
+			animation: lightUp 1.5s linear infinite;
+		}
+
+		.loader:after {
+			right: 0;
+			animation: lightUp 1.5s linear infinite 1s;
+		}
+	</style>
+</head>
+<body preloader="active">
+
+	<div id="preloader-wrapper" state="active">
+		<div class="loader">
+			<span></span>
+		</div>
+	</div>
+
+	<div class="app"></div>
+
+	<script src="bundle.js"></script>
+
 </body>
 </html>

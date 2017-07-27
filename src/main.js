@@ -11,6 +11,7 @@ import * as database from 'firebase/database';
 
 import firebaseService from './services/firebase.service';
 import ChatService from './services/chat.service';
+import PreloaderService from './services/preloader.service';
 
 import * as views from './views';
 
@@ -59,3 +60,9 @@ firebaseService.onAuthStateChanged((user) => {
 });
 
 router.start();
+
+
+const preloader = PreloaderService.getInstance();
+setTimeout(function () {
+	preloader.hide();
+}, 1000);
