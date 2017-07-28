@@ -13,8 +13,8 @@
 			position: absolute;
 			top: 0;
 			left: 0;
-			width: 100vw;
-			height: 100vh;
+			width: 100%;
+			height: 100%;
 			background-color: #fff;
 			z-index: 100;
 			transition: opacity .333s;
@@ -27,7 +27,7 @@
 			opacity: 1;
 		}
 
-		.loader {
+		#preloader-wrapper .loader {
 			position: absolute;
 			top: 50%;
 			left: 50%;
@@ -36,9 +36,9 @@
 			height: 60px;
 		}
 
-		.loader span,
-		.loader:before,
-		.loader:after {
+		#preloader-wrapper .loader span,
+		#preloader-wrapper .loader:before,
+		#preloader-wrapper .loader:after {
 			position: absolute;
 			display: block;
 			width: 15px;
@@ -63,26 +63,26 @@
 			}
 		}
 
-		span {
+		#preloader-wrapper span {
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
 			animation: lightUp 1.5s linear infinite 0.5s;
 		}
 
-		.loader:before,
-		.loader:after {
+		#preloader-wrapper .loader:before,
+		#preloader-wrapper .loader:after {
 			content: "";
 			top: 50%;
 			transform: translate(0, -50%);
 		}
 
-		.loader:before {
+		#preloader-wrapper .loader:before {
 			left: 0;
 			animation: lightUp 1.5s linear infinite;
 		}
 
-		.loader:after {
+		#preloader-wrapper .loader:after {
 			right: 0;
 			animation: lightUp 1.5s linear infinite 1s;
 		}

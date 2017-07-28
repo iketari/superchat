@@ -8,6 +8,8 @@ import HttpService from '../services/http.service';
 import firebaseService from '../services/firebase.service';
 import SettingsService from '../services/settings.service';
 
+import './chat.view.css';
+
 
 const httpService = HttpService.getInstance();
 const avatarService = AvatarService.getInstance();
