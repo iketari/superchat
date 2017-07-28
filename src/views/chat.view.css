@@ -1,0 +1,8 @@
+.ChatView {
+	overflow-y: hidden;
+}
+
+.ChatView form {
+	margin-bottom: 0;
+}
+
