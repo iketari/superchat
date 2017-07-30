@@ -8,6 +8,10 @@ export default class Menu {
 		this.data = data;
 	}
 
+	setData(data = {}) {
+		this.data = data;
+	}
+
 	render () {
 		this.el.innerHTML = tmpl(this.data);
 	}

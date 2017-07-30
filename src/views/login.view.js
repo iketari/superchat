@@ -99,4 +99,14 @@ export default class LoginView extends BaseView {
 	_signUp (formData) {
 		firebaseService.signUp(formData.username, formData.password);
 	}
+
+	show() {
+		const currentUser = firebaseService.auth().currentUser;
+
+		if (currentUser) {
+			return this.router.go('/main');
+		}
+
+		super.show();
+	}
 }

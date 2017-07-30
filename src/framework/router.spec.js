@@ -65,7 +65,6 @@ describe('Router', () => {
 		});
 
 		it('should not switch to the route after click by <a href="/someroute"> after routing preventing', () => {
-			let spy = sinon.spy(router, 'go');
 			let a = document.createElement('a');
 			let click = new Event('click', {
 				bubbles: true,
@@ -78,6 +77,7 @@ describe('Router', () => {
 
 			router.route('/someroute', view);
 			router.start();
+			let spy = sinon.spy(router, 'go');
 
 			a.addEventListener('click', event => {
 				// prevent routing
@@ -93,7 +93,6 @@ describe('Router', () => {
 		});
 
 		it('should not switch to the route after click by <a href="/somewrongroute">', () => {
-			let spy = sinon.spy(router, 'go');
 			let a = document.createElement('a');
 			let click = new Event('click', {
 				bubbles: true,
@@ -106,6 +105,7 @@ describe('Router', () => {
 
 			router.route('/someroute', view);
 			router.start();
+			let spy = sinon.spy(router, 'go');
 
 			a.addEventListener('click', event => {
 				//prevent reload
@@ -119,7 +119,6 @@ describe('Router', () => {
 		});
 
 		it('should not switch to the route after click by <div href="/someroute">', () => {
-			let spy = sinon.spy(router, 'go');
 			let div = document.createElement('div');
 			let click = new Event('click', {
 				bubbles: true,
@@ -132,6 +131,7 @@ describe('Router', () => {
 
 			router.route('/someroute', view);
 			router.start();
+			let spy = sinon.spy(router, 'go');
 
 			div.dispatchEvent(click);
 
