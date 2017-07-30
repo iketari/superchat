@@ -26,6 +26,12 @@ const chatService = ChatService.getInstance({
  */
 export default class ChatView extends BaseView {
 	show () {
+		const currentUser = firebaseService.auth().currentUser;
+
+		if (!currentUser) {
+			return this.router.go('/main');
+		}
+
 		this.chat.setUserName(chatService.getUserName());
 		this.render();
 

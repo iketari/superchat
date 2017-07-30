@@ -72,6 +72,7 @@ export default class Router {
 	 * @public
 	 */
 	start() {
+		this.go(location.pathname);
 		this.node
 			.addEventListener('click', event => this._onClick(event));
 
@@ -94,18 +95,19 @@ export default class Router {
 			return false;
 		}
 
+		window.history.pushState({}, '', path);
+
 		if (this.currentView === view) {
 			return true;
 		}
 
-		view.show();
-		window.history.pushState({}, '', path);
-
-		if(this.currentView) {
+		if (this.currentView) {
 			this.currentView.hide();
 		}
 
 		this.currentView = view;
+		view.show();
+
 		return true;
 	}
 }

@@ -4,6 +4,7 @@ import Form from '../components/form/form';
 import Menu from '../components/menu/menu';
 
 import SettingsService from '../services/settings.service';
+import firebaseService from '../services/firebase.service';
 
 
 const settings = SettingsService.getInstance();
@@ -62,8 +63,8 @@ export default class SettingsView extends BaseView {
 		}
 
 		settings.setSendMessageKeys(
-			e.send_keys === SettingsService.SEND_KEYS.ALT_ENTER ? 
-				SettingsService.SEND_KEYS.ALT_ENTER : 
+			e.send_keys === SettingsService.SEND_KEYS.ALT_ENTER ?
+				SettingsService.SEND_KEYS.ALT_ENTER :
 				SettingsService.SEND_KEYS.ENTER
 		);
 
@@ -144,5 +145,15 @@ export default class SettingsView extends BaseView {
 				]
 			}
 		});
+	}
+
+	show() {
+		const currentUser = firebaseService.auth().currentUser;
+
+		if (!currentUser) {
+			return this.router.go('/main');
+		}
+
+		super.show();
 	}
 }

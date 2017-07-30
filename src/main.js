@@ -2,7 +2,6 @@ import 'milligram/dist/milligram.css';
 import './components/app/app.css';
 
 import Router from './framework/router';
-import Store from './framework/store';
 import { capitalize } from './framework/utils';
 
 import * as firebase from 'firebase/app';
@@ -14,6 +13,8 @@ import ChatService from './services/chat.service';
 import PreloaderService from './services/preloader.service';
 
 import * as views from './views';
+
+const preloader = PreloaderService.getInstance();
 
 firebaseService.setup({
 	firebase,
@@ -39,8 +40,6 @@ const router = new Router({
 
 if (location.pathname === '/') {
 	router.go('/main');
-} else {
-	router.go(location.pathname);
 }
 
 firebaseService.onAuthStateChanged((user) => {
@@ -48,21 +47,16 @@ firebaseService.onAuthStateChanged((user) => {
 		let chatService = ChatService.getInstance();
 		chatService.setUserName(user.email);
 
-		firebaseService.auth().currentUser.getIdToken(/* forceRefresh */ true)
+		firebaseService.auth().currentUser
+			.getIdToken(/* forceRefresh */ true)
 			.then(idToken => sessionStorage.setItem('token', idToken))
 			.catch(error => {
 				// TODO: Handle error
+				console.error(error);
 			});
-		router.go('/chat');
-	} else {
-		router.go('/main');
 	}
+	router.start();
+	setTimeout(function () {
+		preloader.hide();
+	}, 300);
 });
-
-router.start();
-
-
-const preloader = PreloaderService.getInstance();
-setTimeout(function () {
-	preloader.hide();
-}, 1000);
