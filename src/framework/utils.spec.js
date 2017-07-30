@@ -27,6 +27,12 @@ describe('utils', () => {
 			notEqAssert(actual);
 		});
 
+		it('should be false for objects with different properties', () => {
+			let actual = deepEqual({foo: 1}, {bar: 1});
+
+			notEqAssert(actual);
+		})
+
 		it('should be true for two the same filled nested objects',  () => {
 			let objA = {
 				foo: 1,
@@ -108,6 +114,19 @@ describe('utils', () => {
 			let actual = deepEqual(foo, bar);
 
 			notEqAssert(actual);
+		});
+
+		it('should be false for objects of different sizes', () => {
+			let objA = {
+				foo: 1,
+				bar: 2
+			};
+
+			let objB = {
+				foo: 1
+			};
+
+			notEqAssert(deepEqual(objA, objB));
 		});
 	});
 
