@@ -2,6 +2,8 @@ div.chat
 	div.chat__container
 		div.header
 			h2='You are logged in as ' + (user || '')
+			small
+				a(href='/main')='To main menu'
 		div.chat__box
 
 			if !messages.length

@@ -93,11 +93,25 @@ export default class LoginView extends BaseView {
 	}
 
 	_signIn (formData) {
-		firebaseService.signIn(formData.username, formData.password);
+		firebaseService.signIn(formData.username, formData.password)
+			.then(user => {
+				if (!user.isAnonymous) {
+					return this.router.go('/main');
+				}
+				//TODO: Emit event
+				console.log('_signIn: user is anonymous', user);
+			});
 	}
 
 	_signUp (formData) {
-		firebaseService.signUp(formData.username, formData.password);
+		firebaseService.signUp(formData.username, formData.password)
+			.then(user => {
+				if (!user.isAnonymous) {
+					return this.router.go('/main');
+				}
+				//TODO: Emit event
+				console.log('_signUp: user is anonymous', user);
+			});
 	}
 
 	show() {

@@ -39,7 +39,7 @@ const router = new Router({
 	});
 
 if (location.pathname === '/') {
-	router.go('/main');
+	window.history.pushState({}, '', '/main');
 }
 
 firebaseService.onAuthStateChanged((user) => {
@@ -53,8 +53,9 @@ firebaseService.onAuthStateChanged((user) => {
 			.catch(error => {
 				// TODO: Handle error
 				console.error(error);
-			});
+			})
 	}
+
 	router.start();
 	setTimeout(function () {
 		preloader.hide();
