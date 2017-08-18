@@ -8,12 +8,12 @@ import firebaseService from '../services/firebase.service';
  * @class MainView
  */
 export default class MainView extends BaseView {
-	render () {
+	render() {
 		this.menu.render();
 		this.el.append(this.menu.el);
 	}
 
-	_createComponents () {
+	_createComponents() {
 		this.menu = new Menu({
 			el: document.createElement('div'),
 			data: {
@@ -29,6 +29,7 @@ export default class MainView extends BaseView {
 
 	show() {
 		const currentUser = firebaseService.auth().currentUser;
+
 		if (!currentUser) {
 			this.menu.setData({
 				title: 'Single Page Chat',
@@ -45,6 +46,7 @@ export default class MainView extends BaseView {
 				]
 			});
 		}
+
 		this.render();
 		super.show();
 	}

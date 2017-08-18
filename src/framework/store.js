@@ -115,7 +115,7 @@ export default class Store {
 	}
 
 	/**
-	 * Remove some value fron store
+	 * Remove some value from store
 	 * @param {String} name
 	 * @return {boolean} - true if success
 	 */

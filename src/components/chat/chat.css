@@ -19,16 +19,13 @@
 	line-height: 15px;
 	display: inline-block;
 	letter-spacing: 0.05em;
+	margin-bottom: 0;
 }
 
 .header a {
-	display: inline-block;
-	background: #3d8b4e;
-	font-size: 25px;
-	line-height: 20px;
-	padding: 3px 6px;
-	margin-top: -5px;
-	border-radius: 2px;
+	color: whitesmoke;
+	font-size: x-small;
+	display: block;
 }
 
 .chat__box {
