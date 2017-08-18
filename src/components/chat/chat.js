@@ -5,15 +5,15 @@ import './chat.css';
 /**
  * @typedef {Object} ChatData
  *
- * @property {string} user - имя текущего пользователя
- * @property {Array<ChatMessage>} messages - масси сообщений в чате
+ * @property {string} user - the name of the current user
+ * @property {Array<ChatMessage>} messages - the array of chat messages
  */
 
 /**
  * @typedef {Object} ChatMessage
  *
- * @property {string} text - Текст сообщения
- * @property {string} name - имя отправителя сообщения
+ * @property {string} text - the message body
+ * @property {string} name - the message author name
  */
 
 export default class Chat {
@@ -82,7 +82,7 @@ export default class Chat {
 	}
 
 	/**
-	 * Массовое добавление сообщений
+	 * Adds to the chat a bunch of messages
 	 * @param {Array<ChatMessages>} messages
 	 */
 	add (messages = []) {
@@ -92,7 +92,7 @@ export default class Chat {
 	}
 
 	/**
-	 * Добавить новое сообщение в чат
+	 * Adds to the chat one message
 	 * @param {ChatMessage} data
 	 */
 	addOne (data) {
@@ -111,7 +111,7 @@ export default class Chat {
 	}
 
 	/**
-	 * Устанавливаем текущего юзера
+	 * Sets up the current user name
 	 */
 	setUserName (name) {
 		this.data.user = name;

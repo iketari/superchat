@@ -73,7 +73,7 @@ module.exports = function (config) {
 		reporters: ['progress', 'coverage-istanbul'],
 
 		plugins: [
-			'karma-phantomjs-launcher',
+			'karma-chrome-launcher',
 			'karma-coverage-istanbul-reporter',
 			'karma-mocha',
 			'karma-chai',
@@ -107,7 +107,7 @@ module.exports = function (config) {
 
 		// start these browsers
 		// available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-		browsers: ['PhantomJS'],
+		browsers: ['ChromeHeadless'],
 
 
 		// Continuous Integration mode

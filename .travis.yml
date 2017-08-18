@@ -1,13 +1,32 @@
+sudo: required
+dist: trusty
+
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
 language: node_js
+
 node_js:
-    - "7.9.0"
+  - "7"
+
+cache:
+  directories:
+    - node_modules
+    - bower_components
+    - "$HOME/.npm"
+    - "$HOME/.cache"
+
 before_script:
     - npm install
 before_deploy:
     - npm run build
 env:
     NODE_ENV=testing
-script: ./node_modules/.bin/karma start --browsers PhantomJS --single-run
+script: ./node_modules/.bin/karma start --browsers ChromeHeadless --single-run
 deploy:
     skip_cleanup: true
     provider: firebase

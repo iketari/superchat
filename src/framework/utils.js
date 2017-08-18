@@ -2,11 +2,11 @@
  * @module utils
  */
 
- /**
-  * Returns true if argument belongs to primitive type
-  * @param {*} target
-  * @returns {boolean}
-  */
+/**
+ * Returns true if argument belongs to primitive type
+ * @param {*} target
+ * @returns {boolean}
+ */
 function isPrimitive(target) {
 	return typeof target !== 'object' || target === null;
 }
@@ -40,7 +40,7 @@ function deepEqual(x, y) {
 }
 
 /**
- * Поднимает первую букву строки в верхний регистр
+ * Transforms the first letter of the string to capital
  * @param {string} str
  * @returns {string}
  */
