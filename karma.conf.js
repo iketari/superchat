@@ -73,7 +73,6 @@ module.exports = function (config) {
 		reporters: ['progress', 'coverage-istanbul'],
 
 		plugins: [
-			'karma-phantomjs-launcher',
 			'karma-chrome-launcher',
 			'karma-coverage-istanbul-reporter',
 			'karma-mocha',
