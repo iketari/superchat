@@ -28,7 +28,7 @@
         ".app"
       ],
       "readyEvent": null,
-      "delay": 0,
+      "delay": 400,
       "misMatchThreshold" : 0.1,
       "requireSameDimensions" : true,
       "onBeforeScript": "onBefore.js",
@@ -44,7 +44,7 @@
   },
   "engineFlags": [],
   "engine": "chrome",
-  "report": ["browser"],
+  "report": ["CI"],
   "debug": false,
   "debugWindow": false
 }
