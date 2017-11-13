@@ -39,3 +39,5 @@ deploy:
     secure: nS2zF4/2PEibpZP3pIR3EO/uEVzXsjrUdEVCKR9EC+bPzmayPPOCv0x5gAoZPDQ6i55DDymosZfTtcXkqgY5tL0IWhcldgxfhV1j+DPI+0eQWEv2zGLcx0eqnZ/0bQoUGoNFIf+LUyPMOou7rQfunxirAHaND/sFde0+u4ESI3Y7itdJ8V9B2Tktx8cFXCWt+Vtq9OV6C+zmVzeKTkpmAv7DFZQkcKWecDsJ0ke6y59wE77tAfNBIL7LhuUw9WmAjPCG1lY0zMPs46CuyUBrOd4ma4qnaUFGdZAxgZa0ErnRGS7qMNYuVyemT3VLTtdIPcuKXSd/8XFxwD0PKdnWgbgzvi9cN/zlO72tTP8Ky0/FG/HEspFS13Tgk8QYysV79EKLEC+jUaL3bjbG7gDHJIVJH5dhde+QKvz6z/ZEhoe7ArZkELS0lq1BOqjEUGP3qEHlhE1FNcnoN3GH4nvY2Pda+FpL8uQqpUqP/q9qanw7eEfLz/vcIBja7x19guD0oDK/lS+qxrOCC12c0ZfBT9zOn763Th3nj+Wg1vgnIch2YWyehBUT5XRpiVChYKDoUOoz5Am/wEC5LS340qB4exA330o9wTrjeL1BUL1ltEp8RVDzl4QuLYTAzQwfeirTTN4/l5gwZ24MK585p0tNsUlmMb+zo7Bqw4PHflvZXuc=
 notifications:
   webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
+after_failure: # this will of course run only on failure
+  - 'travis-artifacts upload'
