@@ -68,7 +68,7 @@ export default class Store {
 
 			let value = window.localStorage.getItem(key);
 			try {
-				value = JSON.parse(value)
+				value = JSON.parse(value);
 			} catch (_) {
 				// ignore
 			}

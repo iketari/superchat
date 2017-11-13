@@ -39,7 +39,7 @@ describe('Router', () => {
 			let resView = router._getViewByRoute('/someroute');
 
 			assert.strictEqual(resView, view, 'View should be the same');
-		})
+		});
 	});
 
 	describe('fn._onClick', () => {

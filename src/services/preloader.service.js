@@ -10,7 +10,7 @@ import Emitter from '../framework/emitter';
  * @alias module:PreloaderService
  * @mixes Emitter
  */
-export default class PreloaderService {
+class PreloaderService {
 	/**
 	 * @private
 	 * @constructor
@@ -31,15 +31,6 @@ export default class PreloaderService {
 		document.body.setAttribute('preloader', 'active');
 	}
 
-	/**
-	 * Getting an instance of the class
-	 * @return {PreloaderService}
-	 */
-	static getInstance(...rest) {
-		if (!this.__instance) {
-			this.__instance = new this(...rest);
-		}
-
-		return this.__instance;
-	}
 }
+
+export default new PreloaderService();
