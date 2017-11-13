@@ -40,4 +40,4 @@ deploy:
 notifications:
   webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
 after_failure: # this will of course run only on failure
-  - 'travis-artifacts upload'
+  - 'artifacts upload --debug'
