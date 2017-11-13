@@ -27,6 +27,7 @@ before_deploy:
 env:
     NODE_ENV=testing
 script: 
+    - npm start &
     - npm run test
     - npm run backstop:test
 deploy:
