@@ -30,7 +30,7 @@ export default class Service {
 	 * @param {*|undefined} value 
 	 */
 	config (settings, value) {
-		if (typeof value != 'undefined') {
+		if (typeof value !== 'undefined') {
 			settings = {
 				[settings]: value
 			};
