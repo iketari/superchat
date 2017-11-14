@@ -1,15 +1,16 @@
 sudo: required
 dist: trusty
 addons:
+  artifacts:
+    debug: true
+    paths:
+      - $HOME/backstop_data/*
   apt:
     sources:
-    - google-chrome
+      - google-chrome
     packages:
-    - google-chrome-stable
-    artifacts:
-      debug: true
-      paths:
-        - $HOME/backstop_data/*
+      - google-chrome-stable
+
 language: node_js
 node_js:
 - '7'
