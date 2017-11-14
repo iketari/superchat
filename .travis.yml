@@ -4,7 +4,7 @@ addons:
   artifacts:
     debug: true
     paths:
-      - backstop_data
+      - backstop_data/bitmaps_test
   apt:
     sources:
       - google-chrome
@@ -32,7 +32,7 @@ env:
 script:
 - npm start &
 - npm run test
-- npm run backstop:reference
+- npm run backstop:test
 deploy:
   skip_cleanup: true
   provider: firebase
