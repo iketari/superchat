@@ -1,104 +1,52 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>
-	<title>Чат!</title>
-	<style>
-		body[preloader=active] {
-			overflow: hidden;
-		}
 
-		#preloader-wrapper {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background-color: #fff;
-			z-index: 100;
-			transition: opacity .333s;
-			opacity: 0;
-			pointer-events: none;
-		}
+  <head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.css" rel="stylesheet" />
+  </head>
 
-		#preloader-wrapper[state=active] {
-			pointer-events: all;
-			opacity: 1;
-		}
+  <body>
+    
+    <div id="mocha"></div>
+    
+    <script src="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.1.2/chai.min.js"></script>
+    
+    <script>
+      function isPrimitive(target) {
+	      return typeof target !== 'object' || target === null;
+      }
+      
+      function deepEqual(x, y) {
+      	if (!isPrimitive(x) && !isPrimitive(y)) {
+      		if (Object.keys(x).length !== Object.keys(y).length) {
+      			return false;
+          }
+      
+      		for (let prop in x) {
+      			if (y.hasOwnProperty(prop)) {
+      				if (!deepEqual(x[prop], y[prop])) {
+      					return false;
+      				}
+      			} else {
+      				return false;
+      			}
+      		}
+      
+      		return true;
+      	} else {
+      		return x === y;
+      	}
+      }
+    </script>
+    
+    <script>mocha.setup('bdd')</script>
+    <script src="test.js"></script>
+    <script>
+      mocha.run();
+    </script>
+  </body>
 
-		#preloader-wrapper .loader {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			width: 100px;
-			height: 60px;
-		}
-
-		#preloader-wrapper .loader span,
-		#preloader-wrapper .loader:before,
-		#preloader-wrapper .loader:after {
-			position: absolute;
-			display: block;
-			width: 15px;
-			height: 15px;
-			border-radius: 50%;
-			opacity: 0.15;
-			background: #248ACC;
-		}
-
-		@keyframes lightUp {
-			0% {
-				opacity: 0.2;
-			}
-			40% {
-				opacity: 1;
-			}
-			60% {
-				opacity: 0.2;
-			}
-			100% {
-				opacity: 0.2;
-			}
-		}
-
-		#preloader-wrapper span {
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			animation: lightUp 1.5s linear infinite 0.5s;
-		}
-
-		#preloader-wrapper .loader:before,
-		#preloader-wrapper .loader:after {
-			content: "";
-			top: 50%;
-			transform: translate(0, -50%);
-		}
-
-		#preloader-wrapper .loader:before {
-			left: 0;
-			animation: lightUp 1.5s linear infinite;
-		}
-
-		#preloader-wrapper .loader:after {
-			right: 0;
-			animation: lightUp 1.5s linear infinite 1s;
-		}
-	</style>
-</head>
-<body preloader="active">
-
-	<div id="preloader-wrapper" state="active">
-		<div class="loader">
-			<span></span>
-		</div>
-	</div>
-
-	<div class="app"></div>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<script src="bundle.js"></script>
-
-</body>
 </html>
