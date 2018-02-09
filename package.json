@@ -4,7 +4,8 @@
   "description": "Учебный проект. Чат.",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/karma start"
+    "test": "./node_modules/.bin/karma start",
+    "precommit": "npm test -- --single-run"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   "homepage": "https://github.com/iketari/components_1303_2130#readme",
   "devDependencies": {
     "chai": "^4.1.2",
+    "husky": "^0.14.3",
     "karma": "^2.0.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-mocha": "^1.3.0",
