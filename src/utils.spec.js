@@ -1,4 +1,5 @@
-'use strict';
+import chai from 'chai';
+import { deepEqual, isPrimitive } from './utils';
 
 const { assert } = chai; 
 

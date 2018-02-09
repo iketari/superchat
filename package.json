@@ -4,7 +4,7 @@
   "description": "Учебный проект. Чат.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/karma start"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,14 @@
   },
   "homepage": "https://github.com/iketari/components_1303_2130#readme",
   "devDependencies": {
-    "node-static": "^0.7.10"
-  }
+    "chai": "^4.1.2",
+    "karma": "^2.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-mocha": "^1.3.0",
+    "karma-webpack": "^2.0.9",
+    "mocha": "^5.0.0",
+    "node-static": "^0.7.10",
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {}
 }
