@@ -4,8 +4,8 @@
   "description": "Учебный проект. Чат.",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/karma start",
-    "precommit": "npm test -- --single-run"
+    "test": "./node_modules/.bin/karma start --single-run",
+    "precommit": "npm test"
   },
   "repository": {
     "type": "git",
