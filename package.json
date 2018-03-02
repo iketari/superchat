@@ -54,8 +54,9 @@
     "pug-loader": "^2.3.0",
     "sinon": "^2.2.0",
     "style-loader": "^0.17.0",
-    "webpack": "^2.5.1",
-    "webpack-dev-server": "^2.4.5"
+    "webpack": "^4.0.1",
+    "webpack-cli": "^2.0.9",
+    "webpack-dev-server": "^3.1.0"
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
