@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "eslint './**/*.js'",
     "start": "webpack-dev-server --open",
+    "start:storybook": "webpack-dev-server --config storybook/webpack.config.js --open",
     "build": "webpack",
     "deploy": "webpack && firebase deploy",
     "test": "karma start --browsers ChromeHeadless --single-run",
