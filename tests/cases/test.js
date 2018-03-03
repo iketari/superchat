@@ -1,8 +1,14 @@
-import { assert } from 'chai';
+import Signin from '../pages/Signin';
+import Main from '../pages/Main';
+
+const signin = new Signin();
+const main = new Main();
 
 describe('Sign in button', () => {
     it('should open sign in page', () => {
-        browser.url('https://components-e2e6e.firebaseapp.com/');
-        assert(true);
+        main.open();
+        main.wait();
+        main.clickSignin();
+        signin.wait();
     });
 });

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/wdio wdio.conf.js",
-    "report": "allure generate && allure open"
+    "report": "allure generate --clean && allure open"
   },
   "author": "Vladimir Demidov",
   "license": "ISC",
