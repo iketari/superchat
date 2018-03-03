@@ -9,7 +9,7 @@
     "start:storybook": "webpack-dev-server --config storybook/webpack.config.js --open",
     "build": "webpack",
     "deploy": "webpack && firebase deploy",
-    "test": "karma start --browsers ChromeHeadless --single-run",
+    "test": "karma start --single-run",
     "test:watch": "NODE_ENV=testing karma start",
     "coverage": "static ./coverage/html",
     "backstop:approve": "backstop approve",
