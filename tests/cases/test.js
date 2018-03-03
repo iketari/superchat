@@ -1,4 +1,4 @@
-const assert = require('assert');
+import { assert } from 'chai';
 
 describe('Sign in button', () => {
     it('should open sign in page', () => {
