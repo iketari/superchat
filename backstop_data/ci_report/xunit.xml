@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites><testsuite name="BackstopJS" tests="9"><testcase name=" ›› Menu" classname=".menu"/><testcase name=" ›› Menu" classname=".menu"/><testcase name=" ›› Menu" classname=".menu"/><testcase name=" ›› Chat" classname=".chat"/><testcase name=" ›› Chat" classname=".chat.__n1"/><testcase name=" ›› Chat" classname=".chat"/><testcase name=" ›› Chat" classname=".chat.__n1"/><testcase name=" ›› Chat" classname=".chat"/><testcase name=" ›› Chat" classname=".chat.__n1"/></testsuite></testsuites>

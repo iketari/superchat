@@ -57,24 +57,24 @@ export default class Form {
 
 		const sendKeys = settingsService.settings.sendKeys;
 		switch (sendKeys) {
-			case SettingsService.SEND_KEYS.ENTER: {
-				if (!event.altKey) {
-					event.preventDefault();
-					return this._submitForm();
-				}
-
-				this._pasteIntoInput(event.target, '\n');
-
-				break;
+		case SettingsService.SEND_KEYS.ENTER: {
+			if (!event.altKey) {
+				event.preventDefault();
+				return this._submitForm();
 			}
-			case SettingsService.SEND_KEYS.ALT_ENTER: {
-				if (event.altKey) {
-					event.preventDefault();
-					return this._submitForm();
-				}
 
-				break;
+			this._pasteIntoInput(event.target, '\n');
+
+			break;
+		}
+		case SettingsService.SEND_KEYS.ALT_ENTER: {
+			if (event.altKey) {
+				event.preventDefault();
+				return this._submitForm();
 			}
+
+			break;
+		}
 		}
 	}
 

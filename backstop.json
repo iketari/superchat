@@ -1,0 +1,66 @@
+{
+  "id": "test",
+  "viewports": [
+    {
+      "label": "phone",
+      "width": 320,
+      "height": 900
+    },
+    {
+      "label": "tablet_v",
+      "width": 568,
+      "height": 1024
+    },
+    {
+      "label": "tablet_h",
+      "width": 1024,
+      "height": 768
+    }
+  ],
+  "scenarios": [
+    {
+      "label": "Menu",
+      "url": "http://localhost:9001/?params={%22data%22:{%22title%22:%22Single%20Page%20Chat%22,%22items%22:[{%22href%22:%22/login%22,%22text%22:%22Sign%20in%22},{%22href%22:%22/chat%22,%22text%22:%22Chat%22},{%22href%22:%22/settings%22,%22text%22:%22Settings%22}]}}&block=Menu",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectorExpansion": true,
+      "selectors": [
+        ".menu"
+      ],
+      "delay": 400,
+      "readyEvent": null,
+      "misMatchThreshold" : 0.1,
+      "requireSameDimensions" : true,
+      "onBeforeScript": "onBefore.js",
+      "onReadyScript": "onReady.js"
+    },
+    {
+      "label": "Chat",
+      "url": "http://localhost:9001/?params={%22data%22:{%22user%22:%22iketari@gmail.com%22,%22messages%22:[{%22avatar%22:%22https://picsum.photos/200/200?image=0%22,%22name%22:%22iketari%22,%22isMine%22:false,%22text%22:%22%D0%9D%D0%BE%D0%B2%D0%BE%D0%B5!%22,%22date%22:null},{%22avatar%22:%22https://picsum.photos/200/200?image=0%22,%22name%22:%22iketari%22,%22isMine%22:true,%22text%22:%22%D0%A1%D1%82%D0%B0%D1%80%D0%BE%D0%B5!%22,%22date%22:null}]}}&block=Chat",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectorExpansion": true,
+      "selectors": [
+        ".chat"
+      ],
+      "delay": 400,
+      "readyEvent": null,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true,
+      "onBeforeScript": "onBefore.js",
+      "onReadyScript": "onReady.js"
+    }
+  ],
+  "paths": {
+    "bitmaps_reference": "backstop_data/bitmaps_reference",
+    "bitmaps_test": "backstop_data/bitmaps_test",
+    "engine_scripts": "backstop_data/engine_scripts",
+    "html_report": "backstop_data/html_report",
+    "ci_report": "backstop_data/ci_report"
+  },
+  "engineFlags": [],
+  "engine": "chrome",
+  "report": ["CI"],
+  "debug": false,
+  "debugWindow": false
+}
