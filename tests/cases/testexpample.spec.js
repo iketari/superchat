@@ -5,10 +5,11 @@ const signin = new Signin();
 const main = new Main();
 
 describe('Sign in button', () => {
-    it('should open sign in page', () => {
+    it('should open signin page', () => {
         main.open();
         main.wait();
-        main.clickSignin();
+        main.hasItem('signin');
+        main.clickItem('signin');
         signin.wait();
     });
 });
