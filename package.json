@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint './**/*.js'",
-    "start": "webpack-dev-server --open",
+    "start": "ENV=development webpack-dev-server --open",
     "start:storybook": "webpack-dev-server --config storybook/webpack.config.js --open",
     "build": "webpack",
-    "deploy": "webpack && firebase deploy",
+    "deploy": "webpack && firebase deploy -P production",
+    "deploy:stage": "webpack && firebase deploy -P stage",
     "test": "karma start --single-run",
     "test:watch": "NODE_ENV=testing karma start",
     "coverage": "static ./coverage/html",

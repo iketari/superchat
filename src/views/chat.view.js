@@ -16,7 +16,7 @@ const avatarService = AvatarService.getInstance();
 const settingsService = SettingsService.getInstance();
 
 const chatService = ChatService.getInstance({
-	baseUrl: 'https://components-e2e6e.firebaseio.com/chat/messages/iketari.json',
+	baseUrl: 'https://components-e2e6e.firebaseio.com/chat/messages.json',
 	http: httpService,
 	pollingInterval: 1000
 });
