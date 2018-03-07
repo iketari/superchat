@@ -58,8 +58,11 @@ module.exports = {
 		]
 	},
 	plugins: [
+		new webpack.DefinePlugin({
+			ENV: require(path.join(__dirname, './path-to-env-files/', env))
+		}),
 		new webpack.EnvironmentPlugin({
-			ENV: 'development',
+			NODE_ENV: 'development',
 			DEBUG: false
 		})
 	]

@@ -2,21 +2,25 @@
  * Configurational service.
  * Provides an actual config according to current value of the ENV variable.
  * @module {ChatService} ChatService
- * @see webpack.confing.js
+ * @see webpack/production.confing.js
  */
 
+import { Service } from '../../framework/service';
+import { config } from './config.development';
 
 /**
  * @class ChatService
  * @alias module:ChatService
  * @mixes Emitter
  */
-export default class ChatService {
+export class ConfigService extends Service {
 	/**
 	 * @private
 	 * @constructor
 	 */
-    constructor() { }
+    constructor(...args) {
+        super(...args);
+    }
 
     /**
      * Returns a value. If value doesn't exist returns null;
@@ -24,10 +28,10 @@ export default class ChatService {
      * @returns {*}
      */
     get(key = '') {
-        keys = key.split('.');
-        let value = data;
+        const keys = key.split('.');
+        let value = config;
 
-        for (let subKey in keys) {
+        for (let subKey of keys) {
             value = value[subKey] ? value[subKey] : null;
         }
 
@@ -45,3 +49,5 @@ export default class ChatService {
         return this.__instance;
     }
 }
+
+export default new ConfigService();
