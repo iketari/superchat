@@ -32,21 +32,14 @@ export class ConfigService extends Service {
         let value = config;
 
         for (let subKey of keys) {
-            value = value[subKey] ? value[subKey] : null;
+            if (value[subKey] === undefined) {
+                return null;
+            } else {
+                value = value[subKey];
+            }
         }
 
         return value;
-    }
-
-	/**
-	 * Getting an instance of the class
-	 */
-    static getInstance(...rest) {
-        if (!this.__instance) {
-            this.__instance = new this(...rest);
-        }
-
-        return this.__instance;
     }
 }
 
