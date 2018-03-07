@@ -9,14 +9,14 @@ import firebaseService from '../services/firebase.service';
 import SettingsService from '../services/settings.service';
 
 import './chat.view.css';
-
+import config from './../services/config.service';
 
 const httpService = HttpService.getInstance();
 const avatarService = AvatarService.getInstance();
 const settingsService = SettingsService.getInstance();
 
 const chatService = ChatService.getInstance({
-	baseUrl: 'https://components-e2e6e.firebaseio.com/chat/messages/iketari.json',
+	baseUrl: config.get('firebase.databaseURL') + '/chat/messages.json',
 	http: httpService,
 	pollingInterval: 1000
 });
