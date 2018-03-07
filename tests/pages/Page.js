@@ -25,10 +25,18 @@ class Page {
         };
     }
 
+    /**
+     * Open page
+     */
     open() {
         browser.url(this.path);
     }
 
+    /**
+     * Wait for preloader visible
+     * 
+     * @param {boolean} reverse
+     */
     waitForPreloader(reverse) {
         const value = reverse ? 0 : 1;
 
@@ -37,6 +45,9 @@ class Page {
         });
     }
 
+    /**
+     * Wait for page visible
+     */
     wait() {
         this.waitForPreloader(true);
 

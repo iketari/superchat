@@ -14,9 +14,31 @@ class Signin extends Page {
     }
 
     get locators() {
+        const container = this.container;
+
         return Object.assign({}, super.locators, {
-            
+            inputs: {
+                username: `${container} [name="username"]`,
+                password: `${container} [name="password"]`,
+            },
+            submit: `${container} [type="submit"]`,
         });
+    }
+
+    /**
+     * Set field value
+     * @param {string} name 
+     * @param {string} value 
+     */
+    setFieldValue(name, value) {
+        browser.setValue(this.locators.inputs[name], value);
+    }
+
+    /**
+     * Click on submit button
+     */
+    submit() {
+        browser.click(this.locators.submit);
     }
 }
 
