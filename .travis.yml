@@ -27,7 +27,8 @@ env:
     - ARTIFACTS_BUCKET=travis-superchat
     - secure: c4Ibnhhkf7zpGpvUT+nMAOoDLAhK3C3WTILrjRZByPHKrvYgyaJ9TCT/jqLhttmZVZuNnA+5pgh312dGbmNhAYe1MVWkFJPwuzvSo9nDa68PDE5U3y4Oft4eZusHND+rAq2S/aykIdI3G4rW1uoGUHOfSpfiNJlX9yQdQPiCAp1byYAirys+QVHRDxptvUaG7WRYG4rNI0y8KOfIP5at+zlqIfgA3JQH+5Vtu/ztL+ZRVJKlyaeZQ62CuYjUKmqWnnioPrsz1L3CjrZEixcs8y2N0JHE4YQUkWTnRQ1mBDxd1Oc7FQcQxnH4A4GDgfSs5pUUO9hj3k9V9URwxWy5g9WTQl4+1SyQeuOtbG2TycEpj7dNz5SZPM3ZHuWYhxY1jUVS1Vz9Qsqm9Er7IXknU4qaO9iCKKuA6iVhRwdU2Zrh6LYXNC7VpKlUpXn58/61jY0dSxylRCdsNPrEy9BJNlqFmpZkYOs1Ros9vVYC1YpXffdEIz9w9mp+DNCgAN3+PbjjIwM1r5n7nycI2az44Pu4RNpCAbHnTUNhxDgRkMOGj01e/cy73+DvHV/WhskAnNc/WamZPgseHasmUm6hMzN6pAkPJbjU1XeYpNHRRPRi6zQ8WMPCihdU3Y64UBugRNRhYzo3DRxlriMnxgeRgqFvLrO5ldOw9xnc1dciLsw=
 script:
-- docker run --rm -v $(pwd):/src -it --entrypoint=bash backstopjs/backstopjs -c "npm run test"
+- npm run test
+- npm run test:snapshots
 - docker run --rm -v $(pwd):/src -it --entrypoint=bash backstopjs/backstopjs -c "npm run start:storybook & npm run backstop:test"
 deploy:
   skip_cleanup: true

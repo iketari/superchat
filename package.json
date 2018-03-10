@@ -11,6 +11,7 @@
     "deploy": "webpack && firebase deploy",
     "test": "karma start --single-run",
     "test:watch": "NODE_ENV=testing karma start",
+    "test:snapshots": "NODE_ENV=testing jest",
     "coverage": "static ./coverage/html",
     "backstop:approve": "backstop approve",
     "backstop:reference": "backstop reference",
@@ -31,8 +32,29 @@
     "npm": ">=4.0"
   },
   "homepage": "https://github.com/iketari/components_1303_2130#readme",
+  "jest": {
+    "testMatch": [
+      "**/?(*.)jest.js"
+    ],
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    },
+    "transform": {
+      "\\.(pug)$": "awesome-pug-jest",
+      "^.+\\.js$": "babel-jest"
+    }
+  },
   "devDependencies": {
+    "awesome-pug-jest": "^1.0.0",
     "babel-core": "^6.24.1",
+    "babel-jest": "^22.4.1",
     "babel-loader": "^7.0.0",
     "babel-plugin-transform-es2015-typeof-symbol": "^6.23.0",
     "babel-preset-env": "^1.6.0",
@@ -41,6 +63,7 @@
     "css-loader": "^0.28.1",
     "eslint": "^4.2.0",
     "istanbul-instrumenter-loader": "^2.0.0",
+    "jest": "^22.4.2",
     "jsdoc-to-markdown": "^3.0.0",
     "karma": "^1.7.0",
     "karma-chai": "^0.1.0",
@@ -51,7 +74,7 @@
     "karma-webpack": "^2.0.3",
     "mocha": "^3.4.1",
     "node-static": "^0.7.9",
-    "pug": "^2.0.0-rc.1",
+    "pug": "2.0.1",
     "pug-loader": "^2.3.0",
     "sinon": "^2.2.0",
     "style-loader": "^0.17.0",

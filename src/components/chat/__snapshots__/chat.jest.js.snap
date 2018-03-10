@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render a banner for empty message list 1`] = `
+"
+<div class=\\"chat\\">
+  <div class=\\"chat__container\\">
+    <div class=\\"header\\">
+      <h2>You are logged in as </h2><small><a href=\\"/main\\">To main menu</a></small>
+    </div>
+    <div class=\\"chat__box\\">
+      <h3>Пока нет сообщений</h3>
+    </div>
+  </div>
+</div>"
+`;
+
+exports[`Should render one message 1`] = `
+"
+<div class=\\"chat\\">
+  <div class=\\"chat__container\\">
+    <div class=\\"header\\">
+      <h2>You are logged in as </h2><small><a href=\\"/main\\">To main menu</a></small>
+    </div>
+    <div class=\\"chat__box\\">
+      <div class=\\"message-box right-img\\">
+        <div class=\\"picture\\"><img src=\\"avatar.jpg\\" title=\\"name of user\\"><span class=\\"time\\">00:01:40</span></div>
+        <div class=\\"message\\"><span>name</span>
+          <p>text</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>"
+`;
