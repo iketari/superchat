@@ -5,10 +5,12 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint './src/**/*.js'",
-    "start": "webpack-dev-server --open",
+    "start": "ENV=development webpack-dev-server --config webpack/development.config.js",
     "start:storybook": "webpack-dev-server --config storybook/webpack.config.js --open",
-    "build": "webpack",
-    "deploy": "webpack && firebase deploy",
+    "build:stage": "webpack --config webpack/stage.config.js",
+    "build:production": "webpack --config webpack/production.config.js",
+    "deploy:stage": "npm run build:stage && firebase deploy -P stage",
+    "deploy:production": "npm run build:production && firebase deploy -P production",
     "test": "karma start --single-run",
     "test:watch": "NODE_ENV=testing karma start",
     "coverage": "static ./coverage/html",
@@ -57,7 +59,8 @@
     "style-loader": "^0.17.0",
     "webpack": "3.11.0",
     "webpack-cli": "^2.0.9",
-    "webpack-dev-server": "^2.11.1"
+    "webpack-dev-server": "^2.11.1",
+    "webpack-merge": "^4.1.2"
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",

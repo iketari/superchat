@@ -1,4 +1,4 @@
-import Service from './service';
+import { Service } from './service';
 
 describe('Service', () => {
 	let service, service2;

@@ -8,7 +8,7 @@
  * @class {Service}
  * @alias module:Service
  */
-export default class Service {
+export class Service {
 
 	/**
 	 * @constructor

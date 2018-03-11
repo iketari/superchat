@@ -19,13 +19,30 @@ class Main extends Page {
         const container = this.container;
 
         return Object.assign({}, super.locators, {
-            signin: `${container} a[href*='login']`,
+            items: {
+                signin: `${container} a[href*='login']`,
+                chat: `${container} a[href*='chat']`,
+                settings: `${container} a[href*='settings']`,
+            },
         });
     }
 
-    clickSignin() {
-        browser.waitForVisible(this.locators.signin);
-        browser.click(this.locators.signin);
+    /**
+     * Wait for item (link) with given name
+     * 
+     * @param {string} name link name
+     */
+    hasItem(name) {
+        browser.waitForExist(this.locators.items[name]);
+    }
+
+    /**
+     * Click on item
+     * 
+     * @param {string} name 
+     */
+    clickItem(name) {
+        browser.click(this.locators.items[name]);
     }
 }
 
