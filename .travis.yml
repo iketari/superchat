@@ -2,6 +2,7 @@ sudo: required
 services:
   - docker
 addons:
+  chrome: stable
   artifacts:
     debug: true
     paths:
@@ -10,7 +11,6 @@ addons:
       - coverage
 before_install:
   - docker pull backstopjs/backstopjs
-
 cache:
   directories:
   - node_modules
@@ -29,6 +29,7 @@ env:
 script:
 - docker run --rm -v $(pwd):/src -it --entrypoint=bash backstopjs/backstopjs -c "npm run test"
 - docker run --rm -v $(pwd):/src -it --entrypoint=bash backstopjs/backstopjs -c "npm run start:storybook & npm run backstop:test"
+- cd tests && npm install && npm run test:local
 deploy:
   skip_cleanup: true
   provider: firebase

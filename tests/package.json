@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/wdio wdio.conf.js",
+    "test:local": "cd .. && (npm run start:quiet &) && sleep 2 && cd tests && npm test -- --baseUrl=http://localhost:9000 && kill $(ps aux | grep [w]ebpack | awk '{print $2}')",
     "report": "allure generate --clean && allure open"
   },
   "author": "Vladimir Demidov",
@@ -20,6 +21,7 @@
     "mocha": "^5.0.1",
     "wdio-allure-reporter": "^0.3.2",
     "wdio-chromedriver-service": "^0.1.2",
-    "wdio-mocha-framework": "^0.5.12"
+    "wdio-mocha-framework": "^0.5.12",
+    "wdio-spec-reporter": "^0.1.4"
   }
 }

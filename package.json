@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "eslint './src/**/*.js'",
     "start": "ENV=development webpack-dev-server --config webpack/development.config.js",
+    "start:quiet": "ENV=development webpack-dev-server --config webpack/development.config.js --quiet",
     "start:storybook": "webpack-dev-server --config storybook/webpack.config.js --open",
     "build:stage": "webpack --config webpack/stage.config.js",
     "build:production": "webpack --config webpack/production.config.js",
@@ -41,7 +42,7 @@
     "backstopjs": "^3.0.14",
     "chai": "^3.5.0",
     "css-loader": "^0.28.1",
-    "eslint": "^4.2.0",
+    "eslint": "^4.18.2",
     "istanbul-instrumenter-loader": "^2.0.0",
     "jsdoc-to-markdown": "^3.0.0",
     "karma": "^1.7.0",
