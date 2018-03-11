@@ -161,7 +161,7 @@ export default class ChatView extends BaseView {
 			event.preventDefault();
 			event.isRoutingPrevented = true;
 
-			firebaseService.logOut().then( _ => {
+			firebaseService.logOut().then( () => {
 				sessionStorage.removeItem('token');
 				this.router.go('/main');
 			});

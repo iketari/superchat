@@ -4,7 +4,7 @@
   "description": "Учебный проект. Чат.",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint './**/*.js'",
+    "lint": "eslint './src/**/*.js'",
     "start": "webpack-dev-server --open",
     "start:storybook": "webpack-dev-server --config storybook/webpack.config.js --open",
     "build": "webpack",

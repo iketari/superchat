@@ -76,7 +76,7 @@ export default class Router {
 		this.node
 			.addEventListener('click', event => this._onClick(event));
 
-		window.addEventListener('popstate', _ => {
+		window.addEventListener('popstate', () => {
 			this.go(location.pathname);
 		});
 	}

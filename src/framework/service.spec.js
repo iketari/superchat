@@ -1,11 +1,10 @@
 import Service from './service';
 
 describe('Service', () => {
-	let service, service2, settings;
+	let service, service2;
 
 	beforeEach(() => {
 		service = null;
-		settings = null;
 	});
 
 	describe('constructor', () => {
