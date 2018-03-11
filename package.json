@@ -4,7 +4,9 @@
   "description": "Учебный проект. Чат.",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint './src/**/*.js'",
+    "precommit": "npm run lint && npm test",
+    "prepush": "npm test",
+    "lint": "eslint './src/**/*.js' && eslint './tests/**/*.js' --ignore-pattern node_modules/",
     "start": "ENV=development webpack-dev-server --config webpack/development.config.js",
     "start:quiet": "ENV=development webpack-dev-server --config webpack/development.config.js --quiet",
     "start:storybook": "webpack-dev-server --config storybook/webpack.config.js --open",
@@ -43,6 +45,7 @@
     "chai": "^3.5.0",
     "css-loader": "^0.28.1",
     "eslint": "^4.18.2",
+    "husky": "^0.14.3",
     "istanbul-instrumenter-loader": "^2.0.0",
     "jsdoc-to-markdown": "^3.0.0",
     "karma": "^1.7.0",
