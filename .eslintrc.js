@@ -31,5 +31,6 @@ module.exports = {
 	"globals": {
 		"assert": true,
 		"sinon": true,
+		"browser": true,
 	}
 };
