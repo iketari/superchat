@@ -1,12 +1,10 @@
 import Emitter from './emitter';
 
 describe('Emitter', () => {
-	let someObj, anotherObj, callbacks;
+	let someObj, callbacks;
 
 	beforeEach(() => {
 		someObj = {};
-
-		anotherObj = {};
 
 		callbacks = {
 			foo () {}

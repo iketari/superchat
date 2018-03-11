@@ -1,5 +1,7 @@
 {
-  "projects": {
-    "default": "components-e2e6e"
-  }
+    "projects": {
+        "default": "components-e2e6e",
+        "stage": "components-e2e6e",
+        "production": "superchat-production"
+    }
 }

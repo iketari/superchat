@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
 	cache: true,
@@ -55,5 +56,14 @@ module.exports = {
 				use: ['style-loader', 'css-loader']
 			}
 		]
-	}
+	},
+	plugins: [
+		new webpack.DefinePlugin({
+			ENV: require(path.join(__dirname, './path-to-env-files/', env))
+		}),
+		new webpack.EnvironmentPlugin({
+			NODE_ENV: 'development',
+			DEBUG: false
+		})
+	]
 };

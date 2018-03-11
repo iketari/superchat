@@ -3,7 +3,6 @@ import BaseView from '../framework/view';
 import Form from '../components/form/form';
 import Menu from '../components/menu/menu';
 
-import ChatService from '../services/chat.service';
 import firebaseService from '../services/firebase.service';
 
 

@@ -1,7 +1,7 @@
 import BaseView from './view';
 
 describe('BaseView', () => {
-	let View, view, anotherObj, router;
+	let View, view, router;
 
 	beforeEach(() => {
 		View = class extends BaseView {

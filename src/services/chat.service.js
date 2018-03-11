@@ -1,5 +1,6 @@
 /**
- * Service of chat functionality. Provide sending and polling of messages.
+ * Service which provides the chat functionality.
+ * Makes possible to send and poll messages.
  * @module {ChatService} ChatService
  */
 

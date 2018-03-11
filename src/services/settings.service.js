@@ -26,7 +26,8 @@ export default class SettingsService {
 		};
 		this.settings.html = this.store.getItem('html') || false;
 		let sendKeysFromStore = this.store.getItem('sendKeys');
-		if ([SettingsService.SEND_KEYS.ENTER, SettingsService.SEND_KEYS.ALT_ENTER].includes(sendKeysFromStore)) {
+		if ([SettingsService.SEND_KEYS.ENTER,
+			SettingsService.SEND_KEYS.ALT_ENTER].includes(sendKeysFromStore)) {
 			this.settings.sendKeys = sendKeysFromStore;
 		} else {
 			this.settings.sendKeys = SettingsService.SEND_KEYS.ENTER;

@@ -17,7 +17,7 @@ describe('escape-html', () => {
 	});
 
 	it('Escapes text with special characters', () => {
-		assert.strictEqual(escape(`'str = "\'>\'\\"\\"&>h<e>&<y>"'`), '&#39;str = &quot;&#39;&gt;&#39;\\&quot;\\&quot;&amp;&gt;h&lt;e&gt;&amp;&lt;y&gt;&quot;&#39;');
+		assert.strictEqual(escape(`'str = "'>'\\"\\"&>h<e>&<y>"'`), '&#39;str = &quot;&#39;&gt;&#39;\\&quot;\\&quot;&amp;&gt;h&lt;e&gt;&amp;&lt;y&gt;&quot;&#39;');
 		assert.strictEqual(escape(`<img src="#" />`), '&lt;img src=&quot;#&quot; /&gt;');
 	});
 });
