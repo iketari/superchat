@@ -21,11 +21,14 @@ test('Should render a banner for empty message list', () => {
 });
 
 test('Should render one message', () => {
+	const date = new Date(100500);
+	date.setHours(0);
+	
 	const messages = [
 		{
 			name: 'name',
 			text: 'text',
-			date: 100500
+			date: date.getTime()
 		}
 	]
 	chat.add(messages);
