@@ -52,7 +52,7 @@ export default class ChatService {
 
 	getMessages () {
 		return this.http.makeRequest()
-			.then(resp => Object.values(resp.data));
+			.then(resp => Object.values(resp.data || {}));
 	}
 
 	sendMessage (data) {
