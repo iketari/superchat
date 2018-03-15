@@ -12,6 +12,8 @@ beforeEach(() => {
 			}
 		}
 	});
+
+	Date.prototype.toTimeString = jest.fn(() => '00:01:40 GMT+0');
 });
 
 test('Should render a banner for empty message list', () => {
@@ -21,14 +23,11 @@ test('Should render a banner for empty message list', () => {
 });
 
 test('Should render one message', () => {
-	const date = new Date(100500);
-	date.setHours(0);
-	
 	const messages = [
 		{
 			name: 'name',
 			text: 'text',
-			date: date.getTime()
+			date: 100500
 		}
 	]
 	chat.add(messages);
