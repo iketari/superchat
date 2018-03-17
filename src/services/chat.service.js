@@ -1,5 +1,6 @@
 /**
- * Service of chat functionality. Provide sending and polling of messages.
+ * Service which provides the chat functionality.
+ * Makes possible to send and poll messages.
  * @module {ChatService} ChatService
  */
 
@@ -44,13 +45,14 @@ export default class ChatService {
 		this.trigger('username:change', {name});
 	}
 
+
 	getUserName () {
 		return this._username;
 	}
 
 	getMessages () {
 		return this.http.makeRequest()
-			.then(resp => Object.values(resp.data));
+			.then(resp => Object.values(resp.data || {}));
 	}
 
 	sendMessage (data) {

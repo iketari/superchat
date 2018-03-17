@@ -1,7 +1,7 @@
 module.exports = {
 	"extends": "eslint:recommended",
 	"parserOptions": {
-		"ecmaVersion": 6,
+		"ecmaVersion": 8,
 		"sourceType": "module"
 	},
 	"env": {
@@ -31,5 +31,6 @@ module.exports = {
 	"globals": {
 		"assert": true,
 		"sinon": true,
+		"browser": true,
 	}
 };

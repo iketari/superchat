@@ -1,36 +1,39 @@
 sudo: required
-dist: trusty
-
+services:
+  - docker
 addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
-
-language: node_js
-
-node_js:
-  - "7"
-
+  chrome: stable
+  artifacts:
+    debug: true
+    paths:
+      - backstop_data/bitmaps_test
+      - backstop_data/html_report
+      - coverage
+before_install:
+  - docker pull backstopjs/backstopjs
 cache:
   directories:
-    - node_modules
-    - bower_components
-    - "$HOME/.npm"
-    - "$HOME/.cache"
-
+  - node_modules
+  - bower_components
+  - $HOME/.npm
+  - $HOME/.cache
 before_script:
-    - npm install
+- npm install
 before_deploy:
-    - npm run build
+- npm run build:production
 env:
-    NODE_ENV=testing
-script: ./node_modules/.bin/karma start --browsers ChromeHeadless --single-run
+  global:
+    - NODE_ENV=testing
+    - ARTIFACTS_BUCKET=travis-superchat
+    - secure: c4Ibnhhkf7zpGpvUT+nMAOoDLAhK3C3WTILrjRZByPHKrvYgyaJ9TCT/jqLhttmZVZuNnA+5pgh312dGbmNhAYe1MVWkFJPwuzvSo9nDa68PDE5U3y4Oft4eZusHND+rAq2S/aykIdI3G4rW1uoGUHOfSpfiNJlX9yQdQPiCAp1byYAirys+QVHRDxptvUaG7WRYG4rNI0y8KOfIP5at+zlqIfgA3JQH+5Vtu/ztL+ZRVJKlyaeZQ62CuYjUKmqWnnioPrsz1L3CjrZEixcs8y2N0JHE4YQUkWTnRQ1mBDxd1Oc7FQcQxnH4A4GDgfSs5pUUO9hj3k9V9URwxWy5g9WTQl4+1SyQeuOtbG2TycEpj7dNz5SZPM3ZHuWYhxY1jUVS1Vz9Qsqm9Er7IXknU4qaO9iCKKuA6iVhRwdU2Zrh6LYXNC7VpKlUpXn58/61jY0dSxylRCdsNPrEy9BJNlqFmpZkYOs1Ros9vVYC1YpXffdEIz9w9mp+DNCgAN3+PbjjIwM1r5n7nycI2az44Pu4RNpCAbHnTUNhxDgRkMOGj01e/cy73+DvHV/WhskAnNc/WamZPgseHasmUm6hMzN6pAkPJbjU1XeYpNHRRPRi6zQ8WMPCihdU3Y64UBugRNRhYzo3DRxlriMnxgeRgqFvLrO5ldOw9xnc1dciLsw=
+script:
+- docker run --rm -v $(pwd):/src -it --entrypoint=bash backstopjs/backstopjs -c "npm run test"
+- docker run --rm -v $(pwd):/src -it --entrypoint=bash backstopjs/backstopjs -c "npm run start:storybook & npm run backstop:test"
+- cd tests && npm install && npm run test:local && cd ..
 deploy:
-    skip_cleanup: true
-    provider: firebase
-    token:
-        secure: "nS2zF4/2PEibpZP3pIR3EO/uEVzXsjrUdEVCKR9EC+bPzmayPPOCv0x5gAoZPDQ6i55DDymosZfTtcXkqgY5tL0IWhcldgxfhV1j+DPI+0eQWEv2zGLcx0eqnZ/0bQoUGoNFIf+LUyPMOou7rQfunxirAHaND/sFde0+u4ESI3Y7itdJ8V9B2Tktx8cFXCWt+Vtq9OV6C+zmVzeKTkpmAv7DFZQkcKWecDsJ0ke6y59wE77tAfNBIL7LhuUw9WmAjPCG1lY0zMPs46CuyUBrOd4ma4qnaUFGdZAxgZa0ErnRGS7qMNYuVyemT3VLTtdIPcuKXSd/8XFxwD0PKdnWgbgzvi9cN/zlO72tTP8Ky0/FG/HEspFS13Tgk8QYysV79EKLEC+jUaL3bjbG7gDHJIVJH5dhde+QKvz6z/ZEhoe7ArZkELS0lq1BOqjEUGP3qEHlhE1FNcnoN3GH4nvY2Pda+FpL8uQqpUqP/q9qanw7eEfLz/vcIBja7x19guD0oDK/lS+qxrOCC12c0ZfBT9zOn763Th3nj+Wg1vgnIch2YWyehBUT5XRpiVChYKDoUOoz5Am/wEC5LS340qB4exA330o9wTrjeL1BUL1ltEp8RVDzl4QuLYTAzQwfeirTTN4/l5gwZ24MK585p0tNsUlmMb+zo7Bqw4PHflvZXuc="
+  skip_cleanup: true
+  provider: firebase
+  token:
+    secure: nS2zF4/2PEibpZP3pIR3EO/uEVzXsjrUdEVCKR9EC+bPzmayPPOCv0x5gAoZPDQ6i55DDymosZfTtcXkqgY5tL0IWhcldgxfhV1j+DPI+0eQWEv2zGLcx0eqnZ/0bQoUGoNFIf+LUyPMOou7rQfunxirAHaND/sFde0+u4ESI3Y7itdJ8V9B2Tktx8cFXCWt+Vtq9OV6C+zmVzeKTkpmAv7DFZQkcKWecDsJ0ke6y59wE77tAfNBIL7LhuUw9WmAjPCG1lY0zMPs46CuyUBrOd4ma4qnaUFGdZAxgZa0ErnRGS7qMNYuVyemT3VLTtdIPcuKXSd/8XFxwD0PKdnWgbgzvi9cN/zlO72tTP8Ky0/FG/HEspFS13Tgk8QYysV79EKLEC+jUaL3bjbG7gDHJIVJH5dhde+QKvz6z/ZEhoe7ArZkELS0lq1BOqjEUGP3qEHlhE1FNcnoN3GH4nvY2Pda+FpL8uQqpUqP/q9qanw7eEfLz/vcIBja7x19guD0oDK/lS+qxrOCC12c0ZfBT9zOn763Th3nj+Wg1vgnIch2YWyehBUT5XRpiVChYKDoUOoz5Am/wEC5LS340qB4exA330o9wTrjeL1BUL1ltEp8RVDzl4QuLYTAzQwfeirTTN4/l5gwZ24MK585p0tNsUlmMb+zo7Bqw4PHflvZXuc=
 notifications:
-    webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
+  webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
