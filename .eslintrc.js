@@ -32,5 +32,6 @@ module.exports = {
 		"assert": true,
 		"sinon": true,
 		"browser": true,
+		"jest": true,
 	}
 };
