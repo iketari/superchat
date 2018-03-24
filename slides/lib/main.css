@@ -1,21 +1,18 @@
-@import "normalize.css";
-@import "hljs/styles/github.css";
-
-body {
-	padding: 1rem;
+.slide .shout {
+	transform: translateY(-60%);
 }
 
-h1 {
-	font-weight: bold;
-}
-
-#main-content {
+.slide .shout .lesson {
 	display: block;
-	margin-top: 12vh;
-	min-height: 70vh;
-	/*overflow-y: hidden;*/
+	font-size: 35%;
 }
 
-footer {
-	text-align: center;
+.slide .shout .name {
+	display: block;
+	font-size: 80%;
+}
+
+.slide.question span {
+	display: inline-block;
+	font-size: 80%;
 }
