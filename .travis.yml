@@ -30,8 +30,8 @@ script:
 - npm run test
 - npm run test:snapshots
 - |
-  docker run --rm -v $(pwd):/src -it --entrypoint=bash backstopjs/backstopjs
-  -c "npm run start:storybook & npm run backstop:test
+  docker run --rm -v $(pwd):/src -it --entrypoint=bash backstopjs/backstopjs \
+  -c "npm run start:storybook & npm run backstop:test \
   && cd tests && npm install && NODE_ENV=testing npm run test:local && cd .."
 deploy:
   skip_cleanup: true
