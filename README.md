@@ -4,6 +4,10 @@
 
 ## Production ##
 
+https://superchat-production.firebaseapp.com/
+
+## Stage ##
+
 https://components-e2e6e.firebaseapp.com/
 
 ## Разработка ##
